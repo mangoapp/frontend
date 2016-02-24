@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the frontendApp
  */
-angular.module('frontendApp')
+angular.module('app')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',

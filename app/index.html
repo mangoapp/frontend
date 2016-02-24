@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="frontendApp">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -14,9 +14,10 @@
     <link rel="stylesheet" href="styles/main.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="frontendApp">
+  <body>
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -24,11 +25,11 @@
    
 
     <div class="container">
-    <div ng-view=""></div>
+      <div ng-view></div>
     </div>
 
     <footer>
-        <p>Made with <i class="fa fa-heart"></i> by Team Mangó</p>
+        <p>Made with <i class="fa fa-heart red"></i> by Team Mangó</p>
     </footer>
 
 
@@ -52,6 +53,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <!-- endbuild -->
 </body>
 </html>

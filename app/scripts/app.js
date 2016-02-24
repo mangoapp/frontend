@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var frontendApp = angular
   .module('frontendApp', [
     'ngAnimate',
     'ngCookies',
@@ -16,20 +16,20 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
+  ]);
+
+  frontendApp.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'main'
+      }).
+      when('/phones/:phoneId', {
+        templateUrl: 'partials/phone-detail.html',
+        controller: 'PhoneDetailCtrl'
+      }).
+      otherwise({
+        redirectTo: '/login'
       });
-  });
+  }]);
