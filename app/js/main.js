@@ -20,6 +20,10 @@
           templateUrl: "./partials/login.html",
           controller: "main"
         })
+        .when("/register", {
+          templateUrl: "./partials/register.html",
+          controller: "main"
+        })
         .otherwise({
            redirectTo: '/login'
         });
