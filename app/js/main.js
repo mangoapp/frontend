@@ -21,7 +21,7 @@
           controller: "main"
         })
         .otherwise({
-           redirectTo: '/'
+           redirectTo: '/login'
         });
     }
   ]);
