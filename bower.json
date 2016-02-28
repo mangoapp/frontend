@@ -1,28 +1,27 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Shane DeWael <dewaels@purdue.edu>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/mangoapp/frontend",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
-    "angular": "^1.4.0",
-    "bootstrap": "^3.2.0",
-    "angular-animate": "^1.4.0",
-    "angular-cookies": "^1.4.0",
-    "angular-resource": "^1.4.0",
-    "angular-route": "^1.4.0",
-    "angular-sanitize": "^1.4.0",
-    "angular-touch": "^1.4.0"
-  },
-  "devDependencies": {
-    "angular-mocks": "^1.4.0"
-  },
-  "appPath": "app",
-  "moduleName": "frontendApp",
-  "overrides": {
-    "bootstrap": {
-      "main": [
-        "less/bootstrap.less",
-        "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
-      ]
-    }
+    "angular": "^1.5.0",
+    "angular-animate": "^1.5.0",
+    "angular-route": "^1.5.0",
+    "jquery": "^2.2.1",
+    "animate.css": "^3.5.1",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "fontawesome#^4.5.0"
   }
 }
