@@ -10,4 +10,4 @@
 	* [http://localhost:8888](http://localhost:8888) for dev server
 	* [http://localhost:9999](http://localhost:9999) for production server
 
-> Note: you need to run `gulp clean` everytime you restart the server. > We'll fix this in the future
+> Note: you need to run `gulp clean` everytime you restart the server.We'll fix this in the future
