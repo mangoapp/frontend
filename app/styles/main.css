@@ -5,9 +5,13 @@ html, body {
   color: #333333;
 }
 footer {
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-align: center;
 }
 .red {
     color: #E23E57;
-  }
+}
+nav {
+	display: block;
+	background-color: #EEEEEE;
+}

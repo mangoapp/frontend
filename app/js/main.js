@@ -18,12 +18,12 @@
       $locationProvider.hashPrefix('!');
       // routes
       $routeProvider
-        .when("/login", {
-          templateUrl: "./views/login.html",
+        .when("/sign-in", {
+          templateUrl: "./views/signin.html",
           controller: "UserCtrl"
         })
-        .when("/register", {
-          templateUrl: "./views/register.html",
+        .when("/sign-up", {
+          templateUrl: "./views/signup.html",
           controller: "UserCtrl"
         })
         .when("/forgot-password", {
@@ -31,7 +31,7 @@
           controller: "UserCtrl"
         })
         .otherwise({
-           redirectTo: '/login'
+           redirectTo: '/sign-in'
         });
     }
   ])
