@@ -49,13 +49,14 @@ gulp.task('copy-html-files', function () {
 
 gulp.task('connect', function () {
   connect.server({
-    root: 'app/',
-    port: 8888
+    root: ['app'],
+    port: 8888,
+    debug: true
   });
 });
 gulp.task('connectDist', function () {
   connect.server({
-    root: 'dist/',
+    root: ['dist'],
     port: 9999
   });
 });
@@ -79,9 +80,12 @@ gulp.task('browserifyDist', function() {
 });
 
 // default task
-gulp.task('default',
-  ['lint', 'browserify', 'connect']
-);
+gulp.task('default', function() {
+  runSequence(
+    ['clean'],
+    ['lint', 'browserify', 'connect']
+  );
+});
 gulp.task('build', function() {
   runSequence(
     ['clean'],
