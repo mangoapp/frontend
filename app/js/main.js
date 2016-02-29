@@ -6,6 +6,8 @@
   require('angular-route');
   require('angular-animate');
 
+  var UserCtrl = require('../controllers/user.js');
+
 
   angular.module('mango', ['ngRoute', 'ngAnimate'])
 
@@ -17,31 +19,24 @@
       // routes
       $routeProvider
         .when("/login", {
-          templateUrl: "./partials/login.html",
-          controller: "main"
+          templateUrl: "./views/login.html",
+          controller: "UserCtrl"
         })
         .when("/register", {
-          templateUrl: "./partials/register.html",
-          controller: "main"
+          templateUrl: "./views/register.html",
+          controller: "UserCtrl"
         })
         .when("/forgot-password", {
-          templateUrl: "./partials/forgot-password.html",
-          controller: "main"
+          templateUrl: "./views/forgot-password.html",
+          controller: "UserCtrl"
         })
         .otherwise({
            redirectTo: '/login'
         });
     }
-  ]);
+  ])
 
   //Load controller
-  angular.module('mango')
-
-  .controller('main', [
-    '$scope',
-    function($scope) {
-      $scope.test = "Testinfdasg...";
-    }
-  ]);
+  .controller('UserCtrl', ['$scope', UserCtrl]);
 
 }());
