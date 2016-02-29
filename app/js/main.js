@@ -19,15 +19,15 @@
       // routes
       $routeProvider
         .when("/sign-in", {
-          templateUrl: "./views/signin.html",
+          templateUrl: "./views/users/signin.html",
           controller: "UserCtrl"
         })
         .when("/sign-up", {
-          templateUrl: "./views/signup.html",
+          templateUrl: "./views/users/signup.html",
           controller: "UserCtrl"
         })
         .when("/forgot-password", {
-          templateUrl: "./views/forgot-password.html",
+          templateUrl: "./views/users/forgot-password.html",
           controller: "UserCtrl"
         })
         .otherwise({
