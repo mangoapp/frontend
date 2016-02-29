@@ -24,6 +24,10 @@
           templateUrl: "./partials/register.html",
           controller: "main"
         })
+        .when("/forgot-password", {
+          templateUrl: "./partials/forgot-password.html",
+          controller: "main"
+        })
         .otherwise({
            redirectTo: '/login'
         });
