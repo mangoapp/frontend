@@ -10,11 +10,13 @@
 
 
   angular.module('mango', ['ngRoute', 'ngAnimate'])
+  .constant('API', 'http://localhost:8000/v1')
 
   .config([
     '$locationProvider',
     '$routeProvider',
-    function($locationProvider, $routeProvider) {
+    '$httpProvider',
+    function($locationProvider, $routeProvider, $httpProvider) {
       $locationProvider.hashPrefix('!');
       // routes
       $routeProvider
@@ -37,6 +39,6 @@
   ])
 
   //Load controller
-  .controller('UserCtrl', ['$scope', UserCtrl]);
+  .controller('UserCtrl', ['$scope', '$http', 'API', UserCtrl]);
 
 }());
