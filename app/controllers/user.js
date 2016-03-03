@@ -1,7 +1,7 @@
 module.exports = function($scope,$http,API,auth,$window) {
 	if (auth.getToken()) {
 		$scope.loggedin = true;
-		console.log(auth.getToken());
+		console.log(auth.parseJwt(auth.getToken()));
 	} else {
 		$scope.loggedin = false;
 	}

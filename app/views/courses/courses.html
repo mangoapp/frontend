@@ -4,6 +4,7 @@
 	<div ng-repeat="course in courses">
 		<a href="./#!/course" ng-click="changeCurrentCourse(course.name,course.id)">{{course.name}}</a>
 	</div>
+	<li ng-hide="events.length">No courses :(</li>
 </div>
 
 <div ng-include="'./components/footer.html'"></div>
