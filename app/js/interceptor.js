@@ -6,7 +6,6 @@ module.exports = function(API, auth) {
 	  		if(config.url.indexOf(API) === 0 && token) {
 	    		config.headers.Authorization = 'Bearer ' + token;
 	  		}
-
 	  		return config;
 		},
 

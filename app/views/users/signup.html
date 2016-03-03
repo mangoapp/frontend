@@ -4,12 +4,12 @@
 	<h1>Register</h1>
 	<form>
 		<div id="register-info">
-			<input type="text" placeholder="First name" name="first_name" ng-model="first_name" />
-			<input type="text" placeholder="Last name" name="last_name" ng-model="last_name" />
+			<input type="text" placeholder="First name" name="firstname" ng-model="firstname" />
+			<input type="text" placeholder="Last name" name="lastname" ng-model="lastname" />
 			<input type="text" placeholder="Email" name="email" ng-model="email" />
 			<input type="text" placeholder="Password" name="password" ng-model="password" />
 		</div>
-		<input type="submit" value="Register" />
+		<button type="submit" ng-click="signup()">Signup</button>
 	</form>
 </div>
 
