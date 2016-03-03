@@ -41,6 +41,10 @@ module.exports = function($scope,$http,API,auth) {
 		//console.log("here");
 		$http(req).then(handleRequest,handleRequest);
 	};
+	$scope.signout = function() {
+		auth.logout();
+		$scope.loggedin = false;
+	};
 	$scope.retrieve = function() {
 		var formData = {
 			email: $scope.email
