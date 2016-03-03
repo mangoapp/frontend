@@ -36,6 +36,10 @@
           templateUrl: "./views/users/forgot-password.html",
           controller: "UserCtrl"
         })
+        .when("/courses", {
+          templateUrl: "./views/courses/courses.html",
+          controller: "UserCtrl"
+        })
         .otherwise({
            redirectTo: '/sign-in'
         });
@@ -43,6 +47,6 @@
   ])
 
   //Load controller
-  .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', UserCtrl]);
+  .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', UserCtrl]);
 
 }());

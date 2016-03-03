@@ -1,4 +1,4 @@
-module.exports = function($scope,$http,API,auth) {
+module.exports = function($scope,$http,API,auth,$window) {
 	if (auth.getToken()) {
 		$scope.loggedin = true;
 		console.log(auth.getToken());
@@ -26,6 +26,11 @@ module.exports = function($scope,$http,API,auth) {
 			data: formData
 		};
 		$http(req).then(handleRequest, handleRequest);
+		setTimeout(function(){ 
+			if ($scope.loggedin) {
+				$window.location.href = './#!/courses';
+			}
+		}, 500);
 	};
 	$scope.signup = function() {
 		handleRequest = $scope.handleRequest;
@@ -41,6 +46,11 @@ module.exports = function($scope,$http,API,auth) {
 			data: formData
 		};
 		$http(req).then(handleRequest,handleRequest);
+		setTimeout(function(){ 
+			if ($scope.loggedin) {
+				$window.location.href = './#!/courses';
+			}
+		}, 500);
 	};
 	$scope.signout = function() {
 		auth.logout();
