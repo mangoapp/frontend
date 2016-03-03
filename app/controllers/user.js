@@ -1,8 +1,5 @@
 module.exports = function($scope,$http,API) {
-
-
   	$scope.signin = function() {
-  		console.log("here");
 		var formData = {
 			email: $scope.email,
 			password: $scope.password
@@ -12,8 +9,8 @@ module.exports = function($scope,$http,API) {
 			url: API + '/auth',
 			data: formData
 		};
-		console.log($http(req).then(function(){
-			console.log("did it");
+		console.log($http(req).then(function(token){
+			console.log(token);
 		}));
 	};
 	$scope.signup = function() {
@@ -29,6 +26,4 @@ module.exports = function($scope,$http,API) {
 			email: $scope.email
 		};
 	};
-
-  console.log("required!");
 };
