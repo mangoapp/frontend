@@ -1,6 +1,6 @@
 <div ng-include="'./components/navbar.html'"></div>
 
-<div id="login">
+<div id="login" ng-hide="loggedin">
 	<h1>Login</h1>
 	<form>
 		<div id="login-info">
@@ -10,6 +10,10 @@
 		<button type="submit" ng-click="signin()">Login</button>
 	</form>
 	<p><a href="./#!/sign-up">Register for Mango</a> | <a href="./#!/forgot-password">Forgot Password?</a></p>
+</div>
+
+<div id="logged" ng-show="loggedin">
+	<h1>Already Logged in</h1>
 </div>
 
 <div ng-include="'./components/footer.html'"></div>

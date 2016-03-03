@@ -1,16 +1,17 @@
 module.exports = function($scope,$http,API,auth) {
+	if (auth.getToken()) {
+		$scope.loggedin = true;
+		console.log(auth.getToken());
+	} else {
+		$scope.loggedin = false;
+	}
 	$scope.handleRequest = function(res) {
 		console.log(res);
 		var token = res.data ? res.data.token : null;
-		if (token) { auth.saveToken(token); }
+		if (token) { auth.saveToken(token); $scope.loggedin = true;}
 		self.message = res.data.message;
 	};
   	$scope.signin = function() {
-  		if (!auth.getToken()) {
-  			console.log("woo token");
-  		} else {
-  			console.log("Token is here! " + auth.getToken());
-  		}
   		handleRequest = $scope.handleRequest;
 		var formData = {
 			email: $scope.email,
@@ -22,6 +23,7 @@ module.exports = function($scope,$http,API,auth) {
 			data: formData
 		};
 		$http(req).then(handleRequest, handleRequest);
+
 	};
 	$scope.signup = function() {
 		handleRequest = $scope.handleRequest;
