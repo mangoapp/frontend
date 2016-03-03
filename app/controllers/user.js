@@ -40,16 +40,22 @@ module.exports = function($scope,$http,API,auth) {
 			url: API + '/users',
 			data: formData
 		};
-		//console.log("here");
 		$http(req).then(handleRequest,handleRequest);
 	};
 	$scope.signout = function() {
 		auth.logout();
 		$scope.loggedin = false;
 	};
-	$scope.retrieve = function() {
+	$scope.retrievePassword = function() {
+		handleRequest = $scope.handleRequest;
 		var formData = {
 			email: $scope.email
 		};
+		var req = {
+			method: 'POST',
+			url: API + '/passwordResetRequest',
+			data: formData
+		};
+		$http(req).then(handleRequest,handleRequest);
 	};
 };
