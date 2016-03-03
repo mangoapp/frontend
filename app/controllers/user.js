@@ -15,7 +15,6 @@ module.exports = function($scope,$http,API,auth,$window) {
 		self.message = res.data.message;
 	};
   	$scope.signin = function() {
-  		handleRequest = $scope.handleRequest;
 		var formData = {
 			email: $scope.email,
 			password: $scope.password
@@ -25,7 +24,7 @@ module.exports = function($scope,$http,API,auth,$window) {
 			url: API + '/auth',
 			data: formData
 		};
-		$http(req).then(handleRequest, handleRequest);
+		$http(req).then($scope.handleRequest, $scope.handleRequest);
 		setTimeout(function(){ 
 			if ($scope.loggedin) {
 				$window.location.href = './#!/courses';
@@ -33,7 +32,6 @@ module.exports = function($scope,$http,API,auth,$window) {
 		}, 500);
 	};
 	$scope.signup = function() {
-		handleRequest = $scope.handleRequest;
 		var formData = {
 			firstname: $scope.firstname,
 			lastname: $scope.lastname,
@@ -45,7 +43,7 @@ module.exports = function($scope,$http,API,auth,$window) {
 			url: API + '/users',
 			data: formData
 		};
-		$http(req).then(handleRequest,handleRequest);
+		$http(req).then($scope.handleRequest,$scope.handleRequest);
 		setTimeout(function(){ 
 			if ($scope.loggedin) {
 				$window.location.href = './#!/courses';
@@ -57,7 +55,6 @@ module.exports = function($scope,$http,API,auth,$window) {
 		$scope.loggedin = false;
 	};
 	$scope.retrievePassword = function() {
-		handleRequest = $scope.handleRequest;
 		var formData = {
 			email: $scope.email
 		};
@@ -66,20 +63,19 @@ module.exports = function($scope,$http,API,auth,$window) {
 			url: API + '/passwordResetRequest',
 			data: formData
 		};
-		$http(req).then(handleRequest,handleRequest);
+		$http(req).then($scope.handleRequest,$scope.handleRequest);
 		if ($scope.email) {
 			$scope.retrieving = true;
 		}
 	};
 	$scope.resetPassword = function() {
-		handleRequest = $scope.handleRequest;
 		var formData = {
 			email: $scope.email,
 			token: $scope.token,
 			password: $scope.password
 		};
 
-		$http(req).then(handleRequest,handleRequest);
+		$http(req).then($scope.handleRequest,$scope.handleRequest);
 
 	};
 };
