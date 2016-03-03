@@ -3,6 +3,9 @@
 <div id="login" ng-hide="loggedin">
 	<h1>Login</h1>
 	<form>
+		<ul id="errors" ng-show="edata" ng-repeat"error in errors">
+		<li ng-repeat="error in errors">{{error}}</li>
+		</ul>
 		<div id="login-info">
 			<input type="text" placeholder="Email" name="email" ng-model="email" />
 			<input type="text" placeholder="Password" name="password" ng-model="password" />
