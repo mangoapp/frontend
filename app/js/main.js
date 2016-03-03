@@ -12,7 +12,7 @@
 
 
   angular.module('mango', ['ngRoute', 'ngAnimate'])
-  .constant('API', 'http://localhost:8000/v1')
+  .constant('API', 'http://thirdstreet.in.jayhankins.me/backend/public/v1')
   .service('auth', ['$window', authService])
   .factory('authInterceptor', ['API', 'auth', authInterceptor])
 
