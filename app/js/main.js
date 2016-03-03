@@ -7,10 +7,14 @@
   require('angular-animate');
 
   var UserCtrl = require('../controllers/user.js');
+  var authService = require('../js/auth.js');
+  var authInterceptor = require('../js/interceptor.js');
 
 
   angular.module('mango', ['ngRoute', 'ngAnimate'])
   .constant('API', 'http://localhost:8000/v1')
+  .service('auth', ['$window', authService])
+  .factory('authInterceptor', ['API', 'auth', authInterceptor])
 
   .config([
     '$locationProvider',
@@ -39,6 +43,6 @@
   ])
 
   //Load controller
-  .controller('UserCtrl', ['$scope', '$http', 'API', UserCtrl]);
+  .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', UserCtrl]);
 
 }());

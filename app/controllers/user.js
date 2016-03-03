@@ -1,5 +1,11 @@
-module.exports = function($scope,$http,API) {
+module.exports = function($scope,$http,API, auth) {
+	$scope.handleRequest = function(res) {
+		var token = res.data ? res.data.token : null;
+		if (token) { console.log('JWT:', token); }
+		self.message = res.data.message;
+	};
   	$scope.signin = function() {
+  		handleRequest = $scope.handleRequest;
 		var formData = {
 			email: $scope.email,
 			password: $scope.password
@@ -9,9 +15,7 @@ module.exports = function($scope,$http,API) {
 			url: API + '/auth',
 			data: formData
 		};
-		console.log($http(req).then(function(token){
-			console.log(token);
-		}));
+		$http(req).then(handleRequest, handleRequest);
 	};
 	$scope.signup = function() {
 		var formData = {
