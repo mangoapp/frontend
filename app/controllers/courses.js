@@ -1,5 +1,6 @@
 module.exports = function($scope,$http,API,auth,$window) {
 	if (auth.getToken()) {
+		$scope.token = auth.getToken();
 		$scope.loggedin = true;
 	} else {
 		$scope.loggedin = false;
@@ -11,9 +12,22 @@ module.exports = function($scope,$http,API,auth,$window) {
 			$scope.errors = res.data;
 			$scope.edata = true;
 		}
-		self.message = res.data.message;
+		$scope.message = res.data.message;
 	};
 	$scope.getCourses = function() {
-
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/users/sections'
+		};
+		$http(req).then(function(res) {
+			$scope.courses = res.data;
+			console.log($scope.courses);
+		},$scope.handleRequest);
 	};
+	$scope.$on('$viewContentLoaded', function() {
+    	$scope.getCourses();
+	});
 };
