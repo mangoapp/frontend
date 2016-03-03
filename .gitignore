@@ -3,3 +3,4 @@
 /.tmp
 /bower_components
 /bundled.js
+/app/js/bundled.js
