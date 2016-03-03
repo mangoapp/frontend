@@ -57,5 +57,19 @@ module.exports = function($scope,$http,API,auth) {
 			data: formData
 		};
 		$http(req).then(handleRequest,handleRequest);
+		if ($scope.email) {
+			$scope.retrieving = true;
+		}
+	};
+	$scope.resetPassword = function() {
+		handleRequest = $scope.handleRequest;
+		var formData = {
+			email: $scope.email,
+			token: $scope.token,
+			password: $scope.password
+		};
+
+		$http(req).then(handleRequest,handleRequest);
+
 	};
 };
