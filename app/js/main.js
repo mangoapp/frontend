@@ -7,6 +7,7 @@
   require('angular-animate');
 
   var UserCtrl = require('../controllers/user.js');
+  var CourseCtrl = require('../controllers/courses.js');
   var authService = require('../js/auth.js');
   var authInterceptor = require('../js/interceptor.js');
 
@@ -38,7 +39,7 @@
         })
         .when("/courses", {
           templateUrl: "./views/courses/courses.html",
-          controller: "UserCtrl"
+          controller: "CourseCtrl"
         })
         .otherwise({
            redirectTo: '/sign-in'
@@ -47,6 +48,7 @@
   ])
 
   //Load controller
-  .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', UserCtrl]);
+  .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', UserCtrl])
+  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', CourseCtrl]);
 
 }());
