@@ -5,6 +5,10 @@ module.exports = function($scope,$http,API,auth,$window) {
 	} else {
 		$scope.loggedin = false;
 	}
+	$scope.currentCourse = {
+		name: "hello",
+		id: null
+	};
 	$scope.handleRequest = function(res) {
 		console.log(res);
 		var token = res.data ? res.data.token : null;
@@ -26,6 +30,10 @@ module.exports = function($scope,$http,API,auth,$window) {
 			$scope.courses = res.data;
 			console.log($scope.courses);
 		},$scope.handleRequest);
+	};
+	$scope.changeCurrentCourse = function(name,id) {
+		$scope.currentName = name;
+		$scope.currentId = id;
 	};
 	$scope.$on('$viewContentLoaded', function() {
     	$scope.getCourses();
