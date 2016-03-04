@@ -48,6 +48,11 @@ module.exports = function($scope,$http,API,auth,$window) {
 			}
 		}, 500);
 	};
+	$scope.getname = function() {
+		var tok = auth.getToken();
+		var ptok = auth.parseJwt(tok);
+		return ptok.firstname;
+	};
 	$scope.signout = function() {
 		auth.logout();
 		$scope.loggedin = false;

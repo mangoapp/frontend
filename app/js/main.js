@@ -53,6 +53,10 @@
           templateUrl: "./views/users/user-settings.html",
           controller: "UserCtrl"
         })
+        .when("/my-profile", {
+          templateUrl: "./views/users/my-profile.html",
+          controller: "UserCtrl"
+        })
         .otherwise({
            redirectTo: '/sign-in'
         });
