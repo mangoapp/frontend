@@ -41,6 +41,18 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			$scope.courses = res.data;
 		},$scope.handleRequest);
 	};
+	$scope.getAnnouncements = function() {
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/announcements/' + $scope.courseID
+		};
+		$http(req).then(function(res) {
+			$scope.announcements = res.data;
+		},$scope.handleRequest);
+	}
 	$scope.$on('$viewContentLoaded', function() {
     	$scope.getCourses();
     	if ($routeParams.courseNumber) {
