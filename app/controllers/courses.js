@@ -52,7 +52,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		$http(req).then(function(res) {
 			$scope.announcements = res.data;
 		},$scope.handleRequest);
-	}
+	};
 	$scope.$on('$viewContentLoaded', function() {
     	$scope.getCourses();
     	if ($routeParams.courseNumber) {
