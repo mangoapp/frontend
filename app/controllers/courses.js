@@ -50,7 +50,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		// $scope.courses isn't defined when this gets called and idk why
 		setTimeout(function(){ 
 		if ($scope.courses && !$scope.announcements) {
-			$scope.announcements = [];
+			$scope.announcements.length = 0;
 			for (var i = 0; i < $scope.courses.length; i++) {
 				// had to outsource this to another function because of closures apparently
 				$scope.getAnnouncementsReq(i);
