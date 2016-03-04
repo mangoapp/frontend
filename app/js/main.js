@@ -49,10 +49,6 @@
           templateUrl: "./views/courses/student-course.html",
           controller: "CourseCtrl"
         })
-        .when("/settings", {
-          templateUrl: "./views/users/user-settings.html",
-          controller: "UserCtrl"
-        })
         .when("/my-profile", {
           templateUrl: "./views/users/my-profile.html",
           controller: "UserCtrl"

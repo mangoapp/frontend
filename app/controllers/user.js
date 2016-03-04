@@ -53,6 +53,16 @@ module.exports = function($scope,$http,API,auth,$window) {
 		var ptok = auth.parseJwt(tok);
 		return ptok.firstname;
 	};
+	$scope.getemail = function() {
+		var tok = auth.getToken();
+		var ptok = auth.parseJwt(tok);
+		return ptok.email;
+	};
+	$scope.getpassword = function() {
+		var tok = auth.getToken();
+		var ptok = auth.parseJwt(tok);
+		return ptok.password;
+	};
 	$scope.signout = function() {
 		auth.logout();
 		$scope.loggedin = false;

@@ -1,7 +1,6 @@
 <nav>
     <span ng-hide="loggedin"><a href="./#!/login">Login</a> | </span>
     <span ng-controller="UserCtrl" ng-show="loggedin"><a href="./#!/login" ng-click="signout()">Logout</a> | </span> 
-    <a href="./#!/settings">Settings</a> | 
     <span ng-hide="loggedin"><a href="./#!/sign-in">My Courses</a> | </span>
     <span ng-controller="UserCtrl" ng-show="loggedin"><a href="./#!/courses">My Courses</a> | </span> 
     <span ng-controller="UserCtrl" ng-show="loggedin"><a href="./#!/my-profile">My Profile</a> | </span> 
