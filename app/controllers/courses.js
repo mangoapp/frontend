@@ -89,7 +89,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		};
 		$http(req).then(function(res) {
 			console.log("Announcement added");
-			$window.location.reload();
 		},$scope.handleRequest);
 	};
 	$scope.createSection = function() {
