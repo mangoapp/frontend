@@ -10,6 +10,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		setTimeout(function(){ 
 			if ($scope.courses) {
 			for (var i = 0; i < $scope.courses.length; i++) {
+				console.log($scope.courses[i]);
 				if ($scope.courses[i].id == id) {
 					$scope.noCourses = false;
 					$scope.courseID = $scope.courses[i].id;

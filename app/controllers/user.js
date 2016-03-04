@@ -4,6 +4,7 @@ module.exports = function($scope,$http,API,auth,$window) {
 	} else {
 		$scope.loggedin = false;
 	}
+
 	$scope.handleRequest = function(res) {
 		var token = res.data ? res.data.token : null;
 		if (token) { auth.saveToken(token); $scope.loggedin = true; $scope.edata = false;} else {
