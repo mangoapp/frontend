@@ -2,5 +2,8 @@
 <div ng-show="courseData">
 	<h2>Name of Course: {{ courseName }}</h2>
 </div>
+<div ng-hide="courseData">
+	<h2>You do not have permission to access this course</h2>
+</div>
 
 <div ng-include="'./components/footer.html'"></div>
