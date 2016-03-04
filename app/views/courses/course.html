@@ -1,6 +1,11 @@
 <div ng-include="'./components/course-navbar.html'"></div>
 <div ng-show="courseData">
 	<h2>Name of Course: {{ courseName }}</h2>
+	<div ng-show="isInstructor">
+		<h3>Add New Section:</h3>
+		<input ng-model="newSection">
+		<button ng-click="createSection()">Create Section</button>
+	</div>
 </div>
 <div ng-hide="courseData">
 	<h2>Course Not Found</h2>

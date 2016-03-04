@@ -5,6 +5,7 @@
   require('angular');
   require('angular-route');
   require('angular-animate');
+  require('angular-sanitize');
 
   var UserCtrl = require('../controllers/user.js');
   var CourseCtrl = require('../controllers/courses.js');
@@ -12,7 +13,7 @@
   var authInterceptor = require('../js/interceptor.js');
 
 
-  angular.module('mango', ['ngRoute', 'ngAnimate'])
+  angular.module('mango', ['ngRoute', 'ngAnimate', 'ngSanitize'])
   .constant('API', 'http://mango.kedarv.com/v1')
   .service('auth', ['$window', authService])
   .factory('authInterceptor', ['API', 'auth', authInterceptor])

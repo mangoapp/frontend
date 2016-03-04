@@ -17,6 +17,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 					$scope.userRole = $scope.courses[i].role_name;
 					$scope.userDisplayRole = $scope.courses[i].role_display_name;
 					$scope.courseData = true;
+					if ($scope.userRole == 'course_admin') {
+						$scope.isInstructor = true;
+					}
 					$scope.$apply();
 				}
 			}
@@ -40,6 +43,25 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		$http(req).then(function(res) {
 			$scope.courses = res.data;
 		},$scope.handleRequest);
+	};
+	$scope.createSection = function() {
+		console.log($scope.newSection);
+		var formData = {
+			course_id: $scope.courseID,
+			section_name: $scope.newSection
+		};
+		var req = {
+			method: 'POST',
+			data: formData,
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/courses/sections'
+		};
+		$http(req).then(function(res) {
+			console.log("successfully created");
+		},$scope.handleRequest);
+		
 	};
 	$scope.$on('$viewContentLoaded', function() {
     	$scope.getCourses();
