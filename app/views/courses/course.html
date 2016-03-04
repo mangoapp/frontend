@@ -1,7 +1,7 @@
 <div ng-include="'./components/course-navbar.html'"></div>
 <div ng-show="courseData">
 	<h2>Name of Course: {{ courseName }}</h2>
-	<h2>Announcements</h2>
+	<h2>Announcements:</h2>
 	<div ng-repeat="announcement in announcements">
 		<div ng-if="announcement[0].id== courseID">
 			<h4>{{announcement[0].title}}</h4>
@@ -10,9 +10,18 @@
 		</div>
 	</div>
 	<div ng-show="isInstructor">
-		<h3>Add New Section:</h3>
+		<br><br>
+		<h2>Add New Announcement:</h2>
+		<small>Title:</small>
+		<input ng-model="newAnnouncementTitle"><br>
+		<small>Announcement:</small><br>
+		<textarea ng-model="newAnnouncement"></textarea><br>
+		<button ng-click="createAnnouncement()">Create Announcement</button>
+		<br><br><br>
+		<h2>Add New Section:</h2>
 		<input ng-model="newSection">
-		<button ng-click="createSection()">Create Section</button>
+		<button ng-click="createSection()">Create Section</button><br>
+		
 	</div>
 	
 </div>

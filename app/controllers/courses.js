@@ -72,8 +72,25 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			$scope.announcements.push(res.data);
 		},$scope.handleRequest);
 	};
+	$scope.createAnnouncement = function() {
+		var formData = {
+			title: $scope.newAnnouncementTitle,
+			body: $scope.newAnnouncement,
+			section_id: $scope.courseID
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/announcements'
+		};
+		$http(req).then(function(res) {
+			console.log("Announcement added");
+		},$scope.handleRequest);
+	};
 	$scope.createSection = function() {
-		console.log($scope.newSection);
 		var formData = {
 			course_id: $scope.courseID,
 			section_name: $scope.newSection
