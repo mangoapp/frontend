@@ -49,9 +49,13 @@
           templateUrl: "./views/courses/student-course.html",
           controller: "CourseCtrl"
         })
-        .when("/my-profile", {
+        .when("/profile", {
           templateUrl: "./views/users/my-profile.html",
           controller: "UserCtrl"
+        })
+        .when("/announcements", {
+          templateUrl: "./views/courses/announcements.html",
+          controller: "CourseCtrl"
         })
         .otherwise({
            redirectTo: '/sign-in'

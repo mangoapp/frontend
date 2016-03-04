@@ -1,4 +1,9 @@
 <div ng-include="'./components/course-navbar.html'"></div>
-<h1>{{courseid}}</h1>
+<div ng-show="courseData">
+	<h2>Name of Course: {{ courseName }}</h2>
+</div>
+<div ng-hide="courseData">
+	<h2>Course Not Found</h2>
+</div>
 
 <div ng-include="'./components/footer.html'"></div>

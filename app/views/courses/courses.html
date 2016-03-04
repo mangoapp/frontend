@@ -1,9 +1,13 @@
 <div ng-include="'./components/course-navbar.html'"></div>
+
 <h1>Courses</h1>
 <div id="courses">
 	<div ng-repeat="course in courses">
-		<a href="./#!/course" ng-click="changeCurrentCourse(course.name,course.id)">{{course.name}}</a>
+		<a ng-href="./#!/courses/{{course.id}}" ng-click="changeCurrentCourse(course.id)">{{course.name}}</a>
 	</div>
+</div>
+<div class="no-courses" ng-show="noCourses">
+	<h3>No courses to display</h3>
 </div>
 
 <div ng-include="'./components/footer.html'"></div>
