@@ -46,6 +46,10 @@
             templateUrl: "./views/courses/course.html",
             controller: "CourseCtrl"
         })
+        .when("/course", {
+          templateUrl: "./views/courses/student-course.html",
+          controller: "CourseCtrl"
+        })
         .when("/profile", {
           templateUrl: "./views/users/my-profile.html",
           controller: "UserCtrl"

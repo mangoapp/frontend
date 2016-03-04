@@ -44,6 +44,20 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			$scope.courses = res.data;
 		},$scope.handleRequest);
 	};
+
+	$scope.getAnnouncements = function() {
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/announcements/' + $scope.courseID
+		};
+		$http(req).then(function(res) {
+			$scope.announcements = res.data;
+		},$scope.handleRequest);
+	};
+	
 	$scope.createSection = function() {
 		console.log($scope.newSection);
 		var formData = {
@@ -62,6 +76,10 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			console.log("successfully created");
 		},$scope.handleRequest);
 		
+<<<<<<< HEAD
+=======
+>>>>>>> add sections
+>>>>>>> b8c82973941d6bae9ede7d3e3d92f33d8ec61cfa
 	};
 	$scope.$on('$viewContentLoaded', function() {
     	$scope.getCourses();

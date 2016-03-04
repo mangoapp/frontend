@@ -2,5 +2,19 @@
 <h1>My Profile</h1>
 
 <h2>Welcome, {{getname()}}</h2>
+<div id="user-info">
+	<span>Update email address: </span><input type="text" placeholder="Email" name="email" ng-model="getemail()" />
+	<span>Update password: </span><input type="password" placeholder="Password" name="password"  />
+	<span>Confirm password: </span><input type="password" placeholder="Password confirmation" name="passwordconf" />
+
+	<form action="">
+  		<input type="radio" name="email" value="email-on">Email on<br>
+  		<input type="radio" name="email" value="email-off">Email off<br>
+	</form>
+
+	<button type="submit" ng-click="updateinfo()">Update Information</button>
+
+</div>
+
 
 <div ng-include="'./components/footer.html'"></div>
