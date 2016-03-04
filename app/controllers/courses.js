@@ -1,6 +1,5 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 	//$scope.courseData = false;
-	$scope.courseName = "hello world";
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -9,8 +8,10 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 	}
 	$scope.getCourseWithID = function(id) {
 		setTimeout(function(){ 
+			if ($scope.courses) {
 			for (var i = 0; i < $scope.courses.length; i++) {
 				if ($scope.courses[i].id == id) {
+					$scope.noCourses = false;
 					$scope.courseID = $scope.courses[i].id;
 					$scope.courseName = $scope.courses[i].name;
 					$scope.userRole = $scope.courses[i].role_name;
@@ -19,15 +20,13 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 					$scope.$apply();
 				}
 			}
-		}, 500);
+		}
+		}, 300);
 		
 	};
 	$scope.handleRequest = function(res) {
-		var token = res.data ? res.data.token : null;
-		if (token) { auth.saveToken(token); $scope.loggedin = true; $scope.edata = false;} else {
-			$scope.errors = res.data;
-			$scope.edata = true;
-		}
+		console.log(res);
+		$scope.noCourses = true;
 		$scope.message = res.data.message;
 	};
 	$scope.getCourses = function() {
