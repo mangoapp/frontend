@@ -13,7 +13,7 @@
 
 
   angular.module('mango', ['ngRoute', 'ngAnimate'])
-  .constant('API', 'http://thirdstreet.in.jayhankins.me/backend/public/v1')
+  .constant('API', 'http://mango.kedarv.com/v1')
   .service('auth', ['$window', authService])
   .factory('authInterceptor', ['API', 'auth', authInterceptor])
 
@@ -41,6 +41,10 @@
           templateUrl: "./views/courses/courses.html",
           controller: "CourseCtrl"
         })
+        .when("/courses/:courseNumber", {
+            templateUrl: "./views/courses/course.html",
+            controller: "CourseCtrl"
+        })
         .when("/course", {
           templateUrl: "./views/courses/student-course.html",
           controller: "CourseCtrl"
@@ -57,6 +61,6 @@
 
   //Load controller
   .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', UserCtrl])
-  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', CourseCtrl]);
+  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', CourseCtrl]);
 
 }());
