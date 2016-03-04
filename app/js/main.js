@@ -57,6 +57,6 @@
 
   //Load controller
   .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', UserCtrl])
-  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', CourseCtrl]);
+  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$ngSanitize', CourseCtrl]);
 
 }());
