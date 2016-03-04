@@ -57,7 +57,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			$scope.announcements = res.data;
 		},$scope.handleRequest);
 	};
-	
+
 	$scope.createSection = function() {
 		console.log($scope.newSection);
 		var formData = {
@@ -76,10 +76,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			console.log("successfully created");
 		},$scope.handleRequest);
 		
-<<<<<<< HEAD
-=======
->>>>>>> add sections
->>>>>>> b8c82973941d6bae9ede7d3e3d92f33d8ec61cfa
 	};
 	$scope.$on('$viewContentLoaded', function() {
     	$scope.getCourses();
