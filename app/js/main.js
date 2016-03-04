@@ -45,7 +45,7 @@
             templateUrl: "./views/courses/course.html",
             controller: "CourseCtrl"
         })
-        .when("/my-profile", {
+        .when("/profile", {
           templateUrl: "./views/users/my-profile.html",
           controller: "UserCtrl"
         })
@@ -61,6 +61,6 @@
 
   //Load controller
   .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', UserCtrl])
-  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$ngSanitize', CourseCtrl]);
+  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', CourseCtrl]);
 
 }());

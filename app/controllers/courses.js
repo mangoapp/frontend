@@ -1,4 +1,4 @@
-module.exports = function($scope,$http,API,auth,$window,$routeParams,$ngSanitize) {
+module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 	//$scope.courseData = false;
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
