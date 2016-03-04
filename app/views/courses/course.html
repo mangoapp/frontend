@@ -2,11 +2,11 @@
 <div ng-show="courseData">
 	<h2>Name of Course: {{ courseName }}</h2>
 	<h2>Announcements:</h2>
-	<div ng-repeat="announcement in announcements">
-		<div ng-if="announcement[0].id== courseID">
-			<h4>{{announcement[0].title}}</h4>
-			<p>{{announcement[0].body}}</p>
-			<small>Posted at {{announcement[0].created_at}}</small>
+	<div ng-repeat="announcement in announcements[0]">
+		<div ng-if="announcement.section_id == courseID">
+			<h4>{{announcement.title}}</h4>
+			<p>{{announcement.body}}</p>
+			<small>Posted at {{announcement.created_at}}</small>
 		</div>
 	</div>
 	<div ng-show="isInstructor">

@@ -67,7 +67,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			headers: {
 				'Authorization': 'Bearer: ' + $scope.token
 			},
-			url: API + '/announcements/1?section_id=' + $scope.courses[i].id
+			url: API + '/announcements/' + $scope.courses[i].id
 		};
 		$http(req).then(function(res) {
 			$scope.announcements.push(res.data);
