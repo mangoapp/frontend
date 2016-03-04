@@ -24,7 +24,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 				}
 			}
 		}
-		}, 300);
+		}, 400);
 		
 	};
 	$scope.handleRequest = function(res) {
@@ -47,6 +47,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 
 	$scope.getAnnouncements = function() {
 		// $scope.courses isn't defined when this gets called and idk why
+		setTimeout(function(){ 
 		if ($scope.courses && !$scope.announcements) {
 			$scope.announcements = [];
 			for (var i = 0; i < $scope.courses.length; i++) {
@@ -54,12 +55,10 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 				$scope.getAnnouncementsReq(i);
 			}
 			// this doesnt print
-			console.log("help");
 		}
 		// this prints
-		console.log("test");
 		// undefined because $scope.courses isn't defined
-		console.log($scope.announcements);
+		}, 400);
 	};
 	$scope.getAnnouncementsReq = function(i) {
 		var req = {

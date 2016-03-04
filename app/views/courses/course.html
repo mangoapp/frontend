@@ -1,11 +1,20 @@
 <div ng-include="'./components/course-navbar.html'"></div>
 <div ng-show="courseData">
 	<h2>Name of Course: {{ courseName }}</h2>
+	<h2>Announcements</h2>
+	<div ng-repeat="announcement in announcements">
+		<div ng-if="announcement[0].id== courseID">
+			<h4>{{announcement[0].title}}</h4>
+			<p>{{announcement[0].body}}</p>
+			<small>Posted at {{announcement[0].created_at}}</small>
+		</div>
+	</div>
 	<div ng-show="isInstructor">
 		<h3>Add New Section:</h3>
 		<input ng-model="newSection">
 		<button ng-click="createSection()">Create Section</button>
 	</div>
+	
 </div>
 <div ng-hide="courseData">
 	<h2>Course Not Found</h2>
