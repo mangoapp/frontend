@@ -1,4 +1,5 @@
-module.exports = function($scope,$http,API,auth,$window) {
+module.exports = function($scope,$http,API,auth,$window,$routeParams) {
+	$scope.courseid = $routeParams.courseNumber;
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -10,7 +11,6 @@ module.exports = function($scope,$http,API,auth,$window) {
 		id: null
 	};
 	$scope.handleRequest = function(res) {
-		console.log(res);
 		var token = res.data ? res.data.token : null;
 		if (token) { auth.saveToken(token); $scope.loggedin = true; $scope.edata = false;} else {
 			$scope.errors = res.data;
@@ -28,7 +28,6 @@ module.exports = function($scope,$http,API,auth,$window) {
 		};
 		$http(req).then(function(res) {
 			$scope.courses = res.data;
-			console.log($scope.courses);
 		},$scope.handleRequest);
 	};
 	$scope.changeCurrentCourse = function(name,id) {
