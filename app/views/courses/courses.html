@@ -5,7 +5,6 @@
 	<div ng-repeat="course in courses">
 		<a ng-href="./#!/courses/{{course.id}}" ng-click="changeCurrentCourse(course.id)">{{course.name}}</a>
 	</div>
-	
 </div>
 <div class="no-courses" ng-show="noCourses">
 	<h3>No courses to display</h3>

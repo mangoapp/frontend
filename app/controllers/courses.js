@@ -46,18 +46,33 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 	};
 
 	$scope.getAnnouncements = function() {
+		// $scope.courses isn't defined when this gets called and idk why
+		if ($scope.courses && !$scope.announcements) {
+			$scope.announcements = [];
+			for (var i = 0; i < $scope.courses.length; i++) {
+				// had to outsource this to another function because of closures apparently
+				$scope.getAnnouncementsReq(i);
+			}
+			// this doesnt print
+			console.log("help");
+		}
+		// this prints
+		console.log("test");
+		// undefined because $scope.courses isn't defined
+		console.log($scope.announcements);
+	};
+	$scope.getAnnouncementsReq = function(i) {
 		var req = {
 			method: 'GET',
 			headers: {
 				'Authorization': 'Bearer: ' + $scope.token
 			},
-			url: API + '/announcements/' + $scope.courseID
+			url: API + '/announcements/1?section_id=' + $scope.courses[i].id
 		};
 		$http(req).then(function(res) {
-			$scope.announcements = res.data;
+			$scope.announcements.push(res.data);
 		},$scope.handleRequest);
 	};
-
 	$scope.createSection = function() {
 		console.log($scope.newSection);
 		var formData = {
@@ -82,5 +97,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
     	if ($routeParams.courseNumber) {
 			$scope.getCourseWithID($routeParams.courseNumber);
 		}
+		// added this guy here, after getCourses(), but $scope.courses isnt defined
+		$scope.getAnnouncements();
 	});
 };
