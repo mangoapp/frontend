@@ -1,12 +1,15 @@
 html, body {
-  padding: 0;
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   font-family: 'Open Sans', sans-serif;
   color: #333333;
 }
 footer {
   font-size: 0.8em;
   text-align: center;
+}
+*:focus {
+  outline: none;
 }
 .red {
     color: #E23E57;
@@ -17,4 +20,57 @@ nav {
 }
 input {
 	display: block;
+}
+button.login {
+  border: 0;
+  color: #FFFFFF;
+  background-color: #F3715C;
+  width: 100%;
+  border-radius: 7px;
+  padding: 13px 0;
+  margin-top: 7%;
+  font-size: 1.1em;
+  font-weight: 300;
+}
+button.login:hover {
+  background-color: #DDDDDD;
+}
+.btn {
+  width: 50%;
+  padding: 0;
+}
+form {
+  margin: 0 auto;
+  text-align: center;
+}
+#logo {
+  width: 50%;
+  margin: 20px auto;
+}
+#logo img {
+  width: 100%;
+}
+#login-info {
+  border: 7px solid #DDDDDD;
+  border-radius: 7px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 30px;
+}
+#login-info input {
+  border: 0;
+  width: 100%;
+  padding: 25px 0 0 0;
+  color: #8B8B8B;
+  font-size: 1.1em;
+
+}
+#login-info input.top {
+  border-bottom: 3px solid #DDDDDD;
+  padding: 0 0 25px 0 !important;
+}
+p {
+  text-align: center;
+  margin: 5px 0 25px 0;
+  font-size: 0.9em;
 }
