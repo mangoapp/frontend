@@ -45,10 +45,16 @@ form {
 }
 #logo {
   width: 50%;
-  margin: 20px auto;
+  margin: 35px auto;
 }
 #logo img {
   width: 100%;
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 #login-info {
   border: 7px solid #DDDDDD;
