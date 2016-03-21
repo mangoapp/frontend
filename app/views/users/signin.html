@@ -1,5 +1,3 @@
-
-
 <div id="login" ng-hide="loggedin">
 	<div id="logo"><img src="img/logo.png" /></div>
 	<form>
@@ -7,8 +5,8 @@
 		<li ng-repeat="error in errors">{{error}}</li>
 		</ul>
 		<div id="login-info">
-			<input class="top" type="text" placeholder="Username" name="email" ng-model="email" />
-			<input type="text" placeholder="Password" name="password" ng-model="password" />
+			<input type="text" placeholder="Username" name="email" ng-model="email" />
+			<input type="password" placeholder="Password" name="password" ng-model="password" />
 		</div>
 		<div class="btn"><button class="login" type="submit" ng-click="signin()">Login</button></div>
 	</form><br><br>
