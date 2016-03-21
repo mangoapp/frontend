@@ -1,18 +1,18 @@
-<div ng-include="'./components/navbar.html'"></div>
+
 
 <div id="login" ng-hide="loggedin">
-	<h1>Login</h1>
+	<div id="logo"><img src="img/logo.png" /></div>
 	<form>
 		<ul id="errors" ng-show="edata" ng-repeat"error in errors">
 		<li ng-repeat="error in errors">{{error}}</li>
 		</ul>
 		<div id="login-info">
-			<input type="text" placeholder="Email" name="email" ng-model="email" />
+			<input class="top" type="text" placeholder="Username" name="email" ng-model="email" />
 			<input type="text" placeholder="Password" name="password" ng-model="password" />
 		</div>
-		<button type="submit" ng-click="signin()">Login</button>
-	</form>
-	<p><a href="./#!/sign-up">Register for Mango</a> | <a href="./#!/forgot-password">Forgot Password?</a></p>
+		<div class="btn"><button class="login" type="submit" ng-click="signin()">Login</button></div>
+	</form><br><br>
+	<p class="subnav"><a href="./#!/sign-up">Register for Mango</a> | <a href="./#!/forgot-password">Forgot Password?</a></p>
 </div>
 
 <div id="logged" ng-show="loggedin">
