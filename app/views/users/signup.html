@@ -1,17 +1,16 @@
-<div ng-include="'./components/navbar.html'"></div>
+<div id="logo"><img src="../img/logo.png" /></div>
 
 <div id="register">
-	<h1>Register</h1>
 	<form>
 		<div id="register-info">
-			<input type="text" placeholder="First name" name="firstname" ng-model="firstname" />
-			<input type="text" placeholder="Last name" name="lastname" ng-model="lastname" />
-			<input type="text" placeholder="Email" name="email" ng-model="email" />
+			<input class="top" type="text" placeholder="First name" name="firstname" ng-model="firstname" />
+			<input class="mid" type="text" placeholder="Last name" name="lastname" ng-model="lastname" />
+			<input class="mid" type="text" placeholder="Email" name="email" ng-model="email" />
 			<input type="password" placeholder="Password" name="password" ng-model="password" />
 		</div>
-		<button type="submit" ng-click="signup()">Signup</button>
+		<div class="btn"><button class="register" type="submit" ng-click="signup()">Get Started</button></div>
 	</form>
-	<p><a href="./#!/login">Back to Login</a></p>
+	<p class="subnav"><a href="./#!/login">Back to Login</a></p>
 </div>
 
 <div ng-include="'./components/footer.html'"></div>

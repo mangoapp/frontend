@@ -8,10 +8,10 @@ footer {
   font-size: 0.9em;
   text-align: center;
   color: #939393;
+  width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
 }
 *:focus {
   outline: none;
@@ -26,7 +26,7 @@ nav {
 input {
 	display: block;
 }
-button.login {
+button.login, button.register {
   border: 0;
   color: #FFFFFF;
   background-color: #F3715C;
@@ -37,7 +37,7 @@ button.login {
   font-size: 1.1em;
   font-weight: 300;
 }
-button.login:hover {
+button.login:hover, button.register:hover {
   background-color: #DDDDDD;
 }
 .btn {
@@ -50,7 +50,7 @@ form {
 }
 #logo {
   width: 50%;
-  margin: 50px auto 35px auto;
+  margin: 25px auto 25px auto;
 }
 #logo img {
   width: 100%;
@@ -61,14 +61,14 @@ form {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-#login-info {
+#login-info, #register-info {
   border: 7px solid #DDDDDD;
   border-radius: 7px;
   width: 50%;
   margin: 0 auto;
   padding: 30px;
 }
-#login-info input {
+#login-info input, #register-info input {
   border: 0;
   width: 100%;
   padding: 25px 0 0 0;
@@ -76,9 +76,13 @@ form {
   font-size: 1.1em;
 
 }
-#login-info input.top {
+#login-info input.top, #register-info input.top {
   border-bottom: 3px solid #DDDDDD;
   padding: 0 0 25px 0 !important;
+}
+#register-info input.mid {
+  border-bottom: 3px solid #DDDDDD;
+  padding: 25px 0 !important;
 }
 p {
   text-align: center;
@@ -88,6 +92,7 @@ p {
 p.subnav {
   font-size: 1em;
   color: #CCCCCC;
+  margin-top: 25px;
 }
 p.subnav a {
   color: #FFAA6F;
