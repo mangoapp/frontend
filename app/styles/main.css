@@ -5,8 +5,13 @@ html, body {
   color: #333333;
 }
 footer {
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-align: center;
+  color: #939393;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 *:focus {
   outline: none;
@@ -79,4 +84,14 @@ p {
   text-align: center;
   margin: 5px 0 25px 0;
   font-size: 0.9em;
+}
+p.subnav {
+  font-size: 1em;
+  color: #CCCCCC;
+}
+p.subnav a {
+  color: #FFAA6F;
+}
+p.subnav a:hover {
+  color: #FF7056;
 }
