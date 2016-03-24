@@ -100,3 +100,14 @@ p.subnav a {
 p.subnav a:hover {
   color: #FF7056;
 }
+#errors {
+  position: absolute;
+  width: 100%;
+  background-color: #E74C3C;
+  left: 0;
+  top: 0;
+  list-style: none;
+  padding: 10px 0;
+  color: white;
+}
+
