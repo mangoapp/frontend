@@ -46,6 +46,10 @@ gulp.task('copy-html-files', function () {
   gulp.src('./app/**/*.html')
     .pipe(gulp.dest('dist/'));
 });
+gulp.task('copy-img', function() {
+  gulp.src('./app/img/*')
+    .pipe(gulp.dest('dist/img/'));
+});
 
 gulp.task('connect', function () {
   connect.server({
@@ -89,6 +93,6 @@ gulp.task('default', function() {
 gulp.task('build', function() {
   runSequence(
     ['clean'],
-    ['lint', 'minify-css', 'browserifyDist', 'copy-html-files', 'copy-bower-components', 'connectDist']
+    ['lint', 'minify-css', 'browserifyDist', 'copy-html-files', 'copy-img', 'copy-bower-components', 'connectDist']
   );
 });
