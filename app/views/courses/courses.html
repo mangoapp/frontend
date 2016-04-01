@@ -4,18 +4,20 @@
 <div class="side-nav col-md-1 hidden-xs hidden-sm">
 	List courses here
 </div>
-<div class="main-content col-md-8">
+<div class="main-content col-md-8 col-xs-12">
 	<h3>My Courses</h3>
 	<div id="courses">
 		<div ng-repeat="course in courses">
-			<a ng-href="./#!/courses/{{course.id}}" ng-click="changeCurrentCourse(course.id)">{{course.name}}</a>
+			<div class="s-course">
+				<a ng-href="./#!/courses/{{course.id}}" ng-click="changeCurrentCourse(course.id)">{{course.name}}</a>
+			</div>
 		</div>
 	</div>
 	<div class="no-courses" ng-show="noCourses">
 		<h3>No courses to display</h3>
 	</div>
 	</div>
-<div class="main-announcements col-md-3">
+<div class="main-announcements col-md-3 hidden-xs">
 Announcements
 </div>
 

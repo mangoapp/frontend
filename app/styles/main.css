@@ -184,3 +184,12 @@ h3 {
 .main-content {
   padding: 0 25px;
 }
+#courses {
+  margin-top: 25px;
+}
+.s-course { 
+  width: 25%; 
+  margin-right: 8%;
+  float: left;
+background-color: red;
+ }
