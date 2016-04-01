@@ -9,7 +9,28 @@
 	<div id="courses">
 		<div ng-repeat="course in courses">
 			<div class="s-course">
-				<a ng-href="./#!/courses/{{course.id}}" ng-click="changeCurrentCourse(course.id)">{{course.name}}</a>
+				<a ng-href="./#!/courses/{{course.id}}" ng-click="changeCurrentCourse(course.id)">
+					<div class="course-link science">
+					{{course.name}}
+					</div>
+				</a>
+				<div class="course-nav">
+					<div class="course-nav-s col-md-4">
+						<a href="#">
+							<i class="fa fa-file-text"></i>
+						</a>
+					</div>
+					<div class="course-nav-s col-md-4">
+						<a href="#">
+							<i class="fa fa-comments"></i>
+						</a>
+					</div>
+					<div class="course-nav-s col-md-4">
+						<a href="#">
+							<i class="fa fa-users"></i>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

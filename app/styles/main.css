@@ -187,9 +187,48 @@ h3 {
 #courses {
   margin-top: 25px;
 }
+.course-link {
+  content: '';
+  padding-top: 45%;
+  padding-bottom: 45%;
+  text-align: center;
+  background-color: #EEEEEE;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+.course-link:hover {
+  text-decoration: none;
+}
+.course-link a:hover {
+  text-decoration: none;
+}
+.science {
+  background-color: #2ECC71;
+}
+.science:hover {
+  background-color: #CCCCCC;
+}
+
 .s-course { 
   width: 25%; 
   margin-right: 8%;
   float: left;
-background-color: red;
+ }
+ .s-course a:hover {
+  text-decoration: none;
+ }
+ .course-nav {
+  width: 100%;
+ }
+ .course-nav-s {
+  padding: 10px 0;
+  text-align: center;
+  background-color: #EEEEEE;
+ }
+ .course-nav-s a {
+  color: #939393;
+ }
+ .course-nav-s a:hover {
+  color: #2ECC71;
  }
