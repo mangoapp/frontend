@@ -179,18 +179,18 @@ h3 {
   margin: 0 !important;
   padding: 0 !important;
   color: #939393;
-  font-weight: 600;
+  font-weight: 400;
 }
 .main-content {
-  padding: 0 25px;
+  padding: 0 50px;
 }
 #courses {
-  margin-top: 25px;
+  margin-top: 50px;
 }
 .course-link {
   content: '';
   padding-top: 45%;
-  padding-bottom: 45%;
+  padding-bottom: 40%;
   text-align: center;
   background-color: #EEEEEE;
   color: white;
@@ -229,6 +229,6 @@ h3 {
  .course-nav-s a {
   color: #939393;
  }
- .course-nav-s a:hover {
+ .science .course-nav-s a:hover {
   color: #2ECC71;
  }
