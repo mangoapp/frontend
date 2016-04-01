@@ -1,11 +1,10 @@
 <div ng-include="'./components/course-navbar.html'"></div>
 <div class="clear"></div>
 <div class="row main">
-<div class="side-nav col-md-1">
-List courses here
+<div class="side-nav col-md-1 hidden-xs hidden-sm">
+	List courses here
 </div>
-
-<div class="main-content col-md-11">
+<div class="main-content col-md-8">
 	<h3>My Courses</h3>
 	<div id="courses">
 		<div ng-repeat="course in courses">
@@ -15,5 +14,11 @@ List courses here
 	<div class="no-courses" ng-show="noCourses">
 		<h3>No courses to display</h3>
 	</div>
+	</div>
+<div class="main-announcements col-md-3">
+Announcements
 </div>
-<div ng-include="'./components/footer.html'"></div>
+
+
+	</div>
+<div ng-include="'./components/footer-main.html'"></div>
