@@ -4,7 +4,7 @@
 <div class="side-nav col-md-1 fixed hidden-xs hidden-sm">
 	List courses here
 </div>
-<div class="side-course-nav fixed col-md-2">
+<div class="side-course-nav fixed col-md-2 hidden-xs hidden-sm">
 	<h3>{{courseName}}</h3>
 	<div>
 		<a class="lg" href="#">Course Discussion</a>
@@ -24,13 +24,20 @@
 </div>
 <div class="main-content col-md-6 col-xs-12">
 <div ng-show="courseData">
-	<h3>Name of Course: {{ courseName }}</h3>
-	<h3>Announcements:</h3>
+	<h3>Announcements</h3>
 	<div ng-repeat="announcement in announcements[0]">
 		<div ng-if="announcement.section_id == courseID">
+		<div class="announcement">
+			<div class="col-md-2">
+				<div class="date-dd">{{announcement.created_at | date:'dd'}}</div>
+				<div class="date-MMM">{{announcement.created_at | date:'MMM'}}</div>
+			</div>
+			<div class="col-md-10">
 			<h4>{{announcement.title}}</h4>
 			<p>{{announcement.body}}</p>
-			<small>Posted at {{announcement.created_at}}</small>
+			</div>
+			<div class="clear"></div>
+			</div>
 		</div>
 	</div>
 	<div ng-show="isInstructor">
@@ -58,4 +65,4 @@
 
 
 </div>
-<div ng-include="'./components/footer-main.html'"></div>
+<!--<div ng-include="'./components/footer-main.html'"></div>-->

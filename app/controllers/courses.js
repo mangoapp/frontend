@@ -10,7 +10,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		setTimeout(function(){ 
 			if ($scope.courses) {
 			for (var i = 0; i < $scope.courses.length; i++) {
-				console.log($scope.courses[i]);
+				//console.log($scope.courses[i]);
 				if ($scope.courses[i].id == id) {
 					$scope.noCourses = false;
 					$scope.courseID = $scope.courses[i].id;
@@ -29,7 +29,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		
 	};
 	$scope.handleRequest = function(res) {
-		console.log(res);
+		//console.log(res);
 		$scope.noCourses = true;
 		$scope.message = res.data.message;
 	};
@@ -70,6 +70,10 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			url: API + '/announcements/' + $scope.courses[i].id
 		};
 		$http(req).then(function(res) {
+			//console.log(res.data);
+			for (var j = 0; j < res.data.length; j++){
+				res.data[j].created_at = new Date(res.data[j].created_at);
+			}			
 			$scope.announcements.push(res.data);
 		},$scope.handleRequest);
 	};

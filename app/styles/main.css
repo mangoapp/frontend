@@ -237,7 +237,6 @@ h3 {
   height: 100%;
   min-height: 100%;
   background-color: #2ECC71;
-  padding-bottom: 100%;
   overflow-y: hidden;
  }
  .side-course-nav h3 {
@@ -288,3 +287,32 @@ h3 {
   padding-right: 15px;
   padding-left: 10px;
  }
+.main-content h3 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5em !important;
+}
+.date-dd {
+  font-weight: 600;
+  font-size: 2em;
+  color: #939393;
+}
+.date-MMM {
+  font-weight: 300;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  color: #939393;
+  margin-top: -5px;
+}
+.announcement {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.announcement h4 {
+  color: #939393;
+}
+.announcement p {
+  text-align: left;
+  color: #333333;
+  line-height: 1.5em;
+}
