@@ -142,7 +142,7 @@ p.subnav a:hover {
   margin-left: 12%;
 }
 .search,.icons {
-  /*margin-top: 20px;*/
+  margin-top: 20px;
 }
 .search i {
   color: #CCCCCC;
@@ -250,12 +250,18 @@ h3 {
   background-color: #2ECC71;
   display: table-cell;
   float: none;
+  margin: 0 !important;
+  padding: 0 !important;
  }
  .side-course-nav h3 {
   color: white;
   font-weight: 600;
   font-size: 1.2em !important;
   text-align: center;
+ }
+ .side-course-nav h5 {
+  display: block;
+  background-color: red;
  }
  .side-course-nav a.lg {
   display: block;
@@ -391,4 +397,7 @@ h3 {
 .row {
   margin: 0 !important;
   padding: 0 !important;
+}
+.sm-padding {
+  padding: 15px;
 }

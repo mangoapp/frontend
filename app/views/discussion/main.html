@@ -1,10 +1,21 @@
-<div ng-include="'./components/course-navbar.html'"></div>
-<div class="clear"></div>
 <div class="row main">
 
 	<div class="side-nav col-md-1 hidden-xs hidden-sm">
-		List courses here
+		<div ng-include="'./components/courses-navbar.html'"></div>
 	</div>
 
+	<div class="side-course-nav col-md-2 hidden-xs hidden-sm">
+		<h3>{{courseName}}</h3>
+		<h5>Pinned Posts</h5>
+		<h5>Recent Posts</h5>
+	</div>
+
+	<div class="main-content col-md-9 col-xs-12">
+
+		<div ng-include="'./components/top-nav.html'"></div>
+
+		yello
+	</div>
+
+
 </div>
-<!--<div ng-include="'./components/footer-main.html'"></div>-->
