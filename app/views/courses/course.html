@@ -1,7 +1,31 @@
 <div ng-include="'./components/course-navbar.html'"></div>
+<div class="clear"></div>
+<div class="row main">
+<div class="side-nav col-md-1 fixed hidden-xs hidden-sm">
+	List courses here
+</div>
+<div class="side-course-nav fixed col-md-2">
+	<h3>{{courseName}}</h3>
+	<div>
+		<a class="lg" href="#">Course Discussion</a>
+		<a class="lg" href="#">Attendence</a>
+	</div>
+	<h4>Course Content</h4>
+	<hr />
+	<ul class="course-content">
+		<li><a href="#"><i class="fa fa-bell-o"></i> Announcements</a></li>
+		<li><a href="#"><i class="fa fa-file-text-o"></i> Assignments</a></li>
+		<li><a href="#"><i class="fa fa-lightbulb-o"></i> Quizzes</a></li>
+		<li><a href="#"><i class="fa fa-list"></i> Grades</a></li>
+		<li><a href="#"><i class="fa fa-calendar"></i> Calendar</a></li>
+		<li><a href="#"><i class="fa fa-archive"></i> Resources</a></li>
+  <div class="clear"></div>
+	</ul>
+</div>
+<div class="main-content col-md-6 col-xs-12">
 <div ng-show="courseData">
-	<h2>Name of Course: {{ courseName }}</h2>
-	<h2>Announcements:</h2>
+	<h3>Name of Course: {{ courseName }}</h3>
+	<h3>Announcements:</h3>
 	<div ng-repeat="announcement in announcements[0]">
 		<div ng-if="announcement.section_id == courseID">
 			<h4>{{announcement.title}}</h4>
@@ -26,7 +50,12 @@
 	
 </div>
 <div ng-hide="courseData">
-	<h2>Course Not Found</h2>
+	<h3>Course Not Found</h3>
+</div>
+	
+
 </div>
 
-<div ng-include="'./components/footer.html'"></div>
+
+</div>
+<div ng-include="'./components/footer-main.html'"></div>

@@ -4,6 +4,7 @@ html, body {
   font-family: 'Open Sans', sans-serif;
   color: #333333;
   height: 100% !important;
+  overflow-x: hidden;
 }
 .container-fluid {
   margin: 0 !important;
@@ -176,13 +177,13 @@ p.subnav a:hover {
 h3 {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.75em !important;
-  margin: 0 !important;
+  margin: 15px 0 15px 0;
   padding: 0 !important;
   color: #939393;
   font-weight: 400;
 }
 .main-content {
-  padding: 0 50px;
+  padding: 0 25px;
 }
 #courses {
   margin-top: 50px;
@@ -231,4 +232,52 @@ h3 {
  }
  .science .course-nav-s a:hover {
   color: #2ECC71;
+ }
+ .side-course-nav {
+  height: 100%;
+  min-height: 100%;
+  background-color: #2ECC71;
+  padding-bottom: 100%;
+  overflow-y: hidden;
+ }
+ .side-course-nav h3 {
+  color: white;
+  font-weight: 600;
+  font-size: 1.2em !important;
+  text-align: center;
+ }
+ .side-course-nav a.lg {
+  display: block;
+  background-color: white;
+  width: 90%;
+  margin: 15px auto;
+  border-radius: 5px;
+  color: #2ECC71;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.85em;
+  font-weight: 600;
+ }
+ .side-course-nav h4 {
+  color: white;
+  margin-top: 35px;
+  margin-bottom: -10px;
+  display: block;
+  font-size: 1.2em;
+ }
+ ul.course-content {
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: left;
+ }
+ ul.course-content li {
+  float: left;
+  display: inline-block;
+  width: 100%;
+  font-size: 0.9em
+ }
+ ul.course-content i {
+  padding-right: 15px;
+  padding-left: 10px;
  }
