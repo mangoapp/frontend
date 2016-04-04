@@ -323,9 +323,63 @@ h3 {
 .announcement p {
   text-align: left !important;
   color: #333333;
-  line-height: 1.5em;
+  line-height: 1.9em;
 }
 .main-announcements {
   float: none;
   display: table-cell;
+}
+.i-announce {
+  font-size: 1.5em;
+  padding: 20px 0 35px 0;
+  margin: 0 75px 20px 20px;
+}
+.i-announce a {
+  color: #939393;
+  text-decoration: none;
+  cursor: pointer;
+}
+.i-announce a:hover {
+  color: #333333;
+}
+.i-announce h2 {
+  font-weight: 600;
+  color: #939393;
+  font-size: 1.2em;
+  padding-bottom: 15px;
+  margin-top: 3px;
+}
+.i-announce h5 {
+  color: #939393;
+  font-size: 0.8em;
+  margin-bottom: 15px;
+}
+.i-announce input, .i-announce textarea {
+  display: block;
+  width: 70%;
+  font-size: 0.75em;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  color: #333333;
+  line-height: 1.6em;
+}
+.i-announce textarea {
+  min-height: 150px;
+}
+.i-announce button {
+  border: 0;
+  outline: 0;
+  font-size: 0.7em;
+  background-color: #EEEEEE;
+  color: #939393;
+  padding: 8px 20px;
+  border-radius: 5px;
+  margin-top: 30px;
+  float: left;
+}
+.i-announce button:hover {
+  cursor: pointer;
+  background-color: #939393;
+  color: #EEEEEE;
 }

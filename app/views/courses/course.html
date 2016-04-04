@@ -44,17 +44,33 @@
 				</div>
 			</div>
 			<div ng-show="isInstructor">
-				<br><br>
-				<h2>Add New Announcement:</h2>
-				<small>Title:</small>
-				<input ng-model="newAnnouncementTitle"><br>
-				<small>Announcement:</small><br>
-				<textarea ng-model="newAnnouncement"></textarea><br>
-				<button ng-click="createAnnouncement()">Create Announcement</button>
+				<div class="col-md-12 i-announce ">
+					<div ng-show="instructorToggle">
+						<a ng-click="instructorAnnounceToggle()"><i class="fa fa-plus fa-fw"></i>&nbsp; Add New Announcement</a>
+					</div>
+
+				<div class="i-announce-show" ng-hide="instructorToggle">
+					<div class="col-md-1">
+						<a ng-click="instructorAnnounceToggle()"><i class="fa fa-times"></i></a>
+					</div>
+					<div class="col-md-11">
+						<h2>New Announcement:</h2>
+						<h5>Title:</h5>
+						<input ng-model="newAnnouncementTitle"><br>
+						<h5>Announcement:</h5>
+						<textarea ng-model="newAnnouncement"></textarea>
+						
+						<button ng-click="createAnnouncement()">Create Announcement</button>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+
 				<br><br><br>
 				<h2>Add New Section:</h2>
 				<input ng-model="newSection">
 				<button ng-click="createSection()">Create Section</button><br>
+				</div>
 			</div>
 		</div>
 		<div ng-hide="courseData">

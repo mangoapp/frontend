@@ -93,6 +93,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		};
 		$http(req).then(function(res) {
 			console.log("Announcement added");
+			location.reload();
 		},$scope.handleRequest);
 	};
 	$scope.createSection = function() {
@@ -113,6 +114,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		},$scope.handleRequest);
 		
 	};
+	$scope.instructorAnnounceToggle = function() {
+		$scope.instructorToggle = $scope.instructorToggle === false ? true: false;
+	};
 	$scope.$on('$viewContentLoaded', function() {
     	$scope.getCourses();
     	if ($routeParams.courseNumber) {
@@ -120,5 +124,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		}
 		// added this guy here, after getCourses(), but $scope.courses isnt defined
 		$scope.getAnnouncements();
+		$scope.instructorToggle = true;
 	});
 };
