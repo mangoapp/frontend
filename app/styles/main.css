@@ -1,15 +1,21 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 html, body {
   margin: 0 !important;
   padding: 0 !important;
   font-family: 'Open Sans', sans-serif;
   color: #333333;
   height: 100% !important;
+  width: 100% !important;
   overflow-x: hidden;
 }
 .container-fluid {
   margin: 0 !important;
   padding: 0 !important;
-  height: 100%;
+  height: 100% !important;
 }
 footer {
   font-size: 0.9em;
@@ -167,12 +173,11 @@ p.subnav a:hover {
 }
 .side-nav {
   background-color: #EEEEEE;
-  height: 100%;
-  min-height: 100%;
+  float: none;
+  display: table-cell;
 }
 .main {
-  height: 100%;
-  min-height: 100%;
+  display: table;
 }
 h3 {
   font-family: 'Open Sans', sans-serif;
@@ -184,6 +189,9 @@ h3 {
 }
 .main-content {
   padding: 0 25px;
+  float: none;
+  display: table-cell;
+
 }
 #courses {
   margin-top: 50px;
@@ -234,10 +242,10 @@ h3 {
   color: #2ECC71;
  }
  .side-course-nav {
-  height: 100%;
-  min-height: 100%;
   background-color: #2ECC71;
   overflow-y: hidden;
+  float: none;
+  display: table-cell;
  }
  .side-course-nav h3 {
   color: white;
@@ -294,25 +302,30 @@ h3 {
 }
 .date-dd {
   font-weight: 600;
-  font-size: 2em;
+  font-size: 2.2em;
   color: #939393;
 }
 .date-MMM {
   font-weight: 300;
-  font-size: 1.1em;
+  font-size: 1.3em;
   text-transform: uppercase;
   color: #939393;
   margin-top: -5px;
 }
 .announcement {
-  margin-left: 20px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #CCCCCC;
+  padding: 20px 0;
+  margin: 0 75px 20px 20px;
 }
 .announcement h4 {
   color: #939393;
 }
 .announcement p {
-  text-align: left;
+  text-align: left !important;
   color: #333333;
   line-height: 1.5em;
+}
+.main-announcements {
+  float: none;
+  display: table-cell;
 }
