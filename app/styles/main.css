@@ -130,6 +130,7 @@ p.subnav a:hover {
   background-color: white;
   height: 75px;
   color: #AEAEAE;
+  border-bottom: 1px solid #CCCCCC;
 }
 .side-logo {
   background-color: #FF7056;
@@ -182,7 +183,7 @@ p.subnav a:hover {
 h3 {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.75em !important;
-  margin: 15px 0 15px 0;
+  margin: 25px 0 15px 0;
   padding: 0 !important;
   color: #939393;
   font-weight: 400;
@@ -299,6 +300,7 @@ h3 {
   text-align: center;
   font-weight: 600;
   font-size: 1.5em !important;
+  margin-top: 50px;
 }
 .date-dd {
   font-weight: 600;
