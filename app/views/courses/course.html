@@ -1,9 +1,15 @@
-<div ng-include="'./components/course-navbar.html'"></div>
-<div class="clear"></div>
 <div class="row main">
 
 	<div class="side-nav col-md-1 hidden-xs hidden-sm">
-		List courses here
+		<div class="side-logo">
+			<img src="../img/logo-or.png" />
+		</div>
+		<ul id="side-courses">
+			<li>Course 1</li>
+			<li>Course 2</li>
+			<li>Course 3</li>
+			<div class="clear"></div>
+		</ul>
 	</div>
 
 	<div class="side-course-nav col-md-2 hidden-xs hidden-sm">
@@ -21,25 +27,30 @@
 			<a href="#"><li><i class="fa fa-list"></i> Grades</li></a>
 			<a href="#"><li><i class="fa fa-calendar"></i> Calendar</li></a>
 			<a href="#"><li><i class="fa fa-archive"></i> Resources</li></a>
-			<div class="clear"></div>
+			<!--<div class="clear"></div>-->
 		</ul>
 	</div>
 
 	<div class="main-content col-md-9 col-xs-12">
-		<div ng-show="courseData">
-			<h3>Announcements</h3>
+
+		<div ng-include="'./components/side-navbar.html'"></div>
+
+		<div class="main-announcements" ng-show="courseData">
+			<h3 class="announcementHeader">Announcements</h3>
 			<div ng-repeat="announcement in announcements[0]">
 				<div ng-if="announcement.section_id == courseID">
 					<div class="announcement">
-					<div class="col-md-1">
-						<div class="date-dd">{{announcement.created_at | date:'dd'}}</div>
-						<div class="date-MMM">{{announcement.created_at | date:'MMM'}}</div>
-					</div>
-					<div class="col-md-11">
-						<h4>{{announcement.title}}</h4>
-						<p>{{announcement.body}}</p>
-					</div>
-					<div class="clear"></div>
+						<div class="row">
+							<div class="col-md-1">
+								<div class="date-dd">{{announcement.created_at | date:'dd'}}</div>
+								<div class="date-MMM">{{announcement.created_at | date:'MMM'}}</div>
+							</div>
+
+							<div class="col-md-11">
+								<h4>{{announcement.title}}</h4>
+								<p>{{announcement.body}}</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -49,27 +60,28 @@
 						<a ng-click="instructorAnnounceToggle()"><i class="fa fa-plus fa-fw"></i>&nbsp; Add New Announcement</a>
 					</div>
 
-				<div class="i-announce-show" ng-hide="instructorToggle">
-					<div class="col-md-1">
-						<a ng-click="instructorAnnounceToggle()"><i class="fa fa-times"></i></a>
+					<div class="i-announce-show" ng-hide="instructorToggle">
+						<div class="row">
+							<div class="col-md-1">
+								<a ng-click="instructorAnnounceToggle()"><i class="fa fa-times"></i></a>
+							</div>
+							<div class="col-md-11">
+								<h2>New Announcement:</h2>
+								<h5>Title:</h5>
+								<input ng-model="newAnnouncementTitle"><br>
+								<h5>Announcement:</h5>
+								<textarea ng-model="newAnnouncement"></textarea>
+
+								<button ng-click="createAnnouncement()">Create Announcement</button>
+							</div>
+						</div>
 					</div>
-					<div class="col-md-11">
-						<h2>New Announcement:</h2>
-						<h5>Title:</h5>
-						<input ng-model="newAnnouncementTitle"><br>
-						<h5>Announcement:</h5>
-						<textarea ng-model="newAnnouncement"></textarea>
-						
-						<button ng-click="createAnnouncement()">Create Announcement</button>
-					</div>
-					<div class="clear"></div>
-				</div>
 
 
-				<br><br><br>
-				<h2>Add New Section:</h2>
-				<input ng-model="newSection">
-				<button ng-click="createSection()">Create Section</button><br>
+					<br><br><br>
+					<h2>Add New Section:</h2>
+					<input ng-model="newSection">
+					<button ng-click="createSection()">Create Section</button><br>
 				</div>
 			</div>
 		</div>
@@ -80,4 +92,3 @@
 
 
 </div>
-<!--<div ng-include="'./components/footer-main.html'"></div>-->

@@ -9,6 +9,7 @@
 
   var UserCtrl = require('../controllers/user.js');
   var CourseCtrl = require('../controllers/courses.js');
+  var DiscussionCtrl = require('../controllers/discussion.js');
   var authService = require('../js/auth.js');
   var authInterceptor = require('../js/interceptor.js');
 
@@ -50,6 +51,10 @@
           templateUrl: "./views/courses/student-course.html",
           controller: "CourseCtrl"
         })
+        .when("/discussion/:courseNumber", {
+          templateUrl: "./views/discussion/main.html",
+          controller: "DiscussionCtrl"
+        })
         .when("/profile", {
           templateUrl: "./views/users/my-profile.html",
           controller: "UserCtrl"
@@ -66,6 +71,7 @@
 
   //Load controller
   .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', UserCtrl])
-  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', CourseCtrl]);
+  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', CourseCtrl])
+  .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', DiscussionCtrl]);
 
 }());

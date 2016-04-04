@@ -134,13 +134,15 @@ p.subnav a:hover {
 }
 .side-logo {
   background-color: #FF7056;
+  width: 100% !important;
 }
 .side-logo img {
   height: 75px;
   width: 75px;
+  margin-left: 12%;
 }
 .search,.icons {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 .search i {
   color: #CCCCCC;
@@ -173,26 +175,29 @@ p.subnav a:hover {
   color: #FF7056;
 }
 .side-nav {
+  margin: 0 !important;
+  padding: 0 !important;
   background-color: #EEEEEE;
-  float: none;
   display: table-cell;
+  float: none;
 }
 .main {
+  padding: 0 !important;
+  margin: 0 !important;
   display: table;
 }
 h3 {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.75em !important;
-  margin: 25px 0 15px 0;
+  margin: 10px 0 15px 0;
   padding: 0 !important;
   color: #939393;
   font-weight: 400;
 }
 .main-content {
   padding: 0 25px;
-  float: none;
   display: table-cell;
-
+  float: none;
 }
 #courses {
   margin-top: 50px;
@@ -219,7 +224,6 @@ h3 {
 .science:hover {
   background-color: #CCCCCC;
 }
-
 .s-course { 
   width: 25%; 
   margin-right: 8%;
@@ -244,9 +248,8 @@ h3 {
  }
  .side-course-nav {
   background-color: #2ECC71;
-  overflow-y: hidden;
-  float: none;
   display: table-cell;
+  float: none;
  }
  .side-course-nav h3 {
   color: white;
@@ -299,8 +302,9 @@ h3 {
 .main-content h3 {
   text-align: center;
   font-weight: 600;
+  margin: 0 !important;
+  padding: 0 !important;
   font-size: 1.5em !important;
-  margin-top: 50px;
 }
 .date-dd {
   font-weight: 600;
@@ -328,8 +332,7 @@ h3 {
   line-height: 1.9em;
 }
 .main-announcements {
-  float: none;
-  display: table-cell;
+ 
 }
 .i-announce {
   font-size: 1.5em;
@@ -384,4 +387,8 @@ h3 {
   cursor: pointer;
   background-color: #939393;
   color: #EEEEEE;
+}
+.row {
+  margin: 0 !important;
+  padding: 0 !important;
 }
