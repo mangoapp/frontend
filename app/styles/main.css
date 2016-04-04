@@ -275,7 +275,14 @@ h3 {
   float: left;
   display: inline-block;
   width: 100%;
-  font-size: 0.9em
+  font-size: 0.9em;
+  padding: 10px 5px;
+  color: #1C7C45;
+ }
+ ul.course-content li:hover {
+  border-radius: 8px;
+  background-color: white;
+  color: #939393;
  }
  ul.course-content i {
   padding-right: 15px;
