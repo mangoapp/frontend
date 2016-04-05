@@ -261,7 +261,11 @@ h3 {
  }
  .side-course-nav h5 {
   display: block;
-  background-color: red;
+  background-color: #1C7C45;
+  padding: 7px 0;
+  text-align: center;
+  font-size: 0.75em;
+  color: #F9F9F9;
  }
  .side-course-nav a.lg {
   display: block;
