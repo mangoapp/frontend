@@ -64,6 +64,10 @@
           templateUrl: "./views/discussion/main.html",
           controller: "DiscussionCtrl"
         })
+        .when("/discussion/:courseNumber/new", {
+          templateUrl: "./views/discussion/new.html",
+          controller: "DiscussionCtrl"
+        })
         .when("/profile", {
           templateUrl: "./views/users/my-profile.html",
           controller: "UserCtrl"
