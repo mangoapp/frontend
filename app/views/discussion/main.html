@@ -34,8 +34,31 @@
 	<div class="main-content col-md-9 col-xs-12">
 
 		<div ng-include="'./components/top-nav.html'"></div>
+		<div class="row categories">
+			<div class="addPost col-md-2 col-md-offset-10">
+				<button>
+					<span class="icon"><i class="fa fa-plus"></i> &nbsp;New Post</span>
+				</button>
+			</div>
+		</div>
 
-		yello
+		<div ng-if="currentThread" class="currentThread">
+			<div class="row head-post">
+				<div class="col-md-12">
+					<h2>{{currentThread.title}}</h2>
+					<div class="thread-info">Posted by <span class="bold">currentUserName</span> on {{currentThread.created_at | date:'MMM dd'}}</div>
+					<p class="body">{{currentThread.body}}</p>
+				</div>
+			</div>
+			<div class="row thread-replies">
+				<div class="col-md-9 col-md-offset-3">
+					<div ng-repeat="reply in currentPosts" class="reply">
+						<p class="body">{{reply.body}}</p>
+						<div class="reply-info">Posted by <span class="bold">{{reply.user.name}}</span> on {{reply.created_at | date: 'MMM dd'}}
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 

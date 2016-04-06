@@ -420,7 +420,6 @@ h3 {
   font-size: 0.75em;
   padding: 15px;
   border-bottom: 1px solid #CCCCCC;
-  opacity: 0.92;
 }
 .course-threads li div {
   line-height: 1.4em;
@@ -429,13 +428,13 @@ h3 {
   text-decoration: none !important;
 }
 .course-threads li:hover {
-  opacity: 1.0;
+  opacity: 0.9;
 }
 .course-threads div.title {
   font-weight: 600;
   color: #333333;
 }
-.course-threads div.body {
+.course-pinned-posts div.body {
   font-size: 0.9em;
 }
 .total-row {
@@ -448,4 +447,58 @@ h3 {
 }
 .grades {
   margin-top:50px;
+}
+.categories {
+  padding-top: 25px !important;
+  border-top: 1px solid #CCC;
+  margin: 0;
+}
+.addPost button {
+  background-color: #2ECC71;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  font-size: 0.8em;
+  width: 100%;
+  padding: 5px 0;
+}
+.addPost button:hover {
+  background-color: #CCCCCC;
+  color: #333;
+}
+.bold {
+  font-weight: 600;
+}
+.currentThread {
+  font-size: 0.9em;
+}
+.currentThread h2 {
+  color: #939393;
+  font-weight: 600;
+  font-size: 2em;
+}
+.currentThread .thread-info {
+  font-size: 0.8em;
+  color: #A9A9A9;
+  margin: -3px 0 15px 0;
+}
+.currentThread p.body {
+  font-size: 1em;
+  text-align: left !important;
+  line-height: 1.8em;
+}
+.head-post {
+  padding-bottom: 20px !important;
+  border-bottom: 1px solid #CCC;
+}
+.currentThread .reply {
+  padding: 25px 0 !important;
+  border-bottom: 1px solid #CCC;
+}
+.currentThread .reply .reply-info {
+  font-size: 0.8em;
+  background-color: #EEE;
+  border-radius: 5px;
+  padding: 10px !important;
+  display: block;
 }
