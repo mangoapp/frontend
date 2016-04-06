@@ -225,10 +225,11 @@ h3 {
   background-color: #CCCCCC;
 }
 .s-course { 
-  width: 25%; 
-  margin-right: 8%;
   float: left;
+  width: 28%;
+  margin-right: 5%;
  }
+
  .s-course a:hover {
   text-decoration: none;
  }
@@ -342,7 +343,17 @@ h3 {
   color: #333333;
   line-height: 1.9em;
 }
-.main-announcements {
+.announcement-box {
+  background-color: #EEE;
+  border-radius: 15px;
+  display: block;
+  margin: 15px 35px 0 0;
+}
+.announcement-box h3 {
+  font-size: 1.3em !important;
+  font-weight: 300;
+  padding: 15px 0 !important;
+  border-bottom: 1px solid #CCC;
 }
 .i-announce {
   font-size: 1.5em;
