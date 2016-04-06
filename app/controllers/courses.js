@@ -122,7 +122,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
     	if ($routeParams.courseNumber) {
 			$scope.getCourseWithID($routeParams.courseNumber);
 		}
-		// added this guy here, after getCourses(), but $scope.courses isnt defined
 		$scope.getAnnouncements();
 		$scope.instructorToggle = true;
 	});
