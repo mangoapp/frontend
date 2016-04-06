@@ -343,7 +343,6 @@ h3 {
   line-height: 1.9em;
 }
 .main-announcements {
- 
 }
 .i-announce {
   font-size: 1.5em;
@@ -432,4 +431,15 @@ h3 {
 }
 .course-pinned-posts div.body {
   font-size: 0.9em;
+}
+.total-row {
+  border-top-style: solid;
+  border-top-width: 3px;
+  background-color:;
+}
+.total-row td:first-child {
+  font-weight: bold;
+}
+.grades {
+  margin-top:50px;
 }
