@@ -47,18 +47,13 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 	};
 
 	$scope.getAnnouncements = function() {
-		// $scope.courses isn't defined when this gets called and idk why
 		setTimeout(function(){ 
 		if ($scope.courses && !$scope.announcements) {
 			$scope.announcements = [];
 			for (var i = 0; i < $scope.courses.length; i++) {
-				// had to outsource this to another function because of closures apparently
 				$scope.getAnnouncementsReq(i);
 			}
-			// this doesnt print
 		}
-		// this prints
-		// undefined because $scope.courses isn't defined
 		}, 400);
 	};
 	$scope.getAnnouncementsReq = function(i) {
