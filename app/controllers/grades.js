@@ -44,10 +44,24 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		
 	};
 
+	$scope.getGradesWithID = function(id) {
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/sections/' + id + '/grades'
+		};
+		$http(req).then(function(res) {
+			$scope.grades = res.data;
+		},$scope.handleRequest);
+	};
+
 	$scope.$on('$viewContentLoaded', function() {
 		$scope.getCourses();
     	if ($routeParams.courseNumber) {
 			$scope.getCourseWithID($routeParams.courseNumber);
+			$scope.getGradesWithID($routeParams.courseNumber);
 		}
 	});
 

@@ -14,7 +14,7 @@
 		<div class="main-announcements">
 			<h3 class="announcementHeader">Detailed Grades</h3>
 			<div class="grades">
-				<table class="table table-striped">
+				<!--<table class="table table-striped">
 				  <tr>
 				    <th>Date</th>
 				    <th>Assignment</th>
@@ -44,7 +44,10 @@
 				    <td>20</td>
 				    <td>95 %</td>
 				  </tr>
-				</table>
+				</table>-->
+				<div ng-repeat="grade in grades">
+					<span>{{grade.id}} {{grade.score}}</span>
+				</div>
 			</div>			
 		</div>
 <!-- 		<div ng-hide="courseData">
@@ -55,7 +58,6 @@
 	
 	    
 	</div>
-	<div id="preview" markdown-to-html="vm.mdEditor"></div>
 
 	<div ng-include="'./components/footer.html'"></div>
 </div>
