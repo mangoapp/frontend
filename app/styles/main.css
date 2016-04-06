@@ -406,13 +406,13 @@ h3 {
   padding: 15px;
 }
 .course-discussion {
-  border: 1px solid #CCCCCC;
+  border-right: 1px solid #CCCCCC;
 }
-.course-pinned-posts {
+.course-threads {
   margin: 0 !important;
   padding: 0 !important;
 }
-.course-pinned-posts li {
+.course-threads li {
   list-style: none;
   background-color: white;
   display: block;
@@ -420,16 +420,22 @@ h3 {
   font-size: 0.75em;
   padding: 15px;
   border-bottom: 1px solid #CCCCCC;
+  opacity: 0.92;
 }
-.course-pinned-posts li div {
-  margin-left: 20px;
-  line-height: 1.6em;
+.course-threads li div {
+  line-height: 1.4em;
 }
-.course-pinned-posts div.title {
+.course-threads a {
+  text-decoration: none !important;
+}
+.course-threads li:hover {
+  opacity: 1.0;
+}
+.course-threads div.title {
   font-weight: 600;
   color: #333333;
 }
-.course-pinned-posts div.body {
+.course-threads div.body {
   font-size: 0.9em;
 }
 .total-row {
