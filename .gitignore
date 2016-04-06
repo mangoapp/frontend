@@ -6,3 +6,4 @@
 /app/js/bundled.js
 .DS_Store
 terminal.glue
+*.sublime*
