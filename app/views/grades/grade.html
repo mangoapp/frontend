@@ -45,9 +45,16 @@
 				    <td>95 %</td>
 				  </tr>
 				</table>-->
-				<div ng-repeat="grade in grades">
-					<span>{{grade.id}} {{grade.score}}</span>
-				</div>
+				<table class="table table-striped">
+					<tr>
+						<th>Name</th>
+					</tr>
+					<div ng-repeat="student in students">
+					<tr>
+						<td>{{student.name}}</td>
+					</tr>
+					</div>
+				</table>
 			</div>			
 		</div>
 <!-- 		<div ng-hide="courseData">
@@ -57,7 +64,6 @@
 
 	
 	    
-	</div>
-
-	<div ng-include="'./components/footer.html'"></div>
 </div>
+
+<div ng-include="'./components/footer.html'"></div></div>
