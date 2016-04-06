@@ -6,6 +6,10 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		$scope.loggedin = false;
 	}
 
+	$scope.getUser = function() {
+		
+	};
+
 	$scope.getCourses = function() {
 		var req = {
 			method: 'GET',
@@ -73,7 +77,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			if (res.data) {
 				$scope.currentThread = res.data;
 				$scope.currentPosts = res.data.posts;
-				console.log($scope.currentThread);
+				console.log($scope.currentPosts);
 				$scope.currentThread.created_at = new Date(res.data.created_at);
 				for (var i = 0; i < res.data.posts.length; i++) {
 					$scope.currentPosts[i].created_at = new Date(res.data.posts[i].created_at);
@@ -102,8 +106,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			url: API + '/forum/posts'
 		};
 		$http(req).then(function(res) {
-			console.log("here");
-			console.log(res.data);
+			console.log("Reply sent");
 		},$scope.handleRequest);
 	};
 

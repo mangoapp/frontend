@@ -559,3 +559,19 @@ h3 {
 .input-group {
   margin: 0 auto;
 }
+.new-post h2 {
+  font-weight: 500;
+  color: #9A9A9A;
+  padding-bottom: 15px;
+  text-align: center !important;
+}
+.new-post p.label {
+  font-weight: 500;
+  color: #9A9A9A;
+  float: left;
+}
+.new-post input, .new-post textarea {
+  float: left;
+  text-align: left !important;
+  margin-bottom: 25px;
+}
