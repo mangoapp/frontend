@@ -5,25 +5,7 @@
 	</div>
 
 	<div class="side-course-nav col-md-2 hidden-xs hidden-sm">
-		<h3>{{courseName}}</h3>
-		<div class="sm-padding">
-		<div>
-			<a class="lg" href="./#!/discussion/{{courseID}}">Course Discussion</a>
-			<a class="lg" href="#">Attendence</a>
-		</div>
-
-		<h4>Course Content</h4>
-		<hr />
-		<ul class="course-content">
-			<a href="./#!/courses/{{courseID}}"><li><i class="fa fa-bell-o"></i> Announcements</li></a>
-			<a href="#"><li><i class="fa fa-file-text-o"></i> Assignments</li></a>
-			<a href="#"><li><i class="fa fa-lightbulb-o"></i> Quizzes</li></a>
-			<a href="#"><li><i class="fa fa-list"></i> Grades</li></a>
-			<a href="#"><li><i class="fa fa-calendar"></i> Calendar</li></a>
-			<a href="#"><li><i class="fa fa-archive"></i> Resources</li></a>
-			<!--<div class="clear"></div>-->
-		</ul>
-		</div>
+		<div ng-include="'./components/course-detail-navbar.html'"></div>
 	</div>
 
 	<div class="main-content col-md-9 col-xs-12">
