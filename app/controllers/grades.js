@@ -65,12 +65,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			},
 			url: API + '/sections/' + id + '/students'
 		};
-		console.log(req.url);
 		$http(req).then(function(res) {
-			console.log(res);
 			$scope.students = res.data;
 		},$scope.handleRequest);
-		console.log($scope.students);
 	};
 
 	$scope.$on('$viewContentLoaded', function() {
