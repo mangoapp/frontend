@@ -21,7 +21,7 @@
 		<h5>Recent Posts</h5>
 		<ul class="course-threads">
 			<div ng-repeat="thread in threads">
-				<a ng-if="thread.sticky == 0" href="#">
+				<a ng-if="thread.sticky == 0" ng-click="getSingleThread(thread.id)">
 					<li>
 						<div class="title">{{thread.title}}</div>
 						<div class="body">{{thread.body}}</div>
@@ -46,20 +46,42 @@
 			<div class="row head-post">
 				<div class="col-md-12">
 					<h2>{{currentThread.title}}</h2>
-					<div class="thread-info">Posted by <span class="bold">currentUserName</span> on {{currentThread.created_at | date:'MMM dd'}}</div>
+					<div class="thread-info">Posted by <span class="bold">{{currentThread.user.name}}</span> on {{currentThread.created_at | date:'MMM dd'}}</div>
 					<p class="body">{{currentThread.body}}</p>
 				</div>
 			</div>
 			<div class="row thread-replies">
-				<div class="col-md-9 col-md-offset-3">
-					<div ng-repeat="reply in currentPosts" class="reply">
-						<p class="body">{{reply.body}}</p>
-						<div class="reply-info">Posted by <span class="bold">{{reply.user.name}}</span> on {{reply.created_at | date: 'MMM dd'}}
+				<div class="col-md-10 col-md-offset-2">
+					<div ng-repeat="reply in currentPosts" class="reply row">
+						<div class="col-md-1 upvotes">
+							<!--<div class="arrow"><a ng-click="#"><i class="fa fa-arrow-up"></i></a></div>
+							<div class="numberUpvotes">{{reply.likes.length}}</div>
+							<div class="arrow"><a ng-click="#"><i class="fa fa-arrow-down"></i></a></div>-->
+						</div>
+						<div class="col-md-11">
+							<p class="body">{{reply.body}}</p>
+							<div class="reply-info">Posted by <span class="bold">{{reply.user.name}}</span> on {{reply.created_at | date: 'MMM dd'}}
+							</div>
+						</div>
 					</div>
+
+					<div class="reply new-reply row">
+						<h4>Reply to discussion post</h4>
+						<div class="form">
+							<textarea class="new-reply-body" ng-model="replyBody"></textarea><br>
+							<div class="input-group">
+								<label for="anon">Post Anonymously?</label>
+								<input type="checkbox" name="anon" ng-model="anon" ng-valueng-true-value="1" ng-false-value="0">
+							</div>
+							<div class="clear"></div>
+							<button type="submit" name="submit" ng-click="replyToThread(replyBody,anon)">Submit</button>
+						</div>
+
+					</div>
+
 				</div>
 			</div>
 		</div>
+
+
 	</div>
-
-
-</div>

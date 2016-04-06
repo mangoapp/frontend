@@ -62,25 +62,59 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 	};
 
 	$scope.getSingleThread = function(id) {
-			var req = {
-				method: 'GET',
-				headers: {
-					'Authorization': 'Bearer: ' + $scope.token
-				},
-				url: API + '/forum/' + $scope.courseID + '/threads/' + id + '/posts'
-			};
-			$http(req).then(function(res) {
-				if (res.data) {
-					$scope.currentThread = res.data;
-					$scope.currentPosts = res.data.posts;
-					console.log($scope.currentPosts);
-					$scope.currentThread.created_at = new Date(res.data.created_at);
-					for (var i = 0; i < res.data.posts.length; i++) {
-						$scope.currentPosts[i].created_at = new Date(res.data.posts[i].created_at);
-					}
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/forum/' + $scope.courseID + '/threads/' + id + '/posts'
+		};
+		$http(req).then(function(res) {
+			if (res.data) {
+				$scope.currentThread = res.data;
+				$scope.currentPosts = res.data.posts;
+				console.log($scope.currentThread);
+				$scope.currentThread.created_at = new Date(res.data.created_at);
+				for (var i = 0; i < res.data.posts.length; i++) {
+					$scope.currentPosts[i].created_at = new Date(res.data.posts[i].created_at);
 				}
-			},$scope.handleRequest);
+			}
+		},$scope.handleRequest);
 	};
+
+	$scope.replyToThread = function(replyBody,anon) {
+		if (!anon) {
+			anon = 0;
+		}
+		var formData = {
+			section_id: $scope.courseID,
+			thread_id: $scope.currentThread.id,
+			body: replyBody,
+			anonymous: anon,
+			reply_id: $scope.currentPosts.length + 1
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/forum/posts'
+		};
+		$http(req).then(function(res) {
+			console.log("here");
+			console.log(res.data);
+		},$scope.handleRequest);
+	};
+
+	$scope.upvote = function(id) {
+		//TODO
+	};
+
+	$scope.downvote = function(id) {
+		//TODO
+	};
+
 
 	$scope.$on('$viewContentLoaded', function() {
 		$scope.getCourses();

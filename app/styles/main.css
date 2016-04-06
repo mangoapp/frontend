@@ -429,6 +429,7 @@ h3 {
 }
 .course-threads li:hover {
   opacity: 0.9;
+  cursor: pointer;
 }
 .course-threads div.title {
   font-weight: 600;
@@ -501,4 +502,60 @@ h3 {
   border-radius: 5px;
   padding: 10px !important;
   display: block;
+}
+.upvotes {
+  font-size: 1.5em;
+  text-align: center;
+}
+.upvotes a {
+  color: #CCC;
+}
+.upvotes a:hover {
+  color: #2ECC71;
+}
+.upvotes .numberUpvotes {
+  font-weight: 600;
+}
+.new-reply {
+  border: 0 !important;
+}
+.new-reply .form {
+  text-align: center !important;
+}
+.new-reply h4 {
+  font-weight: 300;
+  color: #9A9A9A;
+  padding-bottom: 15px;
+  text-align: center !important;
+}
+.new-reply .form textarea {
+  min-width: 80%;
+  max-width: 80%;
+  height: 100px;
+  border: 1px solid #CCC;
+  margin-bottom: 5px;
+  padding: 15px;
+
+}
+.new-reply .form label {
+  float: left;
+  margin-right: 7px;
+  font-weight: 500;
+  color: #9A9A9A;
+}
+.new-reply .form button {
+  width: 80%;
+  margin-top: 15px;
+  border: 0;
+  padding: 10px 0;
+  background-color: #2ECC71;
+  color: white;
+  border-radius: 5px;
+}
+.new-reply .form button:hover {
+  color: #939393;
+  background-color: #CCC;
+}
+.input-group {
+  margin: 0 auto;
 }
