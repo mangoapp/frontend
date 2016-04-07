@@ -1,4 +1,6 @@
 module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
+	var stopLog;
+	var stopSign;
 	if (auth.getToken()) {
 		$scope.loggedin = true;
 	} else {
@@ -24,11 +26,12 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 			data: formData
 		};
 		$http(req).then($scope.handleRequest, $scope.handleRequest);
-		setTimeout(function(){ 
+		stopLog = $interval(function() {
 			if ($scope.loggedin) {
+				$interval.cancel(stopLog);
 				$window.location.href = './#!/courses';
 			}
-		}, 500);
+		}, 50);
 	};
 	$scope.signup = function() {
 		var formData = {
@@ -43,11 +46,13 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 			data: formData
 		};
 		$http(req).then($scope.handleRequest,$scope.handleRequest);
-		setTimeout(function(){ 
+
+		stopSign = $interval(function() {
 			if ($scope.loggedin) {
+				$interval.cancel(stopSign);
 				$window.location.href = './#!/courses';
 			}
-		}, 500);
+		}, 50);
 	};
 	$scope.getname = function() {
 		var tok = auth.getToken();
