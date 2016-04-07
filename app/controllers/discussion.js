@@ -110,6 +110,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			console.log("Reply sent");
+			$scope.getSingleThread($scope.currentThread.id);
 		},$scope.handleRequest);
 	};
 
@@ -127,7 +128,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/forum/like'
 		};
 		$http(req).then(function(res) {
-			console.log(res.data);
 			$scope.getSingleThread($scope.currentThread.id);
 		},$scope.handleRequest);
 	};
@@ -146,7 +146,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/forum/unlike'
 		};
 		$http(req).then(function(res) {
-			console.log(res.data);
 			$scope.getSingleThread($scope.currentThread.id);
 		},$scope.handleRequest);
 	};
