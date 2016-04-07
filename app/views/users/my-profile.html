@@ -1,4 +1,7 @@
 <div class="row main">
+	<div ng-if="!loggedin">
+		{{signout()}}
+	</div>
 
 	<div class="side-nav col-md-1 hidden-xs hidden-sm">
 		<div ng-include="'./components/courses-navbar.html'"></div>
@@ -25,7 +28,9 @@
 
 				</div>
 			</div>
+			<button ng-click="signout()">Sign Out</button>
 		</div>
+
 	</div>
 </div>
 

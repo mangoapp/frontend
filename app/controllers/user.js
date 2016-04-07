@@ -20,7 +20,6 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 			$scope.courses = res.data;
 			$scope.courseLength = res.data.length;
 			$scope.courseCount = 1;
-			$scope.getAssignments();
 		},$scope.handleRequest);
 	};
 
@@ -89,6 +88,8 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 	$scope.signout = function() {
 		auth.logout();
 		$scope.loggedin = false;
+		$window.location.href = './#!/sign-in';
+		return;
 	};
 	$scope.retrievePassword = function() {
 		var formData = {
@@ -114,8 +115,10 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 		$http(req).then($scope.handleRequest,$scope.handleRequest);
 	};
 	$scope.$on('$viewContentLoaded', function() {
+		if ($scope.loggedin) {
 		$scope.email = $scope.getemail();
 		$scope.getCourses();
+	}
 	});
 
 
