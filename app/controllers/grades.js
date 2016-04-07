@@ -1,6 +1,5 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
 	var stopCourses;
-	var stopGrades;
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -41,7 +40,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 				$interval.cancel(stopCourses);
 				$scope.getStudentsWithID($routeParams.courseNumber);
 				$scope.getAssignmentsWithID($routeParams.courseNumber);
-				$scope.getGrades();
+				$scope.getGradesWithID($routeParams.courseNumber);
 			}
 		}
 	};
@@ -100,9 +99,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	    	if ($routeParams.courseNumber) {
 				$scope.getCourseWithID($routeParams.courseNumber);
 			}
-		}, 50);
-		stopGrades = $interval(function() {
-			$scope.getGrades();
 		}, 50);
 	});
 
