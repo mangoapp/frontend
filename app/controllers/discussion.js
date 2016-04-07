@@ -147,6 +147,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/forum/unlike'
 		};
 		$http(req).then(function(res) {
+			console.log(res.data);
 			$scope.getSingleThread($scope.currentThread.id);
 		},$scope.handleRequest);
 	};
