@@ -59,31 +59,18 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		},$scope.handleRequest);
 	};
 
-	$scope.grades = [];
-
-	$scope.getGrades = function() {
-		if ($scope.assignments) {
-			console.log($scope.assignments);
-			$scope.assignments.forEach(function(assignment) {
-				console.log(assignment);
-				$scope.getGradesReq(assignment.id);
-			});
-			$interval.cancel(stopGrades);
-		}
-	};
-
-	$scope.getGradesReq = function(assignment_id) {
+	$scope.getGradesWithID = function(id) {
 		var req = {
-			method: 'GET',
+		method: 'GET',
 			headers: {
 				'Authorization': 'Bearer: ' + $scope.token
 			},
-			url: API + '/assignments/' + assignment_id + '/grades'
+			url: API + '/sections/' + id + '/allGrades'
 		};
 		$http(req).then(function(res) {
-			$scope.grades = $scope.grades.concat(res.data);
+			$scope.grades = res.data;
 		},$scope.handleRequest);
-	};
+	}
 
 	$scope.getGrade = function(user_id, assignment_id) {
 		for (var i = 0; i < $scope.grades.length; i++) {
