@@ -220,7 +220,7 @@ h3 {
   background-color: #2ECC71 !important;
 }
 .science:hover {
-  background-color: #CCCCCC;
+  background-color: #CCCCCC !important;
 }
 .s-course { 
   float: left;
@@ -645,4 +645,10 @@ h3 {
 .side-courses .science li:hover {
   color: #CCCCCC;
 
+}
+.create-course a {
+  color: #939393;
+  font-weight: 600;
+}
+.create-plus {
 }

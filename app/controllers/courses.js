@@ -9,6 +9,15 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		$scope.loggedin = false;
 		$window.location.href = './#!/sign-in';
 	}
+	$scope.getUser = function() {
+		var tok = auth.getToken();
+		var ptok = auth.parseJwt(tok);
+		for (var i = 0; i < ptok.roles.length; i++) {
+			if (ptok.roles[i] == "course_admin") {
+				$scope.isAdmin = true;
+			}
+		}
+	};
 	$scope.getCourseWithID = function(id) {
 		if ($scope.courses) {
 			for (var i = 0; i < $scope.courses.length; i++) {
@@ -158,6 +167,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 				$scope.getCourseWithID($routeParams.courseNumber);
 			}
 		}, 50, 50);
+		$scope.getUser();
 		$scope.instructorToggle = true;
 	});
 };
