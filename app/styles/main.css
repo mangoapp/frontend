@@ -346,12 +346,27 @@ h3 {
   border-radius: 15px;
   display: block;
   margin: 15px 35px 0 0;
+  text-align: center;
 }
 .announcement-box h3 {
-  font-size: 1.3em !important;
+  font-size: 1.1em !important;
   font-weight: 300;
   padding: 15px 0 !important;
   border-bottom: 1px solid #CCC;
+}
+.announcement-box a button {
+  background-color: #E23E57;
+  font-weight: 600;
+  color: white;
+  width: 45%;
+  padding: 10px 0 !important;
+  border: 0;
+  border-radius: 5px;
+  margin: 25px 0 !important;
+  font-size: 0.8em;
+}
+.announcement-box a button:hover {
+  background-color: #939393;
 }
 .i-announce {
   font-size: 1.5em;

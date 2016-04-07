@@ -1,6 +1,7 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
 	var stopAnnouncements;
 	var stopCourses;
+	var assignments = [];
 
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
@@ -26,13 +27,16 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if ($scope.courseData) {
 				$interval.cancel(stopCourses);
 				$scope.getAnnouncements();
+
 			}
 		}
 	};
+
 	$scope.handleRequest = function(res) {
 		$scope.noCourses = true;
 		$scope.message = res.data.message;
 	};
+
 	$scope.getCourses = function() {
 		var req = {
 			method: 'GET',
@@ -45,6 +49,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			$scope.courses = res.data;
 			$scope.courseLength = res.data.length;
 			$scope.courseCount = 1;
+			$scope.getAssignments();
 		},$scope.handleRequest);
 	};
 
@@ -54,6 +59,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			$scope.getAnnouncementsReq($scope.courseID);
 		}
 	};
+
 	$scope.getAnnouncementsReq = function(id) {
 		var req = {
 			method: 'GET',
@@ -72,6 +78,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			}
 		},$scope.handleRequest);
 	};
+
 	$scope.createAnnouncement = function() {
 		var formData = {
 			title: $scope.newAnnouncementTitle,
@@ -90,6 +97,29 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			$scope.getAnnouncements();
 		},$scope.handleRequest);
 	};
+
+	$scope.getAssignments = function() {
+		
+		for (var i = 0; i < $scope.courseLength; i++) {
+			$scope.getAssignmentsReq($scope.courses[i].id);
+		}
+	};
+
+	$scope.getAssignmentsReq = function(id) {
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/sections/' + id + '/assignments'
+		};
+		$http(req).then(function(res) {
+			for (var j = 0; j < res.data.length; j++) {
+				assignments.push(res.data[j]);
+			}
+		},$scope.handleRequest);
+	};
+
 	$scope.createSection = function() {
 		var formData = {
 			course_id: $scope.courseID,
@@ -117,7 +147,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if ($routeParams.courseNumber) {
 				$scope.getCourseWithID($routeParams.courseNumber);
 			}
-		}, 50);
+		}, 50, 50);
 		$scope.instructorToggle = true;
 	});
 };
