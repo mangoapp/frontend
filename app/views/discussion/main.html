@@ -54,9 +54,9 @@
 				<div class="col-md-10 col-md-offset-2">
 					<div ng-repeat="reply in currentPosts" class="reply row">
 						<div class="col-md-1 upvotes">
-							<!--<div class="arrow"><a ng-click="#"><i class="fa fa-arrow-up"></i></a></div>
-							<div class="numberUpvotes">{{reply.likes.length}}</div>
-							<div class="arrow"><a ng-click="#"><i class="fa fa-arrow-down"></i></a></div>-->
+							<div class="arrow"><a ng-click="upvote(reply.id, $index)"><i class="fa fa-arrow-up"></i></a></div>
+							<div class="numberUpvotes">{{likes[$index]}}</div>
+							<div class="arrow"><a ng-click="downvote(reply.id, $index)"><i class="fa fa-arrow-down"></i></a></div>
 						</div>
 						<div class="col-md-11">
 							<p class="body">{{reply.body}}</p>

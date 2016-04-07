@@ -78,10 +78,11 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if (res.data) {
 				$scope.currentThread = res.data;
 				$scope.currentPosts = res.data.posts;
-				console.log($scope.currentPosts);
+				$scope.likes = [];
 				$scope.currentThread.created_at = new Date(res.data.created_at);
 				for (var i = 0; i < res.data.posts.length; i++) {
 					$scope.currentPosts[i].created_at = new Date(res.data.posts[i].created_at);
+					$scope.likes[i] = $scope.currentPosts[i].likes.length;
 				}
 			}
 		},$scope.handleRequest);
@@ -111,11 +112,26 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		},$scope.handleRequest);
 	};
 
-	$scope.upvote = function(id) {
-		//TODO
+	$scope.upvote = function(id, i) {
+		var formData = {
+			section_id: $scope.courseID,
+			post_id: id
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/forum/like'
+		};
+		$http(req).then(function(res) {
+			console.log(res.data);
+			$scope.likes[i]++;
+		},$scope.handleRequest);
 	};
 
-	$scope.downvote = function(id) {
+	$scope.downvote = function(id, i) {
 		//TODO
 	};
 
