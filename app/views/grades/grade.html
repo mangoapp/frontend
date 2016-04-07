@@ -11,10 +11,11 @@
 
 		<div ng-include="'./components/top-nav.html'"></div>
 
-		<div class="main-announcements">
+		<div class="main-announcements">			
 			<h3 class="announcementHeader">Detailed Grades</h3>
-			<div class="grades" ng-repeat="assignment in assignments">
-			<h4>{{assignment.title}}</h4>
+			<!-- Instructor grade view -->
+			<div class="grades" ng-repeat="assignment in assignments" ng-if="isInstructor">
+			<h4>Assignment: {{assignment.title}}</h4>
 			
 				<table class="table table-striped">
 					<tr>
@@ -35,7 +36,32 @@
 						<td></td>
 					</tr>
 				</table>
-			</div>			
+			</div>
+
+			<div class="grades" ng-if="!isInstructor">
+			<!-- student grade view -->
+			<h4>Grades for {{firstname}} {{lastname}}</h4>
+			
+				<table class="table table-striped">
+					<tr>
+						<th>Assignment</th>
+						<th>Points</th>
+						<th>Out Of</th>
+					</tr>
+
+					<tr class="assignment grades" ng-repeat="assignment in assignments">
+						<td>{{assignment.title}}</td>
+						<td>{{getGrade(student.id, assignment.id)}}</td>
+						<td>{{assignment.maxScore}}</td>
+					</tr>
+
+					<tr class="total-row">
+						<td>Weighted Total Placeholder</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>					
 		</div>
 	</div>    
 </div>

@@ -8,6 +8,14 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		$window.location.href = './#!/sign-in';
 	}
 
+	$scope.getUser = function() {
+		var tok = auth.getToken();
+		var ptok = auth.parseJwt(tok);
+		console.log(ptok);
+		$scope.firstname = ptok.firstname;
+		$scope.lastname = ptok.lastname;
+	};
+
 	$scope.getCourses = function() {
 		var req = {
 			method: 'GET',
@@ -113,7 +121,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.$on('$viewContentLoaded', function() {
-		$scope.getCourses();
+		$scope.getUser();
+		$scope.getCourses();		
 		stopCourses = $interval(function() {
 	    	if ($routeParams.courseNumber) {
 				$scope.getCourseWithID($routeParams.courseNumber);
