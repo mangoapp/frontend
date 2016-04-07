@@ -581,7 +581,6 @@ h3 {
   float: left;
 }
 .new-post input, .new-post textarea {
-  float: left;
   text-align: left !important;
   margin-bottom: 25px;
 }

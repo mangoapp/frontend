@@ -9,7 +9,7 @@
 		<h5>Pinned Posts</h5>
 		<ul class="course-threads">
 			<div ng-repeat="thread in threads">
-				<a ng-if="thread.sticky == 1" href="#">
+				<a ng-if="thread.sticky == 1" ng-click="getSingleThread(thread.id)" ng-href="./#!/discussion/{{courseID}}">
 					<li>
 						<div class="title">{{thread.title}}</div>
 						<div class="body">{{thread.body}}</div>
@@ -21,7 +21,7 @@
 		<h5>Recent Posts</h5>
 		<ul class="course-threads">
 			<div ng-repeat="thread in threads">
-				<a ng-if="thread.sticky == 0" ng-click="getSingleThread(thread.id)">
+				<a ng-if="thread.sticky == 0" ng-click="getSingleThread(thread.id)" ng-href="./#!/discussion/{{courseID}}">
 					<li>
 						<div class="title">{{thread.title}}</div>
 						<div class="body">{{thread.body}}</div>
@@ -34,19 +34,19 @@
 	<div class="main-content col-md-9 col-xs-12">
 		<div ng-include="'./components/top-nav.html'"></div>
 
-		<form class="new-post">
+		<div class="new-post row">
 			<h2>New Discussion Post</h2>
-			<p class="label">Short Description</p><br>
-			<input ng-model="postTitle" class="input" name="post-title">
-
-			<p class="label">Body</p><br>
-			<textarea class="new-reply-body" name="post-body" ng-model="replyBody"></textarea>
-
-			<p class="label">Post Anonymously?</p><br>
-			<input type="checkbox" name="anon" ng-model="anon" ng-valueng-true-value="1" ng-false-value="0"><br>
-
-			<button type="submit" name="submit" ng-click="replyToThread(replyBody,anon)">Submit</button>
-		</form>
-
-
+			<div class="form">
+				<input class="new-post-description" ng-model="postDesc"><br>
+				<textarea class="new-post-body" ng-model="postBody"></textarea><br>
+				<div class="input-group">
+					<label for="anon">Post Anonymously?</label>
+					<input type="checkbox" name="anon" ng-model="anon" ng-valueng-true-value="1" ng-false-value="0">
+				</div>
+				<div class="clear"></div>
+				<button type="submit" name="submit" ng-click="postToThread(replyBody,anon)">Submit</button>
+			</div>
 		</div>
+
+
+	</div>
