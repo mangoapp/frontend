@@ -22,9 +22,7 @@ footer {
   text-align: center;
   color: #939393;
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  margin: 10px auto;
 }
 *:focus {
   outline: none;
