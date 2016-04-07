@@ -45,6 +45,10 @@
           templateUrl: "./views/courses/courses.html",
           controller: "CourseCtrl"
         })
+        .when("/courses/new", {
+            templateUrl: "./views/courses/create-course.html",
+            controller: "CourseCtrl"
+        })
         .when("/courses/:courseNumber", {
             templateUrl: "./views/courses/course.html",
             controller: "CourseCtrl"

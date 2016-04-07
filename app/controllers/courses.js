@@ -1,6 +1,8 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
 	var stopAnnouncements;
 	var stopCourses;
+	$scope.newSections = [];
+	$scope.courseTypes = ['Math','Computer Science','English','Biology', 'History'];
 
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
@@ -127,7 +129,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			for (var j = 0; j < res.data.length; j++) {
 				$scope.assignments.push(res.data[j]);
 			}
-			console.log($scope.assignments);
 		},$scope.handleRequest);
 	};
 
@@ -139,24 +140,71 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		}
 	};
 
-	$scope.createSection = function() {
+	$scope.createCourse = function() {
+
+		if ($scope.newSections.length === 0) {
+			//In case section doesn't exist
+			$scope.newSections.push('01');
+		}
+
 		var formData = {
-			course_id: $scope.courseID,
-			section_name: $scope.newSection
+			name: $scope.newCourseName,
+			section_name: $scope.newSections[0],
+			type: $scope.newCourseType
 		};
 		var req = {
 			method: 'POST',
-			data: formData,
 			headers: {
 				'Authorization': 'Bearer: ' + $scope.token
 			},
+			data: formData,
+			url: API + '/courses'
+		};
+		$http(req).then(function(res) {
+			console.log(res.data);
+			$scope.createSections(res.data);
+		},$scope.handleRequest);
+
+
+
+	};
+
+	$scope.createSections = function(id) {
+		for (var i = 1; i < $scope.newSections.length; i++) {
+			$scope.createSection($scope.newSections[i], id);
+		}
+		$timeout(function() {
+			$window.location.href = './#!/courses';
+		},100);
+	};
+
+	$scope.createSection = function(section_name, id) {
+		var formData = {
+			course_id: id,
+			section_name: section_name
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
 			url: API + '/courses/sections'
 		};
 		$http(req).then(function(res) {
-			console.log("successfully created");
+			console.log("section created");
+			
 		},$scope.handleRequest);
-		
+
 	};
+
+	$scope.addSection = function() {
+		if (!isNaN($scope.newSection)) {
+			$scope.newSections.push($scope.newSection);
+		}
+		delete $scope.newSection;
+	};
+
 	$scope.instructorAnnounceToggle = function() {
 		$scope.instructorToggle = $scope.instructorToggle === false ? true: false;
 	};

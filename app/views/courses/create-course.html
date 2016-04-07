@@ -1,0 +1,40 @@
+<div class="row main">
+
+	<div class="side-nav col-md-1 hidden-xs hidden-sm">
+		<div ng-include="'./components/courses-navbar.html'"></div>
+	</div>
+	<div class="main-content col-md-11 col-sm-12 col-xs-12">
+		<div class="row">
+			<div ng-include="'./components/top-nav.html'"></div>
+			<div class="create-course col-md-12 col-sm-12 col-xs-12">
+				<h3>Create New Course</h3>
+				<div class="new-course-box">
+					<input ng-bind="newCourseName" placeholder="Course Name">
+					<select ng-model="newCourseType" placeholder="Course Type">
+						<option value="" disabled selected hidden>Course Type</option>
+        				<option ng-repeat="type in courseTypes" value="{{type}}">{{type}}</option>
+      				</select>
+
+				</div>
+
+				<h3 class="up-shit">Add Sections</h3>
+				<div class="new-section-box">
+					<ul ng-repeat="section in newSections">
+						<li>{{section}}</li>
+					</ul>
+					<input ng-model="newSection" placeholder="New Section">
+					<a ng-click="addSection()"><button class="create-section-btn">Add Section</button></a>
+
+				</div>
+
+
+				<a href="#"><button class="create-course-btn">Create Course</button></a>
+
+			</div>
+
+
+
+		</div>
+	</div>
+
+</div>

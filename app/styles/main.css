@@ -654,3 +654,87 @@ h3 {
 }
 .create-plus {
 }
+.create-course {
+  text-align: center !important;
+}
+.create-course h3 { 
+  margin-bottom: 25px !important;
+ }
+ .new-course-box {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #2ECC71;
+  padding: 50px 0;
+  border-radius: 10px;
+ }
+ .new-section-box {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #CCC;
+  padding: 50px 0;
+  border-radius: 10px;
+ }
+ .new-course-box input, .new-section-box input {
+  width: 70%;
+  margin: 0 auto 25px auto;
+  border: 0;
+  padding: 10px;
+  color: #9A9A9A;
+  border-radius: 3px;
+ }
+ .new-course-box select {
+  background-color: white;
+  width: 70%;
+  padding: 10px;
+  color: #939393;
+  border: 0;
+  border-radius: 3px;
+ }
+ h3.up-shit {
+  padding: 35px 0 0 0 !important;
+
+ }
+.create-course-btn {
+  width: 50%;
+  margin: 35px 0 !important;
+  padding: 15px 0 !important;
+  background-color: #939393;
+  font-weight: 300;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+ }
+ .create-course-btn:hover {
+  background-color: #CCC;
+ }
+ .create-section-btn {
+  width: 50%;
+  margin-top: 20px !important;
+  padding: 15px 0 !important;
+  background-color: #939393;
+  font-weight: 300;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+ }
+ .create-section-btn:hover {
+  background-color: white;
+  color: #CCC;
+ }
+ .new-section-box ul {
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+ }
+ .new-section-box li {
+  padding: 10px 0 !important;
+  text-align: center !important;
+  color: #EEE;
+  background-color: #939393;
+  width: 70%;
+  font-weight: 600;
+  font-size: 1.4em;
+  display: block;
+  margin: 15px auto !important;
+  border-radius: 3px;
+ }
