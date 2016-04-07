@@ -18,23 +18,35 @@
 								</div>
 							</a>
 							<div class="course-nav row">
-								<div class="course-nav-s col-md-4">
+								<div class="course-nav-s col-md-4 col-sm-4">
 									<a href="#">
 										<i class="fa fa-file-text"></i>
 									</a>
 								</div>
-								<div class="course-nav-s col-md-4">
+								<div class="course-nav-s col-md-4 col-sm-4">
 									<a ng-href="./#!/discussion/{{course.id}}">
 										<i class="fa fa-comments"></i>
 									</a>
 								</div>
-								<div class="course-nav-s col-md-4">
+								<div class="course-nav-s col-md-4 col-sm-4">
 									<a href="#">
 										<i class="fa fa-users"></i>
 									</a>
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="s-course science" ng-show="isAdmin">
+						<a ng-href="./#!/courses/create-course">
+								<div class="course-link science create-plus">
+									<span><i class="fa fa-plus"></i> </span>
+								</div>
+						</a>
+							<div class="course-nav row">
+								<div class="course-nav-s col-md-12 create-course">
+									<a ng-href="./#!/courses/create-course">Create New Course</a>
+								</div>
+							</div>
 					</div>
 				</div>
 				<div class="no-courses" ng-show="noCourses">
