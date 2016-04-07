@@ -219,7 +219,7 @@ h3 {
   text-decoration: none;
 }
 .science {
-  background-color: #2ECC71;
+  background-color: #2ECC71 !important;
 }
 .science:hover {
   background-color: #CCCCCC;
@@ -585,4 +585,34 @@ h3 {
   float: left;
   text-align: left !important;
   margin-bottom: 25px;
+}
+.side-courses {
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.side-courses li {
+  margin: 25px 0 25px 25% !important;
+  background-color: #CCC;
+  color: white;
+  width: 50%;
+  height: 0;
+  padding: 25% 0;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  line-height: 0;
+}
+.side-courses li:hover {
+  background-color: #9A9A9A;
+}
+.side-courses .science li {
+  background-color: white !important;
+  color: #2ECC71;
+  font-weight: 600;
+}
+.side-courses .science li:hover {
+  color: #CCCCCC;
+
 }

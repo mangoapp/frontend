@@ -43,6 +43,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		};
 		$http(req).then(function(res) {
 			$scope.courses = res.data;
+			$scope.courseLength = res.data.length;
+			$scope.courseCount = 1;
+			console.log($scope.courses);
 		},$scope.handleRequest);
 	};
 
@@ -54,7 +57,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 				$scope.getAnnouncementsReq(i);
 			}
 		}
-		}, 400);
+		}, 450);
 	};
 	$scope.getAnnouncementsReq = function(i) {
 		var req = {
