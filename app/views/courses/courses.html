@@ -45,7 +45,7 @@
 			<div class="main-announcements col-md-4 hidden-sm hidden-xs">
 				<div class="announcement-box">
 					<h3>Upcoming Deadlines</h3>
-					<div ng-repeat="assignment in assignments">
+					<div ng-repeat="assignment in assignments | limitTo: 5">
 						<div class="row single-assignment">
 							<div class="col-md-4" ng-show="assignment.deadline">
 								Date

@@ -102,6 +102,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		for (var i = 0; i < $scope.courseLength; i++) {
 			$scope.getAssignmentsReq($scope.courses[i].id);
 		}
+
 	};
 
 	$scope.getAssignmentsReq = function(id) {
@@ -116,6 +117,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			for (var j = 0; j < res.data.length; j++) {
 				$scope.assignments.push(res.data[j]);
 			}
+			console.log($scope.assignments);
 		},$scope.handleRequest);
 	};
 
