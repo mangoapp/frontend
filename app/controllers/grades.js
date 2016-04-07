@@ -44,6 +44,19 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		
 	};
 
+	$scope.getAssignmentsWithID = function(id) {
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/sections/' + id + '/assignments'
+		};
+		$http(req).then(function(res) {
+			$scope.assignments = res.data;
+		},$scope.handleRequest);
+	};
+
 	$scope.getGradesWithID = function(id) {
 		var req = {
 			method: 'GET',
@@ -55,6 +68,15 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		$http(req).then(function(res) {
 			$scope.grades = res.data;
 		},$scope.handleRequest);
+	};
+
+	$scope.getGrade = function(user_id, assignment_id) {
+		for (var i = 0; i < $scope.grades.length; i++) {
+			if ($scope.grades[i].user_id == user_id && $scope.grades[i].assignment_id == assignment_id) {
+				return $scope.grades[i].score;
+			}
+		}
+		return "Ungraded";
 	};
 
 	$scope.getStudentsWithID = function(id) {
@@ -76,6 +98,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 			$scope.getCourseWithID($routeParams.courseNumber);
 			$scope.getGradesWithID($routeParams.courseNumber);
 			$scope.getStudentsWithID($routeParams.courseNumber);
+			$scope.getAssignmentsWithID($routeParams.courseNumber);
 		}
 	});
 

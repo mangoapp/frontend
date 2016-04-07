@@ -14,52 +14,19 @@
 		<div class="main-announcements">
 			<h3 class="announcementHeader">Detailed Grades</h3>
 			<div class="grades">
-				<!--<table class="table table-striped">
-				  <tr>
-				    <th>Date</th>
-				    <th>Assignment</th>
-				    <th>Points</th>
-				    <th>Out Of</th>
-				    <th>Grade</th>
-				  </tr>
-				  <tr>
-				    <td>03/04/16</td>
-				    <td>Homework 1</td>
-				    <td>10</td>
-				    <td>10</td>
-				    <td>100 %</td>
-				  </tr>
-				  <tr>
-				    <td>04/03/16</td>
-				    <td>Homework 2</td>
-				    <td>9</td>
-				    <td>10</td>
-				    <td>90 %</td>
-				  </tr>
-				  
-				  <tr class="total-row">
-				    <td>Total</td>
-				    <td></td>
-				    <td>19</td>
-				    <td>20</td>
-				    <td>95 %</td>
-				  </tr>
-				</table>-->
-				<table class="table table-striped">
+				<table class="table table-striped" ng-repeat="student in students">
 					<tr>
-						<th>Name</th>
+						<th>Grades for {{student.firstname}} {{student.lastname}}</th>
 					</tr>
-					<div ng-repeat="student in students">
-					<tr>
-						<td>{{student.name}}</td>
+					<tr class="weighted total">
+						<td>Weighted Total Placeholder</td>
 					</tr>
-					</div>
+					<tr class="assignment grades" ng-repeat="assignment in assignments">
+						<td>{{assignment.title}} - {{getGrade(student.id, assignment.id)}}/{{assignment.maxScore}}</td>
+					</tr>
 				</table>
 			</div>			
 		</div>
-<!-- 		<div ng-hide="courseData">
-			<h3>Course Not Found</h3>
-		</div> -->
 	</div>
 
 	
