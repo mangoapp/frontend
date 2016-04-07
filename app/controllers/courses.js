@@ -2,7 +2,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	var stopAnnouncements;
 	var stopCourses;
 	$scope.newSections = [];
-	$scope.courseTypes = ['Math','Computer Science','English','Biology', 'History'];
+	$scope.courseTypes = ['Math','Computer Science','English','Biology', 'History', 'Philosophy'];
 
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
@@ -141,7 +141,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.createCourse = function() {
-
 		if ($scope.newSections.length === 0) {
 			//In case section doesn't exist
 			$scope.newSections.push('01');
@@ -149,7 +148,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
 		var formData = {
 			name: $scope.newCourseName,
-			section_name: $scope.newSections[0],
+			section_name: $scope.newCourseName + '-' + $scope.newSections[0],
 			type: $scope.newCourseType
 		};
 		var req = {
@@ -162,26 +161,27 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			console.log(res.data);
-			$scope.createSections(res.data);
+			$scope.createSections(res.data,$scope.newCourseName);
 		},$scope.handleRequest);
 
 
 
 	};
 
-	$scope.createSections = function(id) {
+	$scope.createSections = function(id,newCourseName) {
 		for (var i = 1; i < $scope.newSections.length; i++) {
-			$scope.createSection($scope.newSections[i], id);
+			$scope.createSection($scope.newSections[i], id, newCourseName);
 		}
+		$scope.getCourses();
 		$timeout(function() {
 			$window.location.href = './#!/courses';
 		},100);
 	};
 
-	$scope.createSection = function(section_name, id) {
+	$scope.createSection = function(section_name, id, newCourseName) {
 		var formData = {
 			course_id: id,
-			section_name: section_name
+			section_name: newCourseName + '-' + section_name
 		};
 		var req = {
 			method: 'POST',
@@ -192,6 +192,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/courses/sections'
 		};
 		$http(req).then(function(res) {
+			console.log(res.data);
 			console.log("section created");
 			
 		},$scope.handleRequest);

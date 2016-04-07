@@ -9,7 +9,7 @@
 			<div class="create-course col-md-12 col-sm-12 col-xs-12">
 				<h3>Create New Course</h3>
 				<div class="new-course-box">
-					<input ng-bind="newCourseName" placeholder="Course Name">
+					<input ng-model="newCourseName" placeholder="Course Name">
 					<select ng-model="newCourseType" placeholder="Course Type">
 						<option value="" disabled selected hidden>Course Type</option>
         				<option ng-repeat="type in courseTypes" value="{{type}}">{{type}}</option>
@@ -28,7 +28,7 @@
 				</div>
 
 
-				<a href="#"><button class="create-course-btn">Create Course</button></a>
+				<a ng-click="createCourse()"><button class="create-course-btn">Create Course</button></a>
 
 			</div>
 
