@@ -86,7 +86,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		$http(req).then(function(res) {
 			$scope.grades = res.data;
 		},$scope.handleRequest);
-	}
+	};
 
 	$scope.getGrade = function(user_id, assignment_id) {
 		if ($scope.grades) {
