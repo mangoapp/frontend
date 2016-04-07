@@ -13,17 +13,25 @@
 
 		<div class="main-announcements">
 			<h3 class="announcementHeader">Detailed Grades</h3>
-			<div class="grades">
-				<table class="table table-striped" ng-repeat="student in students">
+			<div class="grades" ng-repeat="student in students">
+			<h4> Grades for {{student.firstname}} {{student.lastname}} </h4>
+				<table class="table table-striped">
 					<tr>
-						<th>Grades for {{student.firstname}} {{student.lastname}}</th>
+						<th>Assignment</th>
+						<th>Points</th>
+						<th>Out Of</th>
 					</tr>
-					<tr class="weighted total">
-						<td>Weighted Total Placeholder</td>
-					</tr>
+
 					<tr class="assignment grades" ng-repeat="assignment in assignments">
-						<div>{{populateGrades(assignment.id)}}</div>
-						<td>{{assignment.title}} - {{getGrade(student.id, assignment.id)}}/{{assignment.maxScore}}</td>
+						<td>{{assignment.title}}</td>
+						<td>{{getGrade(student.id, assignment.id)}}</td>
+						<td>{{assignment.maxScore}}</td>
+					</tr>
+
+					<tr class="total-row">
+						<td>Weighted Total Placeholder</td>
+						<td></td>
+						<td></td>
 					</tr>
 				</table>
 			</div>			

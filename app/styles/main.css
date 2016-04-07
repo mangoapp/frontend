@@ -480,10 +480,12 @@ h3 {
 }
 .total-row {
   border-top-style: solid;
-  border-top-width: 3px;
+  border-top-width: 2px;
   background-color:;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
 }
-.total-row td:first-child {
+.total-row td{
   font-weight: bold;
 }
 .grades {
