@@ -15,7 +15,7 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 		}
 		self.message = res.data.message;
 	};
-  	$scope.signin = function() {
+	$scope.signin = function() {
 		var formData = {
 			email: $scope.email,
 			password: $scope.password
@@ -95,6 +95,11 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 		};
 
 		$http(req).then($scope.handleRequest,$scope.handleRequest);
-
 	};
+	$scope.$on('$viewContentLoaded', function() {
+		$scope.email = $scope.getemail();
+	});
+
+
+
 };

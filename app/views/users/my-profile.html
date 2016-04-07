@@ -1,19 +1,31 @@
-<div ng-include="'./components/navbar.html'"></div>	
-<h1>My Profile</h1>
+<div class="row main">
 
-<h2>Welcome, {{getname()}}</h2>
-<div id="user-info">
-	<span>Update email address: </span><input type="text" placeholder="Email" name="email" ng-model="getemail()" />
-	<span>Update password: </span><input type="password" placeholder="Password" name="password"  />
-	<span>Confirm password: </span><input type="password" placeholder="Password confirmation" name="passwordconf" />
+	<div class="side-nav col-md-1 hidden-xs hidden-sm">
+		<div ng-include="'./components/courses-navbar.html'"></div>
+	</div>
 
-	<form action="">
-  		<input type="radio" name="email" value="email-on">Email on<br>
-  		<input type="radio" name="email" value="email-off">Email off<br>
-	</form>
+	<div class="main-content col-md-11 col-sm-12 col-xs-12">
+		<div class="row">
+			<div ng-include="'./components/top-nav.html'"></div>
+			<div class="main-courses col-md-12 col-sm-12 col-xs-12">
+				<h3>My Profile</h3>
+				<h2>Welcome, {{getname()}}</h2>
 
-	<button type="submit" ng-click="updateinfo()">Update Information</button>
+				<div id="user-info">
+					<span>Update email address: </span><input type="text" placeholder="Email" name="email" ng-model="email" />
+					<span>Update password: </span><input type="password" placeholder="Password" name="password"  />
+					<span>Confirm password: </span><input type="password" placeholder="Password confirmation" name="passwordconf" />
 
+					<form action="">
+						<input type="radio" name="email" value="email-on">Email on<br>
+						<input type="radio" name="email" value="email-off">Email off<br>
+					</form>
+
+					<button type="submit" ng-click="updateinfo()">Update Information</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
 
