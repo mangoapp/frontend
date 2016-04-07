@@ -586,3 +586,24 @@ h3 {
   text-align: left !important;
   margin-bottom: 25px;
 }
+.side-courses {
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.side-courses li {
+  margin: 40px 0 0 25% !important;
+  background-color: #CCC;
+  color: white;
+  width: 50%;
+  height: 0;
+  padding: 25% 0;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  line-height: 0;
+}
+.side-courses li:hover {
+  background-color: #9A9A9A;
+}
