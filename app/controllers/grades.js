@@ -1,5 +1,6 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
 	var stopCourses;
+	var stopGrades;
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -38,9 +39,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			}
 			if ($scope.courseData) {
 				$interval.cancel(stopCourses);
-				$scope.getGradesWithID($routeParams.courseNumber);
 				$scope.getStudentsWithID($routeParams.courseNumber);
 				$scope.getAssignmentsWithID($routeParams.courseNumber);
+				$scope.getGrades();
 			}
 		}
 	};
@@ -58,16 +59,29 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		},$scope.handleRequest);
 	};
 
-	$scope.getGradesWithID = function(id) {
+	$scope.grades = [];
+
+	$scope.getGrades = function() {
+		if ($scope.assignments) {
+			console.log($scope.assignments);
+			$scope.assignments.forEach(function(assignment) {
+				console.log(assignment);
+				$scope.getGradesReq(assignment.id);
+			});
+			$interval.cancel(stopGrades);
+		}
+	};
+
+	$scope.getGradesReq = function(assignment_id) {
 		var req = {
 			method: 'GET',
 			headers: {
 				'Authorization': 'Bearer: ' + $scope.token
 			},
-			url: API + '/sections/' + id + '/grades'
+			url: API + '/assignments/' + assignment_id + '/grades'
 		};
 		$http(req).then(function(res) {
-			$scope.grades = res.data;
+			$scope.grades = $scope.grades.concat(res.data);
 		},$scope.handleRequest);
 	};
 
@@ -99,6 +113,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	    	if ($routeParams.courseNumber) {
 				$scope.getCourseWithID($routeParams.courseNumber);
 			}
+		}, 50);
+		stopGrades = $interval(function() {
+			$scope.getGrades();
 		}, 50);
 	});
 
