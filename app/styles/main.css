@@ -593,6 +593,7 @@ h3 {
 }
 .side-courses li {
   margin: 25px 0 25px 25% !important;
+  font-size: 1.4em;
   background-color: #CCC;
   color: white;
   width: 50%;
