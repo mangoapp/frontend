@@ -72,9 +72,11 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.getGrade = function(user_id, assignment_id) {
-		for (var i = 0; i < $scope.grades.length; i++) {
-			if ($scope.grades[i].user_id == user_id && $scope.grades[i].assignment_id == assignment_id) {
-				return $scope.grades[i].score;
+		if ($scope.grades) {
+			for (var i = 0; i < $scope.grades.length; i++) {
+				if ($scope.grades[i].user_id == user_id && $scope.grades[i].assignment_id == assignment_id) {
+					return $scope.grades[i].score;
+				}
 			}
 		}
 		return "Ungraded";
