@@ -350,16 +350,32 @@ h3 {
 }
 .announcement-box h3 {
   font-size: 1.1em !important;
-  font-weight: 300;
-  padding: 15px 0 !important;
-  border-bottom: 1px solid #CCC;
+  font-weight: 500;
+  color: #9B9B9B;
+  padding: 25px 0 !important;
+}
+.announcement-box .single-assignment {
+  border-top: 1px solid #CCC;
+  padding: 25px 0 !important;
+  margin: 0 25px !important;
+}
+.announcement-box .single-assignment .assignment-title {
+  color: #787878;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.announcement-box .single-assignment .assignment-class {
+  color: #969696;
+  font-size: 0.7em;
+  font-style: italic;
+  margin-top: 3px !important;
 }
 .announcement-box a button {
   background-color: #E23E57;
   font-weight: 600;
   color: white;
-  width: 45%;
-  padding: 10px 0 !important;
+  width: 65%;
+  padding: 15px 0 !important;
   border: 0;
   border-radius: 5px;
   margin: 25px 0 !important;

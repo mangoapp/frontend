@@ -1,7 +1,6 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
 	var stopAnnouncements;
 	var stopCourses;
-	var assignments = [];
 
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
@@ -99,7 +98,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.getAssignments = function() {
-		
+		$scope.assignments = [];
 		for (var i = 0; i < $scope.courseLength; i++) {
 			$scope.getAssignmentsReq($scope.courses[i].id);
 		}
@@ -115,9 +114,17 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			for (var j = 0; j < res.data.length; j++) {
-				assignments.push(res.data[j]);
+				$scope.assignments.push(res.data[j]);
 			}
 		},$scope.handleRequest);
+	};
+
+	$scope.getCourseNameWithID = function(id) {
+		for (var i = 0; i < $scope.courses.length; i++) {
+			if (id == $scope.courses[i].id) {
+				return $scope.courses[i].name;
+			}
+		}
 	};
 
 	$scope.createSection = function() {

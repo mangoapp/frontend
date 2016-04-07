@@ -45,6 +45,31 @@
 			<div class="main-announcements col-md-4 hidden-sm hidden-xs">
 				<div class="announcement-box">
 					<h3>Upcoming Deadlines</h3>
+					<div ng-repeat="assignment in assignments">
+						<div class="row single-assignment">
+							<div class="col-md-4" ng-show="assignment.deadline">
+								Date
+							</div>
+							<div class="col-md-8" ng-show="assignment.deadline">
+								<div class="assignment-title">
+									{{assignment.title}}
+								</div>
+								<div class="assignment-class">
+									{{getCourseNameWithID(assignment.section_id)}}
+								</div>
+							</div>
+							<div class="col-md-offset-4 col-md-8" ng-hide="assignment.deadline">
+								<div class="assignment-title">
+									{{assignment.title}}
+								</div>
+								<div class="assignment-class">
+									{{getCourseNameWithID(assignment.section_id)}}
+								</div>
+							</div>
+
+
+						</div>
+					</div>
 					<a href="#"><button>See Calendar</button></a>
 				</div>
 			</div>
