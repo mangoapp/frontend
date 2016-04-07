@@ -37,9 +37,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			}
 			if ($scope.courseData) {
 				$interval.cancel(stopCourses);
-				$scope.getGradesWithID($routeParams.courseNumber);
-				$scope.getStudentsWithID($routeParams.courseNumber);
-				$scope.getAssignmentsWithID($routeParams.courseNumber);
+				$scope.getAnnouncements();
 			}
 		}
 	};
@@ -57,18 +55,16 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		},$scope.handleRequest);
 	};
 
-	$scope.grades = {};
-
-	$scope.populateGrades = function(assignment_id) {
+	$scope.getGradesWithID = function(id) {
 		var req = {
 			method: 'GET',
 			headers: {
 				'Authorization': 'Bearer: ' + $scope.token
 			},
-			url: API + '/assignments/' + assignment_id + '/grades'
+			url: API + '/sections/' + id + '/grades'
 		};
 		$http(req).then(function(res) {
-			for (var attrname in res.data) $scope.grades[attrname] = res.data[attrname];
+			$scope.grades = res.data;
 		},$scope.handleRequest);
 	};
 
@@ -99,6 +95,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		stopCourses = $interval(function() {
 	    	if ($routeParams.courseNumber) {
 				$scope.getCourseWithID($routeParams.courseNumber);
+				$scope.getGradesWithID($routeParams.courseNumber);
+				$scope.getStudentsWithID($routeParams.courseNumber);
+				$scope.getAssignmentsWithID($routeParams.courseNumber);
 			}
 		}, 50);
 	});
