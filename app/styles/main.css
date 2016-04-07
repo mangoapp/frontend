@@ -219,7 +219,7 @@ h3 {
   text-decoration: none;
 }
 .science {
-  background-color: #2ECC71;
+  background-color: #2ECC71 !important;
 }
 .science:hover {
   background-color: #CCCCCC;
@@ -592,7 +592,7 @@ h3 {
   padding: 0 !important;
 }
 .side-courses li {
-  margin: 40px 0 0 25% !important;
+  margin: 25px 0 25px 25% !important;
   background-color: #CCC;
   color: white;
   width: 50%;
@@ -606,4 +606,13 @@ h3 {
 }
 .side-courses li:hover {
   background-color: #9A9A9A;
+}
+.side-courses .science li {
+  background-color: white !important;
+  color: #2ECC71;
+  font-weight: 600;
+}
+.side-courses .science li:hover {
+  color: #CCCCCC;
+
 }
