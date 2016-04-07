@@ -23,11 +23,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 					}
 				}
 			}
-			if ($scope.courseData) {
-				$interval.cancel(stopCourses);
-				$scope.getAnnouncements();
-
-			}
 		}
 	};
 
@@ -48,7 +43,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			$scope.courses = res.data;
 			$scope.courseLength = res.data.length;
 			$scope.courseCount = 1;
-			$scope.getAssignments();
 		},$scope.handleRequest);
 	};
 

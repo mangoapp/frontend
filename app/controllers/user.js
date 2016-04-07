@@ -2,10 +2,27 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 	var stopLog;
 	var stopSign;
 	if (auth.getToken()) {
+		$scope.token = auth.getToken();
 		$scope.loggedin = true;
 	} else {
 		$scope.loggedin = false;
 	}
+
+	$scope.getCourses = function() {
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/users/sections'
+		};
+		$http(req).then(function(res) {
+			$scope.courses = res.data;
+			$scope.courseLength = res.data.length;
+			$scope.courseCount = 1;
+			$scope.getAssignments();
+		},$scope.handleRequest);
+	};
 
 	$scope.handleRequest = function(res) {
 		var token = res.data ? res.data.token : null;
@@ -98,6 +115,7 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 	};
 	$scope.$on('$viewContentLoaded', function() {
 		$scope.email = $scope.getemail();
+		$scope.getCourses();
 	});
 
 
