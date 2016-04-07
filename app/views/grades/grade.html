@@ -13,17 +13,18 @@
 
 		<div class="main-announcements">
 			<h3 class="announcementHeader">Detailed Grades</h3>
-			<div class="grades" ng-repeat="student in students">
-			<h4> Grades for {{student.firstname}} {{student.lastname}} </h4>
+			<div class="grades" ng-repeat="assignment in assignments">
+			<h4>{{assignment.title}}</h4>
+			
 				<table class="table table-striped">
 					<tr>
-						<th>Assignment</th>
+						<th>Student</th>
 						<th>Points</th>
 						<th>Out Of</th>
 					</tr>
 
-					<tr class="assignment grades" ng-repeat="assignment in assignments">
-						<td>{{assignment.title}}</td>
+					<tr class="assignment grades" ng-repeat="student in students">
+						<td>{{student.firstname}} {{student.lastname}}</td>
 						<td>{{getGrade(student.id, assignment.id)}}</td>
 						<td>{{assignment.maxScore}}</td>
 					</tr>
@@ -36,9 +37,5 @@
 				</table>
 			</div>			
 		</div>
-	</div>
-
-	
-	    
+	</div>    
 </div>
-
