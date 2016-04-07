@@ -57,7 +57,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 				$scope.getAnnouncementsReq(i);
 			}
 		}
-		}, 400);
+		}, 450);
 	};
 	$scope.getAnnouncementsReq = function(i) {
 		var req = {
