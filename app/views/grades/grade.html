@@ -22,6 +22,7 @@
 						<td>Weighted Total Placeholder</td>
 					</tr>
 					<tr class="assignment grades" ng-repeat="assignment in assignments">
+						<div>{{populateGrades(assignment.id)}}</div>
 						<td>{{assignment.title}} - {{getGrade(student.id, assignment.id)}}/{{assignment.maxScore}}</td>
 					</tr>
 				</table>

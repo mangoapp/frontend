@@ -57,16 +57,18 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams) {
 		},$scope.handleRequest);
 	};
 
-	$scope.getGradesWithID = function(id) {
+	$scope.grades = {};
+
+	$scope.populateGrades = function(assignment_id) {
 		var req = {
 			method: 'GET',
 			headers: {
 				'Authorization': 'Bearer: ' + $scope.token
 			},
-			url: API + '/sections/' + id + '/grades'
+			url: API + '/assignments/' + assignment_id + '/grades'
 		};
 		$http(req).then(function(res) {
-			$scope.grades = res.data;
+			for (var attrname in res.data) $scope.grades[attrname] = res.data[attrname];
 		},$scope.handleRequest);
 	};
 
