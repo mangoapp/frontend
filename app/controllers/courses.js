@@ -1,5 +1,7 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
-	//$scope.courseData = false;
+	var stopAnnouncements;
+	var stopCourses;
+
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -7,10 +9,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		$scope.loggedin = false;
 	}
 	$scope.getCourseWithID = function(id) {
-		setTimeout(function(){ 
-			if ($scope.courses) {
+		if ($scope.courses) {
 			for (var i = 0; i < $scope.courses.length; i++) {
-				//console.log($scope.courses[i]);
 				if ($scope.courses[i].id == id) {
 					$scope.noCourses = false;
 					$scope.courseID = $scope.courses[i].id;
@@ -21,15 +21,15 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 					if ($scope.userRole == 'course_admin') {
 						$scope.isInstructor = true;
 					}
-					$scope.$apply();
 				}
 			}
+			if ($scope.courseData) {
+				$interval.cancel(stopCourses);
+				$scope.getAnnouncements();
+			}
 		}
-		}, 400);
-		
 	};
 	$scope.handleRequest = function(res) {
-		//console.log(res);
 		$scope.noCourses = true;
 		$scope.message = res.data.message;
 	};
@@ -45,34 +45,31 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			$scope.courses = res.data;
 			$scope.courseLength = res.data.length;
 			$scope.courseCount = 1;
-			console.log($scope.courses);
 		},$scope.handleRequest);
 	};
 
 	$scope.getAnnouncements = function() {
-		setTimeout(function(){ 
-		if ($scope.courses && !$scope.announcements) {
-			$scope.announcements = [];
-			for (var i = 0; i < $scope.courses.length; i++) {
-				$scope.getAnnouncementsReq(i);
-			}
+		$scope.announcements = [];
+		if ($scope.courseData) {
+			$scope.getAnnouncementsReq($scope.courseID);
 		}
-		}, 450);
 	};
-	$scope.getAnnouncementsReq = function(i) {
+	$scope.getAnnouncementsReq = function(id) {
 		var req = {
 			method: 'GET',
 			headers: {
 				'Authorization': 'Bearer: ' + $scope.token
 			},
-			url: API + '/announcements/' + $scope.courses[i].id
+			url: API + '/announcements/' + id
 		};
 		$http(req).then(function(res) {
-			//console.log(res.data);
 			for (var j = 0; j < res.data.length; j++){
 				res.data[j].created_at = new Date(res.data[j].created_at);
 			}			
-			$scope.announcements.push(res.data);
+			$scope.announcements = res.data;
+			if ($scope.announcements) {
+				$interval.cancel(stopAnnouncements);
+			}
 		},$scope.handleRequest);
 	};
 	$scope.createAnnouncement = function() {
@@ -90,8 +87,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/announcements'
 		};
 		$http(req).then(function(res) {
-			console.log("Announcement added");
-			location.reload();
+			$scope.getAnnouncements();
 		},$scope.handleRequest);
 	};
 	$scope.createSection = function() {
@@ -116,11 +112,12 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		$scope.instructorToggle = $scope.instructorToggle === false ? true: false;
 	};
 	$scope.$on('$viewContentLoaded', function() {
-    	$scope.getCourses();
-    	if ($routeParams.courseNumber) {
-			$scope.getCourseWithID($routeParams.courseNumber);
-		}
-		$scope.getAnnouncements();
+		$scope.getCourses();
+		stopCourses = $interval(function() {
+			if ($routeParams.courseNumber) {
+				$scope.getCourseWithID($routeParams.courseNumber);
+			}
+		}, 50);
 		$scope.instructorToggle = true;
 	});
 };
