@@ -1,4 +1,4 @@
-module.exports = function($scope,$http,API,auth,$window) {
+module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 	if (auth.getToken()) {
 		$scope.loggedin = true;
 	} else {

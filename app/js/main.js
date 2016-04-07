@@ -83,9 +83,9 @@
   ])
 
   //Load controller
-  .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', UserCtrl])
-  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', CourseCtrl])
-  .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', GradesCtrl])
-  .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', DiscussionCtrl]);
+  .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$timeout', '$interval', UserCtrl])
+  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', CourseCtrl])
+  .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', GradesCtrl])
+  .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl]);
 
 }());
