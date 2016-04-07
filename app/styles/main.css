@@ -527,6 +527,7 @@ h3 {
 }
 .new-reply {
   border: 0 !important;
+  margin-bottom: 25px !important;
 }
 .new-reply .form {
   text-align: center !important;

@@ -8,7 +8,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	}
 
 	$scope.getUser = function() {
-		
+		var tok = auth.getToken();
+		var ptok = auth.parseJwt(tok);
+		$scope.userID = ptok.sub;
 	};
 
 	$scope.getCourses = function() {
@@ -78,6 +80,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if (res.data) {
 				$scope.currentThread = res.data;
 				$scope.currentPosts = res.data.posts;
+				console.log($scope.currentPosts);
 				$scope.likes = [];
 				$scope.currentThread.created_at = new Date(res.data.created_at);
 				for (var i = 0; i < res.data.posts.length; i++) {
@@ -125,6 +128,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			data: formData,
 			url: API + '/forum/like'
 		};
+		console.log(req);
 		$http(req).then(function(res) {
 			console.log(res.data);
 			$scope.likes[i]++;
@@ -143,6 +147,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 				$scope.getCourseWithID($routeParams.courseNumber);
 			}
 		}, 50);
+		$scope.getUser();
 		
 	});
 
