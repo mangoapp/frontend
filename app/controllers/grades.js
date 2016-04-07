@@ -5,6 +5,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		$scope.loggedin = true;
 	} else {
 		$scope.loggedin = false;
+		$window.location.href = './#!/sign-in';
 	}
 
 	$scope.getCourses = function() {

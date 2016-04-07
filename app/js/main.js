@@ -77,7 +77,7 @@
           controller: "CourseCtrl"
         })
         .otherwise({
-           redirectTo: '/sign-in'
+           redirectTo: '/courses'
         });
     }
   ])
