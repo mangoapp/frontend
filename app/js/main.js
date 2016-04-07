@@ -11,6 +11,7 @@
   var CourseCtrl = require('../controllers/courses.js');
   var GradesCtrl = require('../controllers/grades.js');
   var DiscussionCtrl = require('../controllers/discussion.js');
+  var AssignmentCtrl = require('../controllers/assignments.js');
   var authService = require('../js/auth.js');
   var authInterceptor = require('../js/interceptor.js');
 
@@ -75,6 +76,14 @@
         .when("/announcements", {
           templateUrl: "./views/courses/announcements.html",
           controller: "CourseCtrl"
+        })
+        .when("/assignments/:courseNumber", {
+          templateUrl: "./views/assignments/assignments.html",
+          controller: "AssignmentCtrl"
+        })
+        .when("/assignments/:courseNumber/:assignmentNumber", {
+          templateUrl: "./views/assignments/assignment.html",
+          controller: "AssignmentCtrl"
         })
         .otherwise({
            redirectTo: '/courses'
