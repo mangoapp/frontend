@@ -37,7 +37,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			}
 			if ($scope.courseData) {
 				$interval.cancel(stopCourses);
-				$scope.getAnnouncements();
+				$scope.getGradesWithID($routeParams.courseNumber);
+				$scope.getStudentsWithID($routeParams.courseNumber);
+				$scope.getAssignmentsWithID($routeParams.courseNumber);
 			}
 		}
 	};
@@ -95,9 +97,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		stopCourses = $interval(function() {
 	    	if ($routeParams.courseNumber) {
 				$scope.getCourseWithID($routeParams.courseNumber);
-				$scope.getGradesWithID($routeParams.courseNumber);
-				$scope.getStudentsWithID($routeParams.courseNumber);
-				$scope.getAssignmentsWithID($routeParams.courseNumber);
 			}
 		}, 50);
 	});
