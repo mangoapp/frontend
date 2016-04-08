@@ -18,7 +18,7 @@
 				<span class="numQuestion">Question #{{$index+1}}</span>
 				<h4>{{question.question}}</h4>
 			<ul ng-repeat="answer in question.answers">
-				<li><span>{{answer}}</span><input type="radio" name="{{question.question}}" ng-model="currentAnswers[$parent.$index]" ng-value="{{answer}}" required></li><br>
+				<li><span>{{answer}}</span><input type="radio" name="{{question.question}}" ng-model="currentAnswers[$parent.$index]" ng-value="answer"></li><br>
 			</ul>
 			</div>
 			</div>

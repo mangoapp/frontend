@@ -146,6 +146,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         $http(req).then(function(res) {
             $scope.currentQuiz = res.data;
             $scope.currentAnswers = new Array(res.data.length);
+            for (var i = 0; i < res.data.length; i++) {
+                $scope.currentAnswers[i] = "hello";
+            }
             //console.log(res.data);
             
         },$scope.handleRequest);
@@ -154,20 +157,23 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
     $scope.submitQuiz = function(id) {
         console.log($scope.currentAnswers);
-        // var formData = {
-        //     id: id
-        // };
-        // var req = {
-        //     method: 'POST',
-        //     headers: {
-        //         'Authorization': 'Bearer: ' + $scope.token
-        //     },
-        //     data: formData,
-        //     url: API + '/sections/' + $scope.courseID + '/deleteAssignment'
-        // };
-        // $http(req).then(function(res) {
-        //     console.log("assignment deleted");
-        // },$scope.handleRequest);
+        var formData = {
+            assignment_id: id,
+            answers: $scope.currentAnswers
+        };
+        var req = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            data: formData,
+            url: API + '/sections/' + $scope.courseID + '/submitQuiz'
+        };
+        $http(req).then(function(res) {
+            console.log(res.data);
+            console.log("quiz submitted");
+            $window.location.href = './#!/courses';
+        },$scope.handleRequest);
 
     };
 
