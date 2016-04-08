@@ -63,6 +63,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			$http(req).then(function(res) {
 				if (res.data.threads) {
 					$scope.threads = res.data.threads;
+					console.log($scope.threads);
 					$scope.getSingleThread(res.data.threads[res.data.threads.length-1].id);
 				}
 			},$scope.handleRequest);
@@ -81,7 +82,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if (res.data) {
 				$scope.currentThread = res.data;
 				$scope.currentPosts = res.data.posts;
-				console.log($scope.currentPosts);
 				$scope.currentThread.created_at = new Date(res.data.created_at);
 				for (var i = 0; i < res.data.posts.length; i++) {
 					$scope.currentPosts[i].created_at = new Date(res.data.posts[i].created_at);
@@ -178,7 +178,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			title: title,
 			body: body,
 			anonymous: anon,
-			sticky: 0
+			sticky: "0"
 		};
 		var req = {
 			method: 'POST',
@@ -189,8 +189,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/forum/threads'
 		};
 		$http(req).then(function(res) {
-			console.log(res.data);
-			console.log("Post created");
 			$scope.getCourseThreads();
 			$window.location.href = './#!/discussion/' + $routeParams.courseNumber;
 		},$scope.handleRequest);
