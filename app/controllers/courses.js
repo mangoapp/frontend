@@ -164,7 +164,11 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/sections/' + id + '/assignments'
 		};
 		$http(req).then(function(res) {
+			console.log(res.data);
 			for (var j = 0; j < res.data.length; j++) {
+				if (res.data[j].deadline) {
+					res.data[j].deadline = new Date(res.data[j].deadline);
+				}
 				$scope.assignments.push(res.data[j]);
 			}
 		},$scope.handleRequest);

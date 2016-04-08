@@ -59,7 +59,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             for (var i = 0; i < $scope.assignments.length; i++) {
                 if ($scope.assignments[i].id == id) {
                     $scope.quizTitle = $scope.assignments[i].title;
-                    $scope.quizID = id;
+                    $scope.quizID = $scope.assignments[i].id;
                 }
             }
         } else {
@@ -156,7 +156,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     };
 
     $scope.submitQuiz = function(id) {
-        console.log($scope.currentAnswers);
+        console.log('[' + $scope.currentAnswers.toString() + ']');
         var formData = {
             assignment_id: id,
             answers: '[' + $scope.currentAnswers.toString() + ']'
@@ -169,6 +169,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             data: formData,
             url: API + '/sections/' + $scope.courseID + '/submitQuiz'
         };
+        console.log(req);
         $http(req).then(function(res) {
             console.log(res.data);
             console.log("quiz submitted");

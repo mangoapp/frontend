@@ -60,7 +60,8 @@
 					<div ng-repeat="assignment in assignments | limitTo: 5">
 						<div class="row single-assignment">
 							<div class="col-md-4" ng-show="assignment.deadline">
-								Date
+								<div class="date-dd">{{assignment.deadline | date:'dd'}}</div>
+								<div class="date-MMM">{{assignment.deadline | date:'MMM'}}</div>
 							</div>
 							<div class="col-md-8" ng-show="assignment.deadline">
 								<div class="assignment-title">
