@@ -69,13 +69,13 @@
 						</div>
 						<div class="col-md-11">
 
-							<textarea ng-show="editablePosts[$index]" class="body" ng-model="newReplyBody">{{reply.body}}</textarea>
+							<textarea ng-show="editablePosts[$index]" class="body editbody" ng-model="newReplyBody">{{reply.body}}</textarea>
 
 							<p ng-hide="editablePosts[$index]" class="body">{{reply.body}}</p>
 
-							<div ng-show="editablePosts[$index]">
-								<button ng-click="editPost(courseID,reply.id,newReplyBody,reply.anonymous)">Save Reply</button><br>
-								<button ng-click="deletePost(courseID, reply.id)">Delete Post</button>
+							<div class="editbuttons" ng-show="editablePosts[$index]">
+								<button ng-click="editPost(courseID,reply.id,newReplyBody,reply.anonymous)">Save Edits</button>
+								<button class="deletebtn" ng-click="deletePost(courseID, reply.id)">Delete Post</button>
 							</div>
 
 

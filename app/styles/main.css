@@ -864,3 +864,14 @@ h3.profile-header {
 .new-quiz button:hover {
   background-color: #CCC;
 }
+textarea.editbody {
+  width: 80%;
+  padding: 10px !important;
+  border: 1px solid #CCC;
+}
+.editbuttons button {
+  padding: 5px 20px !important;
+  border: 0;
+  border-radius: 4px;
+  margin: 15px 5px !important;
+}
