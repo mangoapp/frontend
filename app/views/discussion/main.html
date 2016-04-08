@@ -48,7 +48,9 @@
 			<div class="row head-post">
 				<div class="col-md-12">
 					<h2>{{currentThread.title}}</h2>
-					<div class="thread-info">Posted by <span class="bold">{{currentThread.user.name}}</span> on {{currentThread.created_at | date:'MMM dd'}}</div>
+					<div ng-show="{{currentThread.anonymous}}" class="thread-info">Posted by <span class="bold">Anonymous</span> on {{currentThread.created_at | date:'MMM dd'}}</div>
+					<div ng-hide="{{currentThread.anonymous}}" class="thread-info">Posted by <span class="bold">{{currentThread.user.name}}</span> on {{currentThread.created_at | date:'MMM dd'}}</div>
+
 					<p class="body">{{currentThread.body}}</p>
 				</div>
 			</div>

@@ -63,7 +63,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			$http(req).then(function(res) {
 				if (res.data.threads) {
 					$scope.threads = res.data.threads;
-					$scope.getSingleThread($scope.threads.length - 1);
+					$scope.getSingleThread(res.data.threads[res.data.threads.length-1].id);
 				}
 			},$scope.handleRequest);
 		}
@@ -192,7 +192,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			console.log(res.data);
 			console.log("Post created");
 			$scope.getCourseThreads();
-			$window.location.href = './#!/discussion/' + $scope.courseID;
+			$window.location.href = './#!/discussion/' + $routeParams.courseNumber;
 		},$scope.handleRequest);
 	};
 
