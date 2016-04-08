@@ -3,10 +3,21 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     if (auth.getToken()) {
         $scope.token = auth.getToken();
         $scope.loggedin = true;
+
     } else {
         $scope.loggedin = false;
         $window.location.href = './#!/sign-in';
     }
+
+    $scope.getUser = function() {
+        var tok = auth.getToken();
+        var ptok = auth.parseJwt(tok);
+        for (var i = 0; i < ptok.roles.length; i++) {
+            if (ptok.roles[i] == "course_admin") {
+                $scope.isAdmin = true;
+            }
+        }
+    };
 
     $scope.getCourses = function() {
         var req = {
@@ -39,8 +50,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             }
             if ($scope.courseData) {
                 $interval.cancel(stopCourses);
-                $scope.getStudentsWithID($routeParams.courseNumber);
-                $scope.getAssignmentsWithID($routeParams.courseNumber);
+                
             }
         }
     };
@@ -51,13 +61,23 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             headers: {
                 'Authorization': 'Bearer: ' + $scope.token
             },
-            url: API + '/sections/' + $scope.courseID + '/assignments'
+            url: API + '/sections/' + id + '/assignments'
         };
         $http(req).then(function(res) {
             $scope.assignments = res.data;
+            $scope.getQuizzes();
         },$scope.handleRequest);
     };
 
+    $scope.getQuizzes = function() {
+        $scope.quizzes = [];
+        for(var i = 0; i < $scope.assignments.length; i++) {
+            if ($scope.assignments[i].quiz == 1) {
+                $scope.quizzes.push($scope.assignments[i]);
+            }
+        }
+        console.log($scope.quizzes);
+    };
 
     $scope.getStudentsWithID = function(id) {
         var req = {
@@ -73,7 +93,10 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     };
 
     $scope.$on('$viewContentLoaded', function() {
+        $scope.getAssignmentsWithID($routeParams.courseNumber);
         $scope.getCourses();
+        $scope.getUser();
+        $scope.getStudentsWithID($routeParams.courseNumber);
         stopCourses = $interval(function() {
             if ($routeParams.courseNumber) {
                 $scope.getCourseWithID($routeParams.courseNumber);

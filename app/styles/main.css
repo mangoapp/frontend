@@ -819,3 +819,46 @@ h3.profile-header {
   cursor: pointer;
   background-color: #CCC;
 }
+.quizzes {
+  margin-top: 25px !important;
+}
+.quizzes .quiz {
+  background-color: #EEE;
+  border-radius: 5px;
+  padding: 20px 10px !important;
+  margin: 20px 0 !important;
+}
+.strong {
+  font-weight: 600 !important;
+}
+.italic {
+  font-style: italic !important;
+}
+.sm-text {
+  font-size: 0.75em;
+}
+.lg-text {
+  font-size: 1.25em;
+}
+.quiz-action a {
+  color: #333;
+}
+.quiz-action a:hover {
+  color: #2ECC71;
+}
+.new-quiz {
+  margin-top: 35px !important;
+  text-align: center;
+}
+.new-quiz button {
+  width: 35%;
+  background-color: #2ECC71;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px 5px !important;
+  font-weight: 600;
+}
+.new-quiz button:hover {
+  background-color: #CCC;
+}

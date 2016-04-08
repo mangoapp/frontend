@@ -11,9 +11,41 @@
 	<div class="main-content col-md-9 col-xs-12">
 
 		<div ng-include="'./components/top-nav.html'"></div>
+		<h3>Current Quizzes</h3>
+		<div ng-repeat="quiz in quizzes" class="quizzes">
+			<div class="quiz row">
+				<div class="quiz-score col-md-3 col-sm-3 hidden-xs">
+					Score
+				</div>
+				<div class="quiz-info col-md-7 col-sm-7 col-xs-8">
+					<span class="strong">{{quiz.title}} </span><span class="italic sm-text">&nbsp;&nbsp;{{quiz.description}}</span>
+				</div>
+				<div ng-show="isAdmin" class="quiz-action col-md-2 col-sm-2 col-xs-4">
+					<a ng-href="#">
+					<span class="fa-stack ">
+							<i class="fa fa-circle fa-stack-2x"></i>
+							<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				</div>
+				<div ng-hide="isAdmin" class="quiz-action col-md-2 col-sm-2 col-xs-4">
+					<a ng-href="#">
+					<span class="fa-stack ">
+							<i class="fa fa-circle fa-stack-2x"></i>
+							<i class="fa fa-arrow-right fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="new-quiz" ng-show="isAdmin">
+			<button>Create New Quiz</button>
+
+		</div>
 
 
-fdsafds	</div>
+	</div>
 
 
 </div>
