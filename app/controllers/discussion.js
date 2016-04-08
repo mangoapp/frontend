@@ -227,16 +227,19 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
 	};
 
-	$scope.postToThread = function(title,body,anon) {
+	$scope.postToThread = function(title,body,anon, pin) {
 		if (!anon) {
 			anon = 0;
+		}
+		if (!pin) {
+			pin = 0;
 		}
 		var formData = {
 			section_id: $scope.courseID,
 			title: title,
 			body: body,
 			anonymous: anon,
-			sticky: "0"
+			sticky: pin
 		};
 		var req = {
 			method: 'POST',

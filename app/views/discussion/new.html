@@ -41,10 +41,14 @@
 				<textarea placeholder="Post Details" class="new-post-body" ng-model="postBody"></textarea><br>
 				<div class="input-group">
 					<label for="anon">Post Anonymously?</label>
-					<input type="checkbox" name="anon" ng-model="anon" ng-valueng-true-value="1" ng-false-value="0">
+					<input type="checkbox" name="anon" ng-model="anon" ng-true-value="1" ng-false-value="0">
+				</div>
+				<div class="input-group" ng-show="isAdmin">
+					<label for="pin">Pin Post?</label>
+					<input type="checkbox" name="pin" ng-model="pin" ng-true-value="1" ng-false-value="0">
 				</div>
 				<div class="clear"></div>
-				<button type="submit" name="submit" class="submitNewPost" ng-click="postToThread(postDesc,postBody,anon)">Submit</button>
+				<button type="submit" name="submit" class="submitNewPost" ng-click="postToThread(postDesc,postBody,anon,pin)">Submit</button>
 			</div>
 		</div>
 
