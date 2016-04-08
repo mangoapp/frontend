@@ -69,6 +69,31 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         },$scope.handleRequest);
     };
 
+    $scope.deleteAssignment = function(id) {
+        var formData = {
+            id: id
+        };
+        var req = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            data: formData,
+            url: API + '/sections/' + $scope.courseID + '/deleteAssignment'
+        };
+        $http(req).then(function(res) {
+            console.log("assignment deleted");
+        },$scope.handleRequest);
+    };
+
+    $scope.updateAssignment = function(id) {
+        //TODO
+    };
+
+    $scope.createAssignment = function() {
+        //TODO
+    };
+
     $scope.getQuizzes = function() {
         $scope.quizzes = [];
         for(var i = 0; i < $scope.assignments.length; i++) {
@@ -78,6 +103,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         }
         console.log($scope.quizzes);
     };
+
+
 
     $scope.getStudentsWithID = function(id) {
         var req = {
@@ -100,6 +127,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         stopCourses = $interval(function() {
             if ($routeParams.courseNumber) {
                 $scope.getCourseWithID($routeParams.courseNumber);
+            }
+            if ($routeParams.quizNumber) {
+                //Do something
             }
         }, 50);
     });
