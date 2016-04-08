@@ -1,6 +1,5 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
     var stopCourses;
-    var stopGrades;
     if (auth.getToken()) {
         $scope.token = auth.getToken();
         $scope.loggedin = true;
@@ -22,6 +21,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         },$scope.handleRequest);
     };
 
+
     $scope.getCourseWithID = function(id) {
         if ($scope.courses) {
             for (var i = 0; i < $scope.courses.length; i++) {
@@ -41,7 +41,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
                 $interval.cancel(stopCourses);
                 $scope.getStudentsWithID($routeParams.courseNumber);
                 $scope.getAssignmentsWithID($routeParams.courseNumber);
-                $scope.getGrades();
             }
         }
     };
@@ -52,45 +51,13 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             headers: {
                 'Authorization': 'Bearer: ' + $scope.token
             },
-            url: API + '/sections/' + id + '/assignments'
+            url: API + '/sections/' + $scope.courseID + '/assignments'
         };
         $http(req).then(function(res) {
             $scope.assignments = res.data;
         },$scope.handleRequest);
     };
 
-    $scope.grades = [];
-
-    $scope.getGrades = function() {
-        if ($scope.assignments) {
-            $scope.assignments.forEach(function(assignment) {
-                $scope.getGradesReq(assignment.id);
-            });
-            $interval.cancel(stopGrades);
-        }
-    };
-
-    $scope.getGradesReq = function(assignment_id) {
-        var req = {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer: ' + $scope.token
-            },
-            url: API + '/assignments/' + assignment_id + '/grades'
-        };
-        $http(req).then(function(res) {
-            $scope.grades = $scope.grades.concat(res.data);
-        },$scope.handleRequest);
-    };
-
-    $scope.getGrade = function(user_id, assignment_id) {
-        for (var i = 0; i < $scope.grades.length; i++) {
-            if ($scope.grades[i].user_id == user_id && $scope.grades[i].assignment_id == assignment_id) {
-                return $scope.grades[i].score;
-            }
-        }
-        return "Ungraded";
-    };
 
     $scope.getStudentsWithID = function(id) {
         var req = {
@@ -111,9 +78,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             if ($routeParams.courseNumber) {
                 $scope.getCourseWithID($routeParams.courseNumber);
             }
-        }, 50);
-        stopGrades = $interval(function() {
-            $scope.getGrades();
         }, 50);
     });
 
