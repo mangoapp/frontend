@@ -104,7 +104,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 				}
 			}
 		}
-		return "Ungraded";
+		return "-";
 	};
 
 	$scope.getStudentsWithID = function(id) {
