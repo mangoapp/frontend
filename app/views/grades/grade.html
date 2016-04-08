@@ -51,7 +51,7 @@
 
 					<tr class="assignment grades" ng-repeat="assignment in assignments">
 						<td>{{assignment.title}}</td>
-						<td>{{getGrade(student.id, assignment.id)}}</td>
+						<td>{{getGrade(-1, assignment.id)}}</td>
 						<td>{{assignment.maxScore}}</td>
 					</tr>
 

@@ -14,6 +14,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		console.log(ptok);
 		$scope.firstname = ptok.firstname;
 		$scope.lastname = ptok.lastname;
+		$scope.id = ptok.sub;
+		console.log($scope.id);
 	};
 
 	$scope.getCourses = function() {
@@ -97,6 +99,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.getGrade = function(user_id, assignment_id) {
+		if (user_id == -1) user_id = $scope.id;
 		if ($scope.grades) {
 			for (var i = 0; i < $scope.grades.length; i++) {
 				if ($scope.grades[i].user_id == user_id && $scope.grades[i].assignment_id == assignment_id) {
