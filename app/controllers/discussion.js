@@ -81,6 +81,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if (res.data) {
 				$scope.currentThread = res.data;
 				$scope.currentPosts = res.data.posts;
+				console.log($scope.currentPosts);
 				$scope.currentThread.created_at = new Date(res.data.created_at);
 				for (var i = 0; i < res.data.posts.length; i++) {
 					$scope.currentPosts[i].created_at = new Date(res.data.posts[i].created_at);
