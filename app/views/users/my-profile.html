@@ -11,24 +11,28 @@
 		<div class="row">
 			<div ng-include="'./components/top-nav.html'"></div>
 			<div class="main-courses col-md-12 col-sm-12 col-xs-12">
-				<h3>My Profile</h3>
-				<h2>Welcome, {{getname()}}</h2>
+			<div class="signout-box">
+				<button ng-click="signout()">Sign Out</button>
+				
+			</div>
+			<div class="clear"></div>
+				<h3 class="profile-header">{{getname()}}'s Profile</h3>
 
-				<div id="user-info">
+				<div class="user-info">
 					<span>Update email address: </span><input type="text" placeholder="Email" name="email" ng-model="email" />
 					<span>Update password: </span><input type="password" placeholder="Password" name="password"  />
 					<span>Confirm password: </span><input type="password" placeholder="Password confirmation" name="passwordconf" />
 
-					<form action="">
+<!-- THIS ISN"T RELEVANT OR IMPLEMENTED SO EMSHRUG					<form action="">
 						<input type="radio" name="email" value="email-on">Email on<br>
 						<input type="radio" name="email" value="email-off">Email off<br>
-					</form>
+					</form> -->
 
 					<button type="submit" ng-click="updateinfo()">Update Information</button>
 
 				</div>
 			</div>
-			<button ng-click="signout()">Sign Out</button>
+			
 		</div>
 
 	</div>

@@ -779,3 +779,43 @@ button.submitNewPost {
 button.submitNewPost:hover {
   background-color: #939393;
 }
+.user-info {
+  width: 60%;
+  margin: 0 auto !important;
+}
+.user-info input {
+  display: block;
+  border: 1px solid #CCC;
+  padding: 10px;
+  width: 100%;
+  margin: 10px 0 25px 0 !important;
+}
+.user-info button {
+  width: 100%;
+  background-color: #2ECC71;
+  padding: 10px 0;
+  border-radius: 5px;
+  border: 0;
+  color: white;
+}
+.user-info button:hover {
+  background-color: #CCC;
+}
+h3.profile-header {
+  margin-bottom: 25px !important;
+}
+.signout-box {
+  margin: 15px 60px !important;
+  float: right;
+}
+.signout-box button {
+  border: 0;
+  background-color: #E23E57;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 25px !important;
+}
+.signout-box button:hover {
+  cursor: pointer;
+  background-color: #CCC;
+}
