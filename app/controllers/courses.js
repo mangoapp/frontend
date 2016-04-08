@@ -38,6 +38,23 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         	}
         },$scope.handleRequest);
 	};
+
+	$scope.markNotification = function(id) {
+		var formData = {
+			id: id
+		};
+		var req = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            data: formData,
+            url: API + '/notifications'
+        };
+        $http(req).then(function(res) {
+        	return '';
+        },$scope.handleRequest);
+	};
 	
 	$scope.getCourseWithID = function(id) {
 		if ($scope.courses) {
