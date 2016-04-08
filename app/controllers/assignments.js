@@ -159,7 +159,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         console.log($scope.currentAnswers);
         var formData = {
             assignment_id: id,
-            answers: $scope.currentAnswers
+            answers: '[' + $scope.currentAnswers.toString() + ']'
         };
         var req = {
             method: 'POST',
