@@ -37,14 +37,14 @@
 		<div class="new-post row">
 			<h2>New Discussion Post</h2>
 			<div class="form">
-				<input class="new-post-description" ng-model="postDesc"><br>
-				<textarea class="new-post-body" ng-model="postBody"></textarea><br>
+				<input placeholder="Title" class="new-post-description" ng-model="postDesc"><br>
+				<textarea placeholder="Post Details" class="new-post-body" ng-model="postBody"></textarea><br>
 				<div class="input-group">
 					<label for="anon">Post Anonymously?</label>
 					<input type="checkbox" name="anon" ng-model="anon" ng-valueng-true-value="1" ng-false-value="0">
 				</div>
 				<div class="clear"></div>
-				<button type="submit" name="submit" ng-click="postToThread(replyBody,anon)">Submit</button>
+				<button type="submit" name="submit" class="submitNewPost" ng-click="postToThread(postDesc,postBody,anon)">Submit</button>
 			</div>
 		</div>
 

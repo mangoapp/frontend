@@ -6,7 +6,7 @@
 	<ul class="side-courses">
 		<div ng-repeat="course in courses">
 			<div ng-show="courseID == course.id" class="science"><a ng-href="./#!/courses/{{course.id}}"><li>{{course.id}}</li></a></div>
-			<div ng-hide="courseID == course.id"><a ng-href="./#!/courses/{{course.id}}"><li>{{$index + 1}}</li></a></div>
+			<div ng-hide="courseID == course.id"><a ng-href="./#!/courses/{{course.id}}"><li>{{course.id}}</li></a></div>
 		</div>
 		<div class="clear"></div>
 	</ul>

@@ -81,7 +81,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if (res.data) {
 				$scope.currentThread = res.data;
 				$scope.currentPosts = res.data.posts;
-				console.log($scope.currentThread);
 				$scope.currentThread.created_at = new Date(res.data.created_at);
 				for (var i = 0; i < res.data.posts.length; i++) {
 					$scope.currentPosts[i].created_at = new Date(res.data.posts[i].created_at);
@@ -147,8 +146,52 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/forum/unlike'
 		};
 		$http(req).then(function(res) {
-			console.log(res.data);
 			$scope.getSingleThread($scope.currentThread.id);
+		},$scope.handleRequest);
+	};
+
+	$scope.getLikes = function(id) {
+		var formData = {
+			section_id: $scope.courseID,
+			post_id: id
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/forum/numLike'
+		};
+		$http(req).then(function(res) {
+		},$scope.handleRequest);
+
+	};
+
+	$scope.postToThread = function(title,body,anon) {
+		if (!anon) {
+			anon = 0;
+		}
+		var formData = {
+			section_id: $scope.courseID,
+			title: title,
+			body: body,
+			anonymous: anon,
+			sticky: 0
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/forum/threads'
+		};
+		$http(req).then(function(res) {
+			console.log(res.data);
+			console.log("Post created");
+			$scope.getCourseThreads();
+			$window.location.href = './#!/discussion/' + $scope.courseID;
 		},$scope.handleRequest);
 	};
 

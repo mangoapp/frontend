@@ -739,3 +739,43 @@ h3 {
   margin: 15px auto !important;
   border-radius: 3px;
  }
+ .anon-post {
+  width: 60%;
+ }
+ .new-post .form input, .new-post .form textarea, .new-post .form button {
+  width: 60%;
+  border: 1px solid #CCC;
+  margin: 0 auto;
+  padding: 10px !important;
+ }
+ .new-post .form textarea {
+  height: 200px;
+  display: block;
+  resize: none;
+ }
+ .new-post .form button {
+  display: block;
+ }
+ .new-post .form label {
+  float: left;
+  margin-right: 7px;
+  font-weight: 500;
+  color: #9A9A9A;
+}
+ .left {
+  float: left !important;
+ }
+
+ .anonbox {
+  font-weight: 500;
+  color: #939393;
+}
+button.submitNewPost {
+  margin-top: 25px !important;
+  color: white;
+  border-radius: 5px;
+  border: 0;
+}
+button.submitNewPost:hover {
+  background-color: #939393;
+}

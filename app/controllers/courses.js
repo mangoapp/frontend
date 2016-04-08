@@ -20,6 +20,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			}
 		}
 	};
+	
 	$scope.getCourseWithID = function(id) {
 		if ($scope.courses) {
 			for (var i = 0; i < $scope.courses.length; i++) {
@@ -106,6 +107,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			$scope.getAnnouncements();
+			delete $scope.newAnnouncementTitle;
+			delete $scope.newAnnouncement;
 		},$scope.handleRequest);
 	};
 
