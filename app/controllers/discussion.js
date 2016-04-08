@@ -101,6 +101,23 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.deletePost = function(section_id, post_id) {
+		var formData = {
+			section_id: section_id,
+			post_id: post_id
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/forum/posts/delete'
+		};
+		$http(req).then(function(res) {
+			if (res.data) {
+				$scope.getCourseThreads();
+			}
+		},$scope.handleRequest);
 
 	};
 
