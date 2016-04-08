@@ -69,6 +69,19 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
     };
 
+    $scope.getNotifications = function() {
+        var req = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            url: API + '/notifications'
+        };
+        $http(req).then(function(res) {
+            console.log(res.data);
+        },$scope.handleRequest);
+    };
+
     $scope.getAssignmentsWithID = function(id) {
         var req = {
             method: 'GET',

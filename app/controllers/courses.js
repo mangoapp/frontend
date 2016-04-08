@@ -20,6 +20,24 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			}
 		}
 	};
+
+	$scope.getNotifications = function() {
+		var req = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            url: API + '/notifications'
+        };
+        $http(req).then(function(res) {
+        	$scope.notifications = res.data;
+        	if (res.data.length === 0) {
+        		$scope.isNotifications = false;
+        	} else {
+        		$scope.isNotifications = true;
+        	}
+        },$scope.handleRequest);
+	};
 	
 	$scope.getCourseWithID = function(id) {
 		if ($scope.courses) {
@@ -222,4 +240,5 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		$scope.getUser();
 		$scope.instructorToggle = true;
 	});
+	$scope.getNotifications();
 };

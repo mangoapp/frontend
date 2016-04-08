@@ -81,6 +81,10 @@
           templateUrl: "./views/courses/student-course.html",
           controller: "CourseCtrl"
         })
+        .when("/notifications", {
+          templateUrl: "./views/users/notifications.html",
+          controller: "CourseCtrl"
+        })
         .when("/discussion/:courseNumber", {
           templateUrl: "./views/discussion/main.html",
           controller: "DiscussionCtrl"

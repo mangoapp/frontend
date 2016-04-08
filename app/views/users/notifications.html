@@ -1,0 +1,22 @@
+<div class="row main">
+
+	<div class="side-nav col-md-1 hidden-xs hidden-sm">
+		<div ng-include="'./components/courses-navbar.html'"></div>
+	</div>
+	<div class="main-content col-md-11 col-sm-12 col-xs-12">
+		<div class="row">
+			<div ng-include="'./components/top-nav.html'"></div>
+
+			<div ng-show="isNotifications" ng-repeat="notification in notifications">
+				<h3>Your Notifications</h3>
+				<div ng-repeat="notification in notifications">
+				{{notification}}
+				</div>
+			</div>
+			<div ng-hide="isNotifications">
+				<h3>No new notifications</h3>
+			</div>
+		</div>
+	</div>
+
+</div>
