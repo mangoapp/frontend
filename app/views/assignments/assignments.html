@@ -14,7 +14,8 @@
 
         <div class="main-announcements" ng-show="courseData">
             <h3 class="announcementHeader">Assignments</h3>
-            
+            <div class="assignments" ng-repeat="assignment in assignments">
+            <h4>Assignment: {{assignment.title}}</h4>
             <div ng-hide="courseData">
                 <h3>Course Not Found</h3>
             </div>
