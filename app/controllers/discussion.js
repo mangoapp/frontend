@@ -12,6 +12,11 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		var tok = auth.getToken();
 		var ptok = auth.parseJwt(tok);
 		$scope.userID = ptok.sub;
+		 for (var i = 0; i < ptok.roles.length; i++) {
+            if (ptok.roles[i] == "course_admin") {
+                $scope.isAdmin = true;
+            }
+        }
 	};
 
 	$scope.getCourses = function() {

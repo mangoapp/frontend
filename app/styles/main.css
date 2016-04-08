@@ -875,3 +875,12 @@ textarea.editbody {
   border-radius: 4px;
   margin: 15px 5px !important;
 }
+.notif {
+  width: 60%;
+  padding: 10px 0;
+  background-color: #EEE;
+  color: #333;
+  margin: 15px auto !important;
+  border-radius: 10px;
+  text-align: center;
+}
