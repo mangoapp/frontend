@@ -92,6 +92,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         };
         $http(req).then(function(res) {
             $scope.assignments = res.data;
+
             $scope.getQuizzes();
         },$scope.handleRequest);
     };
