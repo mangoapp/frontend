@@ -891,6 +891,16 @@ textarea.editbody {
   padding: 25px !important;
   border-radius: 5px;
 }
+.question ul {
+  list-style: none;
+}
+.question ul li span {
+  float: left;
+  margin-right: 10px;
+}
+.question ul li input {
+  float: left;
+}
 .question .numQuestion {
   font-style: italic;
   font-size: 0.75em;
