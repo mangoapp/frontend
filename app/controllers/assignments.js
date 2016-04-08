@@ -58,7 +58,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         if ($scope.assignments) {
             for (var i = 0; i < $scope.assignments.length; i++) {
                 if ($scope.assignments[i].id == id) {
-                    console.log("here");
+                    console.log($scope.assignments[i]);
                     $scope.quizTitle = $scope.assignments[i].title;
                 }
             }
