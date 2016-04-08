@@ -18,11 +18,12 @@
 				<span class="numQuestion">Question #{{$index+1}}</span>
 				<h4>{{question.question}}</h4>
 			<ul ng-repeat="answer in question.answers">
-				<li><span>{{answer}}</span><input type="radio" value="{{answer}}"></li><br>
+				<li><span>{{answer}}</span><input type="radio" name="{{question.question}}" ng-model="currentAnswers[$parent.$index]" value="{{answer}}"></li><br>
 			</ul>
 			</div>
 			</div>
 
+			<button class="submit-quiz" ng-click="submitQuiz(quizID)">Submit Quiz</button>
 			</div>
 
 

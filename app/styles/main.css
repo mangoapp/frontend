@@ -910,3 +910,16 @@ textarea.editbody {
   font-weight: 600;
   padding: 15px 0 !important;
 }
+.submit-quiz {
+  width: 60%;
+  background-color: #E23E57;
+  border: 0;
+  padding: 10px 0 !important;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 25px !important;
+}
+.submit-quiz:hover {
+  color: #939393;
+  background-color: #EEE;
+}

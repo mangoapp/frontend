@@ -59,6 +59,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             for (var i = 0; i < $scope.assignments.length; i++) {
                 if ($scope.assignments[i].id == id) {
                     $scope.quizTitle = $scope.assignments[i].title;
+                    $scope.quizID = id;
                 }
             }
         } else {
@@ -144,7 +145,30 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         };
         $http(req).then(function(res) {
             $scope.currentQuiz = res.data;
+            console.log(res.data);
+            // for (var i = 0; i < res.data.length; i++) {
+            //     $scope.currentAnswers[i] = res.data[i];
+            // }
         },$scope.handleRequest);
+
+    };
+
+    $scope.submitQuiz = function(id) {
+        console.log($scope.currentAnswers);
+        // var formData = {
+        //     id: id
+        // };
+        // var req = {
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': 'Bearer: ' + $scope.token
+        //     },
+        //     data: formData,
+        //     url: API + '/sections/' + $scope.courseID + '/deleteAssignment'
+        // };
+        // $http(req).then(function(res) {
+        //     console.log("assignment deleted");
+        // },$scope.handleRequest);
 
     };
 
