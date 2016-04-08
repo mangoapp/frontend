@@ -70,6 +70,37 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		}
 	};
 
+	$scope.makeEditable = function(index) {
+		$scope.newReplyBody = $scope.currentPosts[index].body;
+		$scope.editablePosts[index] = !$scope.editablePosts[index];
+	};
+
+	$scope.editPost = function(section_id, post_id, body, anonymous) {
+		var formData = {
+			section_id: section_id,
+			post_id: post_id,
+			body: body,
+			anonymous: anonymous
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/forum/posts/update'
+		};
+		$http(req).then(function(res) {
+			if (res.data) {
+				$scope.getCourseThreads();
+			}
+		},$scope.handleRequest);
+	};
+
+	$scope.deletePost = function(section_id, post_id) {
+
+	};
+
 	$scope.getSingleThread = function(id) {
 		var req = {
 			method: 'GET',
@@ -81,10 +112,12 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		$http(req).then(function(res) {
 			if (res.data) {
 				$scope.currentThread = res.data;
-				$scope.currentPosts = res.data.posts;
+				$scope.currentPosts = res.data.posts.slice().reverse();
+				$scope.editablePosts = [];
 				$scope.currentThread.created_at = new Date(res.data.created_at);
 				for (var i = 0; i < res.data.posts.length; i++) {
 					$scope.currentPosts[i].created_at = new Date(res.data.posts[i].created_at);
+					$scope.editablePosts[i] = false;
 				}
 			}
 		},$scope.handleRequest);

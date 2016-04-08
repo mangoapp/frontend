@@ -56,14 +56,27 @@
 			</div>
 			<div class="row thread-replies">
 				<div class="col-md-10 col-md-offset-2">
-					<div ng-repeat="reply in currentPosts.slice().reverse()" class="reply row">
-						<div class="col-md-1 upvotes">
+					<div ng-repeat="reply in currentPosts" class="reply row">
+						<div class="col-md-1 upvotes" ng-if="userID == reply.user.id">
+							<a ng-hide="editablePosts[$index]" ng-click="makeEditable($index)"><i class="fa fa-pencil"></i></a>
+							<a ng-show="editablePosts[$index]" ng-click="makeEditable($index)"><i class="fa fa-times"></i></a>
+						</div>
+
+						<div ng-if="userID != reply.user.id" class="col-md-1 upvotes">
 							<div class="arrow"><a ng-click="upvote(reply.id)"><i class="fa fa-arrow-up"></i></a></div>
 							<div class="numberUpvotes">{{reply.totalLikes}}</div>
 							<div class="arrow"><a ng-click="downvote(reply.id)"><i class="fa fa-arrow-down"></i></a></div>
 						</div>
 						<div class="col-md-11">
-							<p class="body">{{reply.body}}</p>
+
+							<textarea ng-show="editablePosts[$index]" class="body" ng-model="newReplyBody">{{reply.body}}</textarea>
+
+							<p ng-hide="editablePosts[$index]" class="body">{{reply.body}}</p>
+
+							<div ng-show="editablePosts[$index]">
+								<button ng-click="editPost(courseID,reply.id,newReplyBody,reply.anonymous)">Save Reply</button><br>
+								<button ng-click="deletePost(courseID, reply.id)">Delete Post</button>
+							</div>
 
 
 							<div ng-show="{{reply.anonymous}}" class="reply-info">Posted by <span class="bold">Anonymous</span> on {{reply.created_at | date: 'MMM dd'}}

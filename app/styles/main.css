@@ -552,9 +552,11 @@ h3 {
 }
 .upvotes a {
   color: #CCC;
+
 }
 .upvotes a:hover {
   color: #2ECC71;
+  cursor: pointer;
 }
 .upvotes .numberUpvotes {
   font-weight: 600;
