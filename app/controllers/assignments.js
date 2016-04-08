@@ -145,10 +145,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         };
         $http(req).then(function(res) {
             $scope.currentQuiz = res.data;
-            console.log(res.data);
-            // for (var i = 0; i < res.data.length; i++) {
-            //     $scope.currentAnswers[i] = res.data[i];
-            // }
+            $scope.currentAnswers = new Array(res.data.length);
+            //console.log(res.data);
+            
         },$scope.handleRequest);
 
     };
