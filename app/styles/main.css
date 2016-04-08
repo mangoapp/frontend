@@ -923,3 +923,6 @@ textarea.editbody {
   color: #939393;
   background-color: #EEE;
 }
+.assignment-description{
+  font-style: italic;
+}

@@ -1,7 +1,6 @@
 <div class="row main">
-
     <div class="side-nav col-md-1 hidden-xs hidden-sm">
-        <div ng-include="'./components/courses-navbar.html'"></div>
+            <div ng-include="'./components/courses-navbar.html'"></div>
     </div>
 
     <div class="side-course-nav col-md-2 hidden-xs hidden-sm">
@@ -12,13 +11,29 @@
 
         <div ng-include="'./components/top-nav.html'"></div>
 
-        <div class="main-announcements" ng-show="courseData">
+        <div class="main-announcements">            
             <h3 class="announcementHeader">Assignments</h3>
-            <div class="assignments" ng-repeat="assignment in assignments">
-            <h4>Assignment: {{assignment.title}}</h4>
-            <div ng-hide="courseData">
-                <h3>Course Not Found</h3>
-            </div>
+
+            <div class="grades">
+
+            <!-- assignment view -->
+            <h4></h4>
+            
+                <table class="table table-striped">
+                    <tr>
+                        <th>Assignment</th>
+                        <th>Deadline</th>
+                        <th>Points</th>
+                    </tr>
+
+                    <tr class="assignment grades" ng-repeat="assignment in assignments">
+                        <td>{{assignment.title}}<div class="assignment-description">{{assignment.description}}</div></td>
+                        <td>{{assignment.deadline}}</td>
+                        <td>{{assignment.maxScore}}</td>
+                    </tr>
+
+                </table>
+            </div>                  
         </div>
-    </div>
+    </div>    
 </div>
