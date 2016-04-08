@@ -11,7 +11,6 @@
   var CourseCtrl = require('../controllers/courses.js');
   var GradesCtrl = require('../controllers/grades.js');
   var DiscussionCtrl = require('../controllers/discussion.js');
-  var QuizCtrl = require('../controllers/quizzes.js');
   var AssignmentCtrl = require('../controllers/assignments.js');
   var authService = require('../js/auth.js');
   var authInterceptor = require('../js/interceptor.js');
@@ -56,7 +55,7 @@
         })
         .when("/quizzes/:courseNumber", {
           templateUrl: "./views/quizzes/quizzes.html",
-          controller: "QuizCtrl"
+          controller: "AssignmentCtrl"
         })
         .when("/grades", {
           templateUrl: "./views/grades/grades.html",
@@ -105,6 +104,6 @@
   .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', CourseCtrl])
   .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', GradesCtrl])
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
-  .controller('QuizCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', QuizCtrl]);
+  .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', AssignmentCtrl]);
 
 }());
