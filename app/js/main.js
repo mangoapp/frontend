@@ -65,6 +65,10 @@
           templateUrl: "./views/quizzes/update-quiz.html",
           controller: "AssignmentCtrl"
         })
+        .when("/quizzes/:courseNumber/take/:quizNumber", {
+          templateUrl: "./views/quizzes/take-quiz.html",
+          controller: "AssignmentCtrl"
+        })
         .when("/grades", {
           templateUrl: "./views/grades/grades.html",
           controller: "GradesCtrl"

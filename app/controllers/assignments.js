@@ -50,9 +50,23 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             }
             if ($scope.courseData) {
                 $interval.cancel(stopCourses);
-                
             }
         }
+    };
+
+    $scope.getCurrentAssignment = function(id) {
+        if ($scope.assignments) {
+            for (var i = 0; i < $scope.assignments.length; i++) {
+                if ($scope.assignments[i].id == id) {
+                    console.log("here");
+                    $scope.quizTitle = $scope.assignments[i].title;
+                }
+            }
+
+        } else {
+            $scope.getAssignmentsWithID($scope.courseID);
+        }
+
     };
 
     $scope.getAssignmentsWithID = function(id) {
@@ -101,7 +115,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
                 $scope.quizzes.push($scope.assignments[i]);
             }
         }
-        console.log($scope.quizzes);
     };
 
 
@@ -129,9 +142,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
                 $scope.getCourseWithID($routeParams.courseNumber);
             }
             if ($routeParams.quizNumber) {
-                //Do something
+                $scope.getCurrentAssignment($routeParams.quizNumber);
             }
-        }, 50);
+        }, 50, 100);
     });
 
 };
