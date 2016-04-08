@@ -884,3 +884,19 @@ textarea.editbody {
   border-radius: 10px;
   text-align: center;
 }
+.question {
+  width: 60%;
+  margin: 30px auto;
+  background-color: #EEE;
+  padding: 25px !important;
+  border-radius: 5px;
+}
+.question .numQuestion {
+  font-style: italic;
+  font-size: 0.75em;
+  float: left !important;
+}
+.question h4 {
+  font-weight: 600;
+  padding: 15px 0 !important;
+}

@@ -58,14 +58,13 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         if ($scope.assignments) {
             for (var i = 0; i < $scope.assignments.length; i++) {
                 if ($scope.assignments[i].id == id) {
-                    console.log($scope.assignments[i]);
                     $scope.quizTitle = $scope.assignments[i].title;
                 }
             }
-
         } else {
             $scope.getAssignmentsWithID($scope.courseID);
         }
+        $scope.getIndividualQuiz(id);
 
     };
 
@@ -123,11 +122,30 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
     $scope.getQuizzes = function() {
         $scope.quizzes = [];
+        $scope.quizData = [];
         for(var i = 0; i < $scope.assignments.length; i++) {
             if ($scope.assignments[i].quiz == 1) {
                 $scope.quizzes.push($scope.assignments[i]);
+                //$scope.getIndividualQuiz($scope.assignments[i].id);
             }
         }
+    };
+
+    $scope.getIndividualQuiz = function(id) {
+        var formData = {
+            id: id
+        };
+         var req = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            url: API + '/sections/assignments/' + id
+        };
+        $http(req).then(function(res) {
+            $scope.currentQuiz = res.data;
+        },$scope.handleRequest);
+
     };
 
 

@@ -12,7 +12,17 @@
 		<div class="row">
 			<div ng-include="'./components/top-nav.html'"></div>
 			<div class="create-course col-md-12 col-sm-12 col-xs-12">
-				<h3>{{quizTitle}}</h3>
+			<h3>{{quizTitle}}</h3>
+			<div ng-repeat="question in currentQuiz">
+			<div class="question">
+				<span class="numQuestion">Question #{{$index+1}}</span>
+				<h4>{{question.question}}</h4>
+			<ul ng-repeat="answer in question.answers">
+				<li>{{answer}}</li>
+			</ul>
+			</div>
+			</div>
+
 			</div>
 
 
