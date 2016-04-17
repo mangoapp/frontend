@@ -125,6 +125,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.getQuizzes = function() {
         $scope.quizzes = [];
         $scope.quizData = [];
+        $scope.quizTitle = "";
         for(var i = 0; i < $scope.assignments.length; i++) {
             if ($scope.assignments[i].quiz == 1) {
                 $scope.quizzes.push($scope.assignments[i]);

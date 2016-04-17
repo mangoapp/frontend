@@ -926,3 +926,25 @@ textarea.editbody {
 .assignment-description{
   font-style: italic;
 }
+input.quizinput {
+  border: 0;
+  border-bottom: 1px solid #CCC;
+  width: 60%;
+  margin: 0 auto 15px auto;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #939393;
+  padding-bottom: 15px;
+}
+button.q-question {
+  width: 60%;
+  margin: 15px auto;
+  border-radius: 10px;
+  color: white;
+  border: 0;
+  padding: 15px;
+  background-color: #2ECC71;
+}
+button.q-question:hover {
+  background-color: #CCC;
+}
