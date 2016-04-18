@@ -96,14 +96,14 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			for (var i = 0; i < $scope.polls.length; i++) {
 				if ($scope.polls[i].id == id) {
 					$scope.currentPoll = $scope.polls[i];
-					
 				}
 			}
 			if ($scope.activePolls) {
+				$scope.openDiscover = true;
 				for (var j = 0; j < $scope.activePolls.length; j++) {
 					if ($scope.activePolls[j].id == id) {
 						$scope.isOpen = true;
-						$scope.openDiscover = true;
+						
 					}
 				}
 			}
