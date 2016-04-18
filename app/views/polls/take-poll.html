@@ -30,6 +30,9 @@
 			<a class="close-poll-link" ng-click="openPoll(currentPoll.id)" ng-if="isAdmin"><div class="close-poll" >
 				Open Poll
 			</div></a><div class="clear" ng-if="isAdmin"></div>
+			<a class="close-poll-link" ng-click="deletePoll(currentPoll.id)" ng-if="isAdmin"><div class="close-poll" >
+				Delete Poll
+			</div></a><div class="clear" ng-if="isAdmin"></div>
 			<div ng-if="isAdmin">
 				is Admin, so show analytics stuff
 			</div>

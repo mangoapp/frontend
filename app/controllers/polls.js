@@ -167,6 +167,26 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		}
 	};
 
+	$scope.deletePoll = function(id) {
+		if ($scope.isAdmin) {
+			var formData = {
+				poll_id: id
+			};
+			var req = {
+				method: 'POST',
+				headers: {
+					'Authorization': 'Bearer: ' + $scope.token
+				},
+				data: formData,
+				url: API + '/sections/polls/delete'
+			};
+			$http(req).then(function(res) {
+				console.log(res.data);
+				$window.location.href = './#!/polls/' + $routeParams.courseNumber;
+			},$scope.handleRequest);
+		}
+	};
+
 	$scope.createPoll = function(description) {
 		var formData = {
 			answer: $scope.newAnswer,
