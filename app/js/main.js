@@ -57,7 +57,7 @@
           templateUrl: "./views/quizzes/quizzes.html",
           controller: "AssignmentCtrl"
         })
-        .when("/quizzes/new", {
+        .when("/quizzes/:courseNumber/new", {
           templateUrl: "./views/quizzes/new-quiz.html",
           controller: "AssignmentCtrl"
         })

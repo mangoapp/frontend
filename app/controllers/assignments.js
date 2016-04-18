@@ -1,5 +1,11 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
     var stopCourses;
+    $scope.quizQuestions = [];
+    $scope.placeAnswers = ["Enter Answer Choice 1","Enter Answer Choice 2","Enter Answer Choice 3","Enter Answer Choice 4"];
+    $scope.currentAnswers = new Array(4);
+    $scope.correctAnswer = "";
+    $scope.newQuizTitle = "";
+    $scope.quizDeadline = "";
     if (auth.getToken()) {
         $scope.token = auth.getToken();
         $scope.loggedin = true;
@@ -125,6 +131,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.getQuizzes = function() {
         $scope.quizzes = [];
         $scope.quizData = [];
+        $scope.quizTitle = "";
         for(var i = 0; i < $scope.assignments.length; i++) {
             if ($scope.assignments[i].quiz == 1) {
                 $scope.quizzes.push($scope.assignments[i]);
@@ -179,6 +186,52 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
     };
 
+    $scope.addQuestion = function() {
+        if (($scope.newQuizTitle.length !== 0)) {
+            $scope.newQuestion = {
+                "question": $scope.newQuizTitle,
+                "answers": $scope.currentAnswers,
+                "correctAnswer": $scope.correctAnswer
+            };
+            console.log($scope.newQuestion);
+            $scope.quizQuestions.push($scope.newQuestion);
+        }
+        delete $scope.newQuestion;
+        $scope.correctAnswer = "";
+        $scope.newQuizTitle = "";
+        $scope.currentAnswers = new Array(4);
+
+    };
+
+    $scope.checkedQuestion = function(index) {
+        $scope.correctAnswer = index;
+    };
+
+    $scope.createQuiz = function() {
+          var formData = {
+            title: $scope.quizTitle,
+            description: "Quiz for course id: " + $scope.courseID,
+            filesubmission: false,
+            quiz: true,
+            data: $scope.quizQuestions,
+            category_id: 1,
+            deadline: $scope.quizDeadline
+        };
+        var req = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            data: formData,
+            url: API + '/sections/' + $scope.courseID + '/assignments'
+        };
+        console.log(req);
+        $http(req).then(function(res) {
+            console.log(res.data);
+            console.log("quiz submitted");
+            $window.location.href = './#!/courses/' + $scope.courseID;
+        },$scope.handleRequest);
+    };
 
 
     $scope.getStudentsWithID = function(id) {
