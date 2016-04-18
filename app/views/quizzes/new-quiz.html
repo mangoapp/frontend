@@ -13,9 +13,31 @@
 			<div ng-include="'./components/top-nav.html'"></div>
 			<div class="create-course col-md-12 col-sm-12 col-xs-12">
 			<input class="quizinput" ng-model="quizTitle" placeholder="Quiz Title">
-			<button class="q-question">Add Question</button><br>
+			<div class="quiz-questions">
+				<ul ng-repeat="question in quizQuestions">
+					<div class="newQuestion old">
+						<span class="q-number">{{$index + 1}}. &nbsp;</span><span>{{question.question}}</span><div class="clear"></div>
+						<ul ng-repeat="answer in question.answers">
+							<li><span>{{answer}}</span></li><div class="clear"></div>
+						</ul>
+					</div>
+				</ul>
 
-			<button class="create-quiz" ng-click="createQuiz(quizID)">Create Quiz</button>
+				<div class="newQuestion">
+					<span class="q-number">{{quizQuestions.length + 1}}. &nbsp;</span><span><input class="q-title" placeholder="Enter Question (check correct answer)" ng-model="newQuizTitle"></span><div class="clear"></div>
+					<ul ng-repeat="answer in placeAnswers">
+						<li><span><input type="radio" name="q-answerset" ng-click="checkedQuestion($index)"></span><span><input placeholder="{{answer}}" class="q-answer" ng-model="currentAnswers[$index]"></span></li><div class="clear"></div>
+					</ul>
+
+				</div>
+				
+
+				<button class="q-question" ng-click="addQuestion()">Add Question</button>
+
+				<br>
+			</div>
+
+			<button class="q-create" ng-click="createQuiz()">Create Quiz</button>
 			</div>
 
 

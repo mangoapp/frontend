@@ -948,3 +948,52 @@ button.q-question {
 button.q-question:hover {
   background-color: #CCC;
 }
+button.q-create {
+  width: 60%;
+  margin: 15px auto;
+  border-radius: 10px;
+  color: white;
+  border: 0;
+  padding: 15px;
+  background-color: #E23E57;
+}
+button.q-create:hover {
+  background-color: #CCC;
+}
+.newQuestion {
+  width: 60%;
+  margin: 0 auto;
+}
+.newQuestion input.q-title {
+  width: 80%;
+  padding-bottom: 10px;
+  border: 0;
+  border-bottom: 1px dotted #CCC;
+  color: #939393;
+  float: left;
+
+}
+.newQuestion ul {
+  list-style: none;
+}
+.newQuestion ul li input {
+  border: 0;
+}
+.newQuestion ul li span {
+  float: left;
+}
+.newQuestion ul li {
+  margin: 10px 0;
+}
+.newQuestion .q-answer {
+  width: 100%;
+}
+.q-number {
+  float: left;
+  font-weight: 600;
+  color: #939393;
+}
+.old {
+  text-align: left !important;
+  color: #CCC;
+}

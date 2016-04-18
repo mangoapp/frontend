@@ -1,5 +1,10 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
     var stopCourses;
+    $scope.quizQuestions = [];
+    $scope.placeAnswers = ["Enter Answer Choice 1","Enter Answer Choice 2","Enter Answer Choice 3","Enter Answer Choice 4"];
+    $scope.currentAnswers = new Array(4);
+    $scope.correctAnswer = "";
+    $scope.newQuizTitle = "";
     if (auth.getToken()) {
         $scope.token = auth.getToken();
         $scope.loggedin = true;
@@ -180,6 +185,31 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
     };
 
+    $scope.addQuestion = function() {
+        if (($scope.newQuizTitle.length !== 0)) {
+            $scope.newQuestion = {
+                "question": $scope.newQuizTitle,
+                "answers": $scope.currentAnswers,
+                "correctAnswer": $scope.correctAnswer
+            };
+            console.log($scope.newQuestion);
+            $scope.quizQuestions.push($scope.newQuestion);
+        }
+        delete $scope.newQuestion;
+        $scope.correctAnswer = "";
+        $scope.newQuizTitle = "";
+        $scope.currentAnswers = new Array(4);
+
+    };
+
+    $scope.checkedQuestion = function(index) {
+        console.log(index);
+        $scope.correctAnswer = index;
+    };
+
+    $scope.createQuiz = function() {
+
+    };
 
 
     $scope.getStudentsWithID = function(id) {
