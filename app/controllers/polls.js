@@ -2,20 +2,14 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	var stopCourses;
 	var stopPolls;
 	$scope.isOpen = false;
-	$scope.pollAnswers = [
-	{ answer: "A", checked: false },
-	{ answer: "B", checked: false },
-	{ answer: "C", checked: false },
-	{ answer: "D", checked: false }
+	$scope.responses = [
+	{ answer: "A", checked: false, value: 0 },
+	{ answer: "B", checked: false, value: 0 },
+	{ answer: "C", checked: false, value: 0 },
+	{ answer: "D", checked: false, value: 0 }
 	];
 	$scope.newAnswer = "";
 	$scope.newDescription = "";
-	$scope.responses = [
-	{ response: "A", value: 0 },
-	{ response: "B", value: 0 },
-	{ response: "C", value: 0 },
-	{ response: "D", value: 0 }
-	];
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -131,11 +125,11 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/sections/polls/' + id + '/submitResponse'
 		};
 		$http(req).then(function(res) {
-			for (var i = 0; i < $scope.pollAnswers.length; i++) {
+			for (var i = 0; i < $scope.responses.length; i++) {
 				if (i == index) {
-					$scope.pollAnswers[i].checked = true;
+					$scope.responses[i].checked = true;
 				} else {
-					$scope.pollAnswers[i].checked = false;
+					$scope.responses[i].checked = false;
 				}
 			}
 			console.log(res.data);
@@ -221,6 +215,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
 	$scope.getResponses = function() {
     	//sections/polls/1/responses
+
     	if ($scope.isAdmin) {
     		$scope.responses[0].value = $scope.currentPoll.responses_A;
     		$scope.responses[1].value = $scope.currentPoll.responses_B;
