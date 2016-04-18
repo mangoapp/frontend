@@ -5,6 +5,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.currentAnswers = new Array(4);
     $scope.correctAnswer = "";
     $scope.newQuizTitle = "";
+    $scope.quizDeadline = "";
     if (auth.getToken()) {
         $scope.token = auth.getToken();
         $scope.loggedin = true;
@@ -203,12 +204,33 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     };
 
     $scope.checkedQuestion = function(index) {
-        console.log(index);
         $scope.correctAnswer = index;
     };
 
     $scope.createQuiz = function() {
-
+          var formData = {
+            title: $scope.quizTitle,
+            description: "Quiz for course id: " + $scope.courseID,
+            filesubmission: false,
+            quiz: true,
+            data: $scope.quizQuestions,
+            category_id: 1,
+            deadline: $scope.quizDeadline
+        };
+        var req = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            data: formData,
+            url: API + '/sections/' + $scope.courseID + '/assignments'
+        };
+        console.log(req);
+        $http(req).then(function(res) {
+            console.log(res.data);
+            console.log("quiz submitted");
+            $window.location.href = './#!/courses/' + $scope.courseID;
+        },$scope.handleRequest);
     };
 
 

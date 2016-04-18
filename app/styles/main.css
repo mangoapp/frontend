@@ -997,3 +997,17 @@ button.q-create:hover {
   text-align: left !important;
   color: #CCC;
 }
+.deadline {
+  width: 60%;
+  margin: 10px auto;
+  padding: 10px;
+  color: #CCC;
+}
+h4.deadline-head {
+  text-align: left;
+  color: #939393;
+  padding-bottom: 10px;
+  width: 60%;
+  margin: 25px auto 0 auto;
+  border-bottom: 1px dotted #CCC;
+}
