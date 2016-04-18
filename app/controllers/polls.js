@@ -76,6 +76,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			$scope.polls = res.data;
+			console.log(res.data);
 		},$scope.handleRequest);
 		req = {
 			method: 'GET',
@@ -86,6 +87,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			$scope.activePolls = res.data;
+			console.log(res.data);
 		},$scope.handleRequest);
 	};
 
