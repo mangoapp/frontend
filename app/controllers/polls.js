@@ -10,6 +10,12 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	];
 	$scope.newAnswer = "";
 	$scope.newDescription = "";
+	$scope.responses = [
+	{ response: "A", value: 0 },
+	{ response: "B", value: 0 },
+	{ response: "C", value: 0 },
+	{ response: "D", value: 0 }
+	];
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -76,7 +82,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			$scope.polls = res.data;
-			console.log(res.data);
 		},$scope.handleRequest);
 		req = {
 			method: 'GET',
@@ -87,7 +92,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			$scope.activePolls = res.data;
-			console.log(res.data);
 		},$scope.handleRequest);
 	};
 
@@ -96,6 +100,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			for (var i = 0; i < $scope.polls.length; i++) {
 				if ($scope.polls[i].id == id) {
 					$scope.currentPoll = $scope.polls[i];
+					$scope.getResponses();
+					console.log($scope.currentPoll);
 				}
 			}
 			if ($scope.activePolls) {
@@ -103,7 +109,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 				for (var j = 0; j < $scope.activePolls.length; j++) {
 					if ($scope.activePolls[j].id == id) {
 						$scope.isOpen = true;
-						
 					}
 				}
 			}
@@ -148,6 +153,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			};
 			$http(req).then(function(res) {
 				console.log(res.data);
+				$scope.getPollWithID(id);
 				$scope.isOpen = false;
 			},$scope.handleRequest);
 		}
@@ -196,12 +202,12 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			description: description
 		};
 		var req = {
-				method: 'POST',
-				headers: {
-					'Authorization': 'Bearer: ' + $scope.token
-				},
-				data: formData,
-				url: API + '/sections/polls'
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/sections/polls'
 		};
 		$http(req).then(function(res) {
 			console.log(res.data);
@@ -210,20 +216,30 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.checkPoll = function(index) {
-        $scope.newAnswer = index;
+		$scope.newAnswer = index;
+	};
+
+	$scope.getResponses = function() {
+    	//sections/polls/1/responses
+    	if ($scope.isAdmin) {
+    		$scope.responses[0].value = $scope.currentPoll.responses_A;
+    		$scope.responses[1].value = $scope.currentPoll.responses_B;
+    		$scope.responses[2].value = $scope.currentPoll.responses_C;
+    		$scope.responses[3].value = $scope.currentPoll.responses_D;
+    	}
     };
 
-	$scope.$on('$viewContentLoaded', function() {
-		$scope.getCourses();
-		
-		stopCourses = $interval(function() {
-			if ($routeParams.courseNumber) {
-				$scope.getCourseWithID($routeParams.courseNumber);
-			}
-		}, 50);
-		
-		$scope.getUser();
-		
-	});
+    $scope.$on('$viewContentLoaded', function() {
+    	$scope.getCourses();
+
+    	stopCourses = $interval(function() {
+    		if ($routeParams.courseNumber) {
+    			$scope.getCourseWithID($routeParams.courseNumber);
+    		}
+    	}, 50);
+
+    	$scope.getUser();
+
+    });
 
 };

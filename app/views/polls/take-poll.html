@@ -30,11 +30,11 @@
 			<a class="close-poll-link" ng-click="openPoll(currentPoll.id)" ng-if="isAdmin"><div class="close-poll" >
 				Open Poll
 			</div></a><div class="clear" ng-if="isAdmin"></div>
-			<a class="close-poll-link" ng-click="deletePoll(currentPoll.id)" ng-if="isAdmin"><div class="close-poll" >
+			<a class="close-poll-link" ng-click="deletePoll(currentPoll.id)" ng-if="isAdmin"><div class="delete-poll" >
 				Delete Poll
 			</div></a><div class="clear" ng-if="isAdmin"></div>
-			<div ng-if="isAdmin">
-				is Admin, so show analytics stuff
+			<div class="row analytics" ng-if="isAdmin" ng-repeat="response in responses track by $index">
+				<div class="response"><span class="strong">{{response.response}}:</span> <span ng-bind="response.value"></span> vote</div>
 			</div>
 
 		</div>
