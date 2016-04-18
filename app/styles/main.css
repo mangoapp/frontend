@@ -1011,3 +1011,116 @@ h4.deadline-head {
   margin: 25px auto 0 auto;
   border-bottom: 1px dotted #CCC;
 }
+.poll {
+  background-color: #EEE;
+  width: 60%;
+  border-radius: 5px;
+  padding: 20px 10px !important;
+  margin: 20px auto !important;
+}
+.poll-answers {
+  list-style: none;
+  text-align: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.poll-answers a {
+  text-decoration: none;
+}
+.poll-answers li {
+  width: 60%;
+  margin: 25px auto;
+  background-color: #CCC;
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+}
+.poll-answers li:hover {
+  background-color: #2ECC71;
+  cursor: pointer;
+}
+.poll-answers li.active {
+  background-color: #E23E57 !important; 
+}
+.poll-answers li.active:hover {
+  background-color: #E23E57 !important; 
+}
+a.close-poll-link {
+  text-decoration: none;
+}
+.close-poll {
+  width: 25%;
+  margin: 25px 15px 35px 15px;
+  background-color: #E23E57;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  float: left;
+  font-weight: 600;
+  font-size: 1.25em;
+}
+.close-poll:hover {
+  cursor: pointer;
+  background-color: #939393;
+}
+.closedPoll,.closedPoll:hover {
+  cursor: auto !important;
+  background-color: #939393 !important;
+}
+.create-link {
+  width: 60%;
+  margin: 35px auto;
+  background-color: #FF7056;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+.create-link:hover {
+  background-color: #939393;
+  cursor: pointer;
+}
+a.strip-decoration {
+  text-decoration: none !important;
+}
+.poll-create {
+  width: 60%;
+  margin: 0 auto;
+}
+.cpoll-answers {
+  list-style: none;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 !important;
+  color: #939393;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+.cpoll-answers li {
+  margin: 10px 0 10px 15px;
+}
+.cpoll-answers li span {
+  float: left;
+}
+.mg-rt {
+  margin-right: 10px;
+}
+input.poll-description {
+  width: 100%;
+  margin: 25px auto;
+  border: 0;
+  border-bottom: 1px dotted #CCC;
+  padding-bottom: 10px;
+}
+.poll-create h4 {
+  width: 100%;
+  margin: 10px auto;
+  color: #939393;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #CCC;
+  font-size: 1.2em;
+}

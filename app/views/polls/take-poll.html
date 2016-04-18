@@ -1,0 +1,42 @@
+<div class="row main">
+
+	<div class="side-nav col-md-1 hidden-xs hidden-sm">
+		<div ng-include="'./components/courses-navbar.html'"></div>
+	</div>
+
+	<div class="side-course-nav col-md-2 hidden-xs hidden-sm">
+		<div ng-include="'./components/course-detail-navbar.html'"></div>
+	</div>
+
+	<div class="main-content col-md-9 col-xs-12">
+
+		<div ng-include="'./components/top-nav.html'"></div>
+		<div ng-show="isOpen">
+			<a class="close-poll-link" ng-click="closePoll(currentPoll.id)" ng-if="isAdmin"><div class="close-poll" >
+				Close Poll
+			</div></a><div class="clear" ng-if="isAdmin"></div>
+			<h3 ng-show="currentPoll.description">{{currentPoll.description}}</h3>
+			<h3 ng-show="!currentPoll.description">Question displayed in class</h3>
+			<ul ng-if="!isAdmin" ng-repeat="answer in pollAnswers" class="poll-answers">
+				<a ng-show="answer.checked" ng-click="answerPoll(currentPoll.id,$index)"><li class="active"><span class="strong">{{answer.answer}}</span></li></a>
+				<a ng-hide="answer.checked" ng-click="answerPoll(currentPoll.id,$index)"><li><span class="strong">{{answer.answer}}</span></li></a>
+			</ul>
+			<ul ng-if="isAdmin" ng-repeat="answer in pollAnswers" class="poll-answers">
+				<li class="closedPoll"><span class="strong">{{answer.answer}}</span></li>
+			</ul>
+		</div>
+		<div ng-hide="isOpen">
+			<h3>Poll is closed</h3>
+			<a class="close-poll-link" ng-click="openPoll(currentPoll.id)" ng-if="isAdmin"><div class="close-poll" >
+				Open Poll
+			</div></a><div class="clear" ng-if="isAdmin"></div>
+			<div ng-if="isAdmin">
+				is Admin, so show analytics stuff
+			</div>
+
+		</div>
+
+	</div>
+
+
+</div>

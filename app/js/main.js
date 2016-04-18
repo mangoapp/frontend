@@ -11,6 +11,7 @@
   var CourseCtrl = require('../controllers/courses.js');
   var GradesCtrl = require('../controllers/grades.js');
   var DiscussionCtrl = require('../controllers/discussion.js');
+  var PollCtrl = require('../controllers/polls.js');
   var AssignmentCtrl = require('../controllers/assignments.js');
   var authService = require('../js/auth.js');
   var authInterceptor = require('../js/interceptor.js');
@@ -93,6 +94,18 @@
           templateUrl: "./views/discussion/new.html",
           controller: "DiscussionCtrl"
         })
+        .when("/polls/:courseNumber", {
+          templateUrl: "./views/polls/main.html",
+          controller: "PollCtrl"
+        })
+        .when("/polls/:courseNumber/new", {
+          templateUrl: "./views/polls/new.html",
+          controller: "PollCtrl"
+        })
+        .when("/polls/:courseNumber/:pollNumber", {
+          templateUrl: "./views/polls/take-poll.html",
+          controller: "PollCtrl"
+        })
         .when("/profile", {
           templateUrl: "./views/users/my-profile.html",
           controller: "UserCtrl"
@@ -120,6 +133,7 @@
   .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', CourseCtrl])
   .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', GradesCtrl])
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
+  .controller('PollCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', PollCtrl])
   .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', AssignmentCtrl]);
 
 }());
