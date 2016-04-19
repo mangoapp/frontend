@@ -134,6 +134,6 @@
   .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', GradesCtrl])
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
   .controller('PollCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', PollCtrl])
-  .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', AssignmentCtrl]);
+  .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', '$filter', AssignmentCtrl]);
 
 }());

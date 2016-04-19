@@ -1,4 +1,4 @@
-module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
+module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval,$filter) {
     var stopCourses;
     $scope.quizQuestions = [];
     $scope.placeAnswers = ["Enter Answer Choice 1","Enter Answer Choice 2","Enter Answer Choice 3","Enter Answer Choice 4"];
@@ -214,13 +214,15 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
     $scope.createQuiz = function() {
         console.log($scope.quizQuestions);
-        var formattedDeadline = new Date($scope.quizDeadline);
+        $scope.quizDeadline = new Date($scope.quizDeadline);
+        var formattedDeadline = $filter('date')($scope.quizDeadline, 'yyyy-MM-dd HH:mm');
+        console.log(formattedDeadline);
           var formData = {
             title: $scope.quizTitle,
             description: "Quiz for course id: " + $scope.courseID,
             filesubmission: 0,
             quiz: 1,
-            data: $scope.quizQuestions,
+            data: $scope.quizQuestions.toString(),
             category_id: $scope.categoryType,
             max_score: $scope.pointValue,
             deadline: formattedDeadline
