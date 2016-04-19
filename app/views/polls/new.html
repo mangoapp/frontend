@@ -16,7 +16,7 @@
 			<h3>Create New Poll</h3>
 			<input class="poll-description" ng-model="newDescription" placeholder="Enter poll question">
 			<h4>Correct Answer:</h4>
-			<ul class="cpoll-answers" ng-repeat="answer in pollAnswers">
+			<ul class="cpoll-answers" ng-repeat="answer in responses">
 				<li><span class="mg-rt"><input type="radio" name="answers" ng-click="checkPoll($index)"></span> <span>{{answer.answer}}</span></li>
 				<div class="clear"></div>
 			</ul>
