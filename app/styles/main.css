@@ -1195,3 +1195,9 @@ textarea.description {
   float: left;
   margin-right: 5px;
 }
+a.assignment-link {
+  color: #2ECC71;
+}
+a.assignment-link:hover {
+  color: #939393;
+}

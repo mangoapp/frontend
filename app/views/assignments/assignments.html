@@ -26,7 +26,8 @@
                     </tr>
 
                     <tr class="assignment grades" ng-repeat="assignment in assignments">
-                        <td>{{assignment.title}}<div class="assignment-description">{{assignment.description}}</div></td>
+                        <td ng-if="assignment.filesubmission == 1"><a class="strong assignment-link" ng-href="./#!/assignments/{{courseID}}/{{assignment.id}}">{{assignment.title}} <i class="fa fa-arrow-right" aria-hidden="true"></i></a><div class="assignment-description">{{assignment.description}}</div></td>
+                        <td ng-if="assignment.filesubmission != 1">{{assignment.title}}<div class="assignment-description">{{assignment.description}}</div></td>
                         <td>{{assignment.deadline | date: 'MMM dd'}}</td>
                         <td>{{assignment.maxScore}}</td>
                     </tr>
