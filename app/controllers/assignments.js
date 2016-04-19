@@ -88,6 +88,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         if ($scope.assignments) {
             for (var i = 0; i < $scope.assignments.length; i++) {
                 if ($scope.assignments[i].id == id) {
+                    $scope.getUploads(id);
                     $scope.assignmentTitle = $scope.assignments[i].title;
                 }
             }
@@ -117,7 +118,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         };
         $http(req).then(function(res) {
             $scope.assignments = res.data;
-            console.log(res.data);
             for (var i = 0; i < $scope.assignments.length; i++) {
                 $scope.assignments[i].deadline = new Date($scope.assignments[i].deadline);
             }
@@ -340,7 +340,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             file.upload.then(function (response) {
                 $timeout(function () {
                     file.result = response.data;
-                    console.log(response.data);
                     $window.location.href = './#!/courses/' + $scope.courseID;
                 });
             }, function (response) {
@@ -351,6 +350,20 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
                    evt.loaded / evt.total));
             });
         }   
+    };
+
+    $scope.getUploads = function(id) {
+        ///v1/assignments/{assignment_id}/uploads
+        var req = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            url: API + '/assignments/' + id + '/uploads'
+        };
+        $http(req).then(function(res) {
+            console.log(res.data);
+        },$scope.handleRequest);
     };
 
     $scope.$on('$viewContentLoaded', function() {
