@@ -1001,7 +1001,7 @@ button.q-create:hover {
   width: 60%;
   margin: 10px auto;
   padding: 10px;
-  color: #CCC;
+  color: #939393;
 }
 h4.deadline-head {
   text-align: left;
@@ -1169,4 +1169,29 @@ input.poll-description {
 }
 .mark-notifications:hover {
   background-color: #CCC;
+}
+.create-assignment a {
+  font-weight: 600;
+  color: #2ECC71;
+}
+.create-assignment a:hover {
+  color: #333;
+}
+textarea.description {
+  min-width: 60%;
+  max-width: 60%;
+  width: 60%;
+  min-height: 125px;
+  padding: 10px;
+  margin: 25px auto;
+  border: 1px solid #CCC;
+}
+.element-wrapper {
+  width: 60%;
+  margin: 25px auto;
+
+}
+.element-wrapper span {
+  float: left;
+  margin-right: 5px;
 }

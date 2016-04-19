@@ -1,0 +1,41 @@
+<div class="row main">
+
+    <div class="side-nav col-md-1 hidden-xs hidden-sm">
+        <div ng-include="'./components/courses-navbar.html'"></div>
+    </div>
+
+    <div class="side-course-nav col-md-2 hidden-xs hidden-sm">
+        <div ng-include="'./components/course-detail-navbar.html'"></div>
+    </div>
+
+    <div class="main-content col-md-11 col-sm-12 col-xs-12">
+        <div class="row">
+            <div ng-include="'./components/top-nav.html'"></div>
+            <div class="create-course col-md-12 col-sm-12 col-xs-12">
+            <input class="quizinput" ng-model="assignmentTitle" placeholder="Assignment Title">
+            <h4 class="deadline-head">Assignment Description</h4>
+            <textarea class="description" ng-model="assignmentDescription"></textarea>
+            <h4 class="deadline-head">Deadline</h4>
+            <input class="deadline" type="date" ng-model="assignmentDeadline" required>
+            <h4 class="deadline-head">Require file upload?</h4>
+            <div class="element-wrapper"><span><input type="checkbox" ng-model="assignmentUpload"></span><span> Require</span><div class="clear"></div></div>
+
+            <h4 class="deadline-head">Grade Category</h4>
+            <select class="category-drop" ng-model="categoryType" placeholder="Category">
+                        <option value="" disabled selected hidden>Category</option>
+                        <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
+            </select><div class="clear"></div>
+
+            <h4 class="deadline-head">Point Value</h4>
+            <input class="deadline" type="number" ng-model="pointValue" placeholder="Enter point value (number)" required>
+            <div class="clear"></div>
+
+            <button class="q-create" ng-click="createAssignment()">Create Assignment</button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>

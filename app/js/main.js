@@ -118,6 +118,10 @@
           templateUrl: "./views/assignments/assignments.html",
           controller: "AssignmentCtrl"
         })
+        .when("/assignments/:courseNumber/new", {
+          templateUrl: "./views/assignments/new.html",
+          controller: "AssignmentCtrl"
+        })
         .when("/assignments/:courseNumber/:assignmentNumber", {
           templateUrl: "./views/assignments/assignment.html",
           controller: "AssignmentCtrl"

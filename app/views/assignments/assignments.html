@@ -17,7 +17,6 @@
             <div class="grades">
 
             <!-- assignment view -->
-            <h4></h4>
             
                 <table class="table table-striped">
                     <tr>
@@ -30,6 +29,12 @@
                         <td>{{assignment.title}}<div class="assignment-description">{{assignment.description}}</div></td>
                         <td>{{assignment.deadline | date: 'MMM dd'}}</td>
                         <td>{{assignment.maxScore}}</td>
+                    </tr>
+
+                    <tr ng-if="isAdmin" class="assignment grades create-assignment">
+                        <td><a class="strip-decoration" ng-href="./#!/assignments/{{courseID}}/new"><i class="fa fa-plus" aria-hidden="true"></i> Create Assignment</a></td>
+                        <td></td>
+                        <td></td>
                     </tr>
 
                 </table>

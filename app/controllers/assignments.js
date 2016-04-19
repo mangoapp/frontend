@@ -8,6 +8,13 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.quizDeadline = "";
     $scope.categoryType = "";
     $scope.pointValue = "";
+
+
+    $scope.assignmentUpload = "";
+    $scope.assignmentTitle = "";
+    $scope.assignmentDescription = "";
+    $scope.assignmentDeadline = "";
+
     if (auth.getToken()) {
         $scope.token = auth.getToken();
         $scope.loggedin = true;
@@ -129,9 +136,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         //TODO
     };
 
-    $scope.createAssignment = function() {
-        //TODO
-    };
 
     $scope.getQuizzes = function() {
         $scope.quizzes = [];
@@ -236,6 +240,34 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         $http(req).then(function(res) {
             console.log(res.data);
             $window.location.href = './#!/quizzes/' + $scope.courseID;
+        },$scope.handleRequest);
+    };
+
+    $scope.createAssignment = function() {
+        $scope.assignmentDeadline = new Date($scope.assignmentDeadline);
+        var formattedDeadline = $filter('date')($scope.assignmentDeadline, 'yyyy-MM-dd HH:mm');
+          var formData = {
+            title: $scope.assignmentTitle,
+            description: $scope.assignmentDescription,
+            filesubmission: $scope.assignmentUpload,
+            quiz: 0,
+            data: 0,
+            category_id: $scope.categoryType,
+            max_score: $scope.pointValue,
+            deadline: formattedDeadline
+        };
+        var req = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            data: formData,
+            url: API + '/sections/' + $scope.courseID + '/assignments'
+        };
+        console.log(req);
+        $http(req).then(function(res) {
+            console.log(res.data);
+            $window.location.href = './#!/assignments/' + $scope.courseID;
         },$scope.handleRequest);
     };
 
