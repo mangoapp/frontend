@@ -88,7 +88,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         if ($scope.assignments) {
             for (var i = 0; i < $scope.assignments.length; i++) {
                 if ($scope.assignments[i].id == id) {
-                    $scope.getUploads(id);
+                    if ($scope.isAdmin) {
+                        $scope.getUploads(id);
+                    }
                     $scope.assignmentTitle = $scope.assignments[i].title;
                 }
             }
@@ -332,7 +334,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
                 url: 'http://mango.kedarv.com/v1/assignments/' + $routeParams.assignmentNumber + '/upload',
                 method: 'POST',
                 headers: {
-                'Authorization': 'Bearer: ' + $scope.token
+                    'Authorization': 'Bearer: ' + $scope.token
                 },
                 data: {file: file}
             });
@@ -347,7 +349,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
                     $scope.errorMsg = response.status + ': ' + response.data;
             }, function (evt) {
                 file.progress = Math.min(100, parseInt(100.0 * 
-                   evt.loaded / evt.total));
+                 evt.loaded / evt.total));
             });
         }   
     };
@@ -362,7 +364,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             url: API + '/assignments/' + id + '/uploads'
         };
         $http(req).then(function(res) {
-            console.log(res.data);
+            $scope.assignmentUploads = res.data;
         },$scope.handleRequest);
     };
 

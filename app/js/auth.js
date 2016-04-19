@@ -6,7 +6,6 @@ module.exports = function($window) {
   		return JSON.parse($window.atob(base64));
 	};
 	self.saveToken = function(token) {
-		console.log(token);
   		$window.localStorage.jwtToken = token;
 	};
 	self.getToken = function() {
