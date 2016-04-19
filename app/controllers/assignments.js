@@ -341,6 +341,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
                 $timeout(function () {
                     file.result = response.data;
                     console.log(response.data);
+                    $window.location.href = './#!/courses/' + $scope.courseID;
                 });
             }, function (response) {
                 if (response.status > 0)

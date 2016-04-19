@@ -16,17 +16,21 @@
                 <h3 class="announcementHeader"><span ng-bind="assignmentTitle"></span> Upload</h3>
                 <div class="fileUploader"><button type="file" ngf-select="uploadFiles($file, $invalidFiles)"
                     accept="application/pdf">
-                    Select File</button></div>
+                    Select File</button>
 
-
-                    <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
-                      <span class="progress" ng-show="f.progress >= 0">
-                          <div style="width:{{f.progress}}%"  
+                    <br><br>
+                    <div style="font:smaller;text-align:center;">{{f.name}}
+                      <span ng-show="f.progress >= 0" class="progress">
+                          <div class="upload-status" style="width:{{f.progress}}%"  
                           ng-bind="f.progress + '%'"></div>
                       </span>
+                      <div ng-show="fileProgress" class="completeUpload">
+                        Upload Complete
+                      </div>
                   </div> 
+                  </div>
 
-                  
+
               </div>
 
               <div ng-if="isAdmin">

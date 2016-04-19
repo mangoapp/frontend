@@ -1215,3 +1215,8 @@ a.assignment-link:hover {
   font-weight: 600;
   color: white;
 }
+.upload-status {
+  background-color: #2ECC71;
+  padding: 5px;
+  border-radius: 35px;
+}
