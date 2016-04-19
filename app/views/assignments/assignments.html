@@ -28,7 +28,7 @@
 
                     <tr class="assignment grades" ng-repeat="assignment in assignments">
                         <td>{{assignment.title}}<div class="assignment-description">{{assignment.description}}</div></td>
-                        <td>{{assignment.deadline}}</td>
+                        <td>{{assignment.deadline | date: 'MMM dd'}}</td>
                         <td>{{assignment.maxScore}}</td>
                     </tr>
 

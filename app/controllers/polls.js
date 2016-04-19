@@ -214,8 +214,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.getResponses = function() {
-    	//sections/polls/1/responses
-
     	if ($scope.isAdmin) {
     		$scope.responses[0].value = $scope.currentPoll.responses_A;
     		$scope.responses[1].value = $scope.currentPoll.responses_B;

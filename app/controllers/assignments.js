@@ -98,7 +98,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         };
         $http(req).then(function(res) {
             $scope.assignments = res.data;
-
+            for (var i = 0; i < $scope.assignments.length; i++) {
+                $scope.assignments[i].deadline = new Date($scope.assignments[i].deadline);
+            }
             $scope.getQuizzes();
         },$scope.handleRequest);
     };
