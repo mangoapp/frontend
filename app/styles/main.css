@@ -1156,3 +1156,17 @@ input.poll-description {
   background-color: white;
   border: 1px solid #CCC;
 }
+.mark-notifications {
+  width: 60%;
+  margin: 25px auto;
+  border: 0;
+  background-color: #E23E57;
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+.mark-notifications:hover {
+  background-color: #CCC;
+}

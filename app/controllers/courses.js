@@ -39,6 +39,19 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         },$scope.handleRequest);
 	};
 
+	$scope.markNotifications = function() {
+		if ($scope.notifications) {
+			for (var i = 0; i < $scope.notifications.length; i++) {
+				console.log($scope.notifications[i]);
+				$scope.markNotification($scope.notifications[i].id);
+			}
+			delete $scope.notifications;
+			$timeout(function() {
+				$window.location.href = './#!/courses';
+			},60);
+		}
+	};
+
 	$scope.markNotification = function(id) {
 		var formData = {
 			id: id
@@ -52,7 +65,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             url: API + '/notifications'
         };
         $http(req).then(function(res) {
-        	return '';
+        	console.log(res.data);
         },$scope.handleRequest);
 	};
 	
