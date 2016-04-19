@@ -213,10 +213,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     };
 
     $scope.createQuiz = function() {
-        console.log($scope.quizQuestions);
         $scope.quizDeadline = new Date($scope.quizDeadline);
         var formattedDeadline = $filter('date')($scope.quizDeadline, 'yyyy-MM-dd HH:mm');
-        console.log(formattedDeadline);
           var formData = {
             title: $scope.quizTitle,
             description: "Quiz for course id: " + $scope.courseID,
@@ -235,10 +233,26 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             data: formData,
             url: API + '/sections/' + $scope.courseID + '/assignments'
         };
-        console.log(req);
         $http(req).then(function(res) {
             console.log(res.data);
             $window.location.href = './#!/quizzes/' + $scope.courseID;
+        },$scope.handleRequest);
+    };
+
+    $scope.deleteQuiz = function(id) {
+        var formData = {
+            id: id
+        };
+        var req = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            data: formData,
+            url: API + '/sections/' + $scope.courseID + '/deleteAssignment'
+        };
+        $http(req).then(function(res) {
+            $window.location.href = './#!/courses/' + $scope.courseID;
         },$scope.handleRequest);
     };
 
