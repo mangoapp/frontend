@@ -1148,3 +1148,11 @@ input.poll-description {
   padding: 20px;
   text-align: center;
 }
+.category-drop {
+  width: 60%;
+  padding: 15px;
+  margin: 15px auto;
+  color: #939393;
+  background-color: white;
+  border: 1px solid #CCC;
+}

@@ -6,6 +6,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.correctAnswer = "";
     $scope.newQuizTitle = "";
     $scope.quizDeadline = "";
+    $scope.categoryType = "";
+    $scope.pointValue = "";
     if (auth.getToken()) {
         $scope.token = auth.getToken();
         $scope.loggedin = true;
@@ -55,6 +57,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
                 }
             }
             if ($scope.courseData) {
+                $scope.getCategories();
                 $interval.cancel(stopCourses);
             }
         }
@@ -210,14 +213,17 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     };
 
     $scope.createQuiz = function() {
+        console.log($scope.quizQuestions);
+        var formattedDeadline = new Date($scope.quizDeadline);
           var formData = {
             title: $scope.quizTitle,
             description: "Quiz for course id: " + $scope.courseID,
-            filesubmission: false,
-            quiz: true,
+            filesubmission: 0,
+            quiz: 1,
             data: $scope.quizQuestions,
-            category_id: 1,
-            deadline: $scope.quizDeadline
+            category_id: $scope.categoryType,
+            max_score: $scope.pointValue,
+            deadline: formattedDeadline
         };
         var req = {
             method: 'POST',
@@ -230,11 +236,22 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         console.log(req);
         $http(req).then(function(res) {
             console.log(res.data);
-            console.log("quiz submitted");
-            $window.location.href = './#!/courses/' + $scope.courseID;
+            $window.location.href = './#!/quizzes/' + $scope.courseID;
         },$scope.handleRequest);
     };
 
+    $scope.getCategories = function() {
+        var req = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            url: API + '/sections/' + $scope.courseID + '/categories'
+        };
+        $http(req).then(function(res) {
+            $scope.categories = res.data;
+        },$scope.handleRequest);
+    };
 
     $scope.getStudentsWithID = function(id) {
         var req = {

@@ -38,6 +38,17 @@
 			</div>
 			<h4 class="deadline-head">Deadline</h4>
 			<input class="deadline" type="date" ng-model="quizDeadline" required>
+
+			<h4 class="deadline-head">Grade Category</h4>
+			<select class="category-drop" ng-model="categoryType" placeholder="Category">
+						<option value="" disabled selected hidden>Category</option>
+        				<option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
+      		</select><div class="clear"></div>
+
+      		<h4 class="deadline-head">Point Value</h4>
+			<input class="deadline" type="number" ng-model="pointValue" required>
+			<div class="clear"></div>
+
 			<button class="q-create" ng-click="createQuiz()">Create Quiz</button>
 			</div>
 
