@@ -1,4 +1,4 @@
-module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval,$filter) {
+module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval,$filter,Upload) {
     var stopCourses;
     $scope.quizQuestions = [];
     $scope.placeAnswers = ["Enter Answer Choice 1","Enter Answer Choice 2","Enter Answer Choice 3","Enter Answer Choice 4"];
@@ -82,7 +82,16 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             $scope.getAssignmentsWithID($scope.courseID);
         }
         $scope.getIndividualQuiz(id);
+    };
 
+    $scope.getActiveAssignment = function(id) {
+        if ($scope.assignments) {
+            for (var i = 0; i < $scope.assignments.length; i++) {
+                if ($scope.assignments[i].id == id) {
+                    $scope.assignmentTitle = $scope.assignments[i].title;
+                }
+            }
+        } 
     };
 
     $scope.getNotifications = function() {
@@ -154,7 +163,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         var formData = {
             id: id
         };
-         var req = {
+        var req = {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer: ' + $scope.token
@@ -220,7 +229,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.createQuiz = function() {
         $scope.quizDeadline = new Date($scope.quizDeadline);
         var formattedDeadline = $filter('date')($scope.quizDeadline, 'yyyy-MM-dd HH:mm');
-          var formData = {
+        var formData = {
             title: $scope.quizTitle,
             description: "Quiz for course id: " + $scope.courseID,
             filesubmission: 0,
@@ -247,7 +256,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.createAssignment = function() {
         $scope.assignmentDeadline = new Date($scope.assignmentDeadline);
         var formattedDeadline = $filter('date')($scope.assignmentDeadline, 'yyyy-MM-dd HH:mm');
-          var formData = {
+        var formData = {
             title: $scope.assignmentTitle,
             description: $scope.assignmentDescription,
             filesubmission: $scope.assignmentUpload,
@@ -315,6 +324,34 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         },$scope.handleRequest);
     };
 
+    $scope.uploadFiles = function(file, errFiles) {
+        $scope.f = file;
+        $scope.errFile = errFiles && errFiles[0];
+        if (file) {
+            file.upload = Upload.upload({
+                url: 'http://mango.kedarv.com/v1/assignments/' + $routeParams.assignmentNumber + '/upload',
+                method: 'POST',
+                headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+                },
+                data: {file: file}
+            });
+
+            file.upload.then(function (response) {
+                $timeout(function () {
+                    file.result = response.data;
+                    console.log(response.data);
+                });
+            }, function (response) {
+                if (response.status > 0)
+                    $scope.errorMsg = response.status + ': ' + response.data;
+            }, function (evt) {
+                file.progress = Math.min(100, parseInt(100.0 * 
+                   evt.loaded / evt.total));
+            });
+        }   
+    };
+
     $scope.$on('$viewContentLoaded', function() {
         $scope.getAssignmentsWithID($routeParams.courseNumber);
         $scope.getCourses();
@@ -326,6 +363,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             }
             if ($routeParams.quizNumber) {
                 $scope.getCurrentAssignment($routeParams.quizNumber);
+            }
+            if ($routeParams.assignmentNumber) {
+                $scope.getActiveAssignment($routeParams.assignmentNumber);
             }
         }, 50, 100);
     });

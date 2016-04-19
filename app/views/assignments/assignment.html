@@ -1,6 +1,6 @@
 <div class="row main">
     <div class="side-nav col-md-1 hidden-xs hidden-sm">
-            <div ng-include="'./components/courses-navbar.html'"></div>
+        <div ng-include="'./components/courses-navbar.html'"></div>
     </div>
 
     <div class="side-course-nav col-md-2 hidden-xs hidden-sm">
@@ -11,9 +11,28 @@
 
         <div ng-include="'./components/top-nav.html'"></div>
 
-        <div class="main-announcements">            
-            <h3 class="announcementHeader">Assignment Upload</h3>
-                 
+        <div class="main-announcements">    
+            <div ng-if="!isAdmin">        
+                <h3 class="announcementHeader"><span ng-bind="assignmentTitle"></span> Upload</h3>
+                <div class="fileUploader"><button type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                    accept="application/pdf">
+                    Select File</button></div>
+
+
+                    <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                      <span class="progress" ng-show="f.progress >= 0">
+                          <div style="width:{{f.progress}}%"  
+                          ng-bind="f.progress + '%'"></div>
+                      </span>
+                  </div> 
+
+                  
+              </div>
+
+              <div ng-if="isAdmin">
+                <h3 class="announcementHeader">View Uploads</h3>
+            </div>
+
         </div>
     </div>    
 </div>
