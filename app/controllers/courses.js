@@ -1,5 +1,6 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
 	var stopAnnouncements;
+	var stopContent;
 	var stopCourses;
 	$scope.newSections = [];
 	$scope.courseTypes = ['Math','Computer Science','English','Biology', 'History', 'Philosophy'];
@@ -122,6 +123,33 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if ($scope.announcements) {
 				$scope.announcements.reverse();
 				$interval.cancel(stopAnnouncements);
+			}
+		},$scope.handleRequest);
+	};
+
+	$scope.getContent = function() {
+		$scope.content_list = [];
+		if ($scope.courseData) {
+			$scope.getContentReq($scope.courseID);
+		}
+	};
+
+	$scope.getContentReq = function(id) {
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/sections/' + id + '/uploads/'
+		};
+		$http(req).then(function(res) {
+			for (var j = 0; j < res.data.length; j++){
+				res.data[j].created_at = new Date(res.data[j].created_at);
+			}			
+			$scope.announcements = res.data;
+			if ($scope.announcements) {
+				$scope.announcements.reverse();
+				$interval.cancel(stopContent);
 			}
 		},$scope.handleRequest);
 	};

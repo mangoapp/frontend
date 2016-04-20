@@ -101,6 +101,10 @@
           templateUrl: "./views/courses/announcements.html",
           controller: "CourseCtrl"
         })
+        .when("/courses/:courseNumber/content", {
+          templateUrl: "./views/courses/content.html",
+          controller: "CourseCtrl"
+        })
         .when("/assignments/:courseNumber", {
           templateUrl: "./views/assignments/assignments.html",
           controller: "AssignmentCtrl"

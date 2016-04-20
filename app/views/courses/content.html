@@ -1,0 +1,64 @@
+<div class="row main">
+
+	<div class="side-nav col-md-1 hidden-xs hidden-sm">
+		<div ng-include="'./components/courses-navbar.html'"></div>
+	</div>
+
+	<div class="side-course-nav col-md-2 hidden-xs hidden-sm">
+		<div ng-include="'./components/course-detail-navbar.html'"></div>
+	</div>
+
+	<div class="main-content col-md-9 col-xs-12">
+
+		<div ng-include="'./components/top-nav.html'"></div>
+
+		<div class="main-announcements" ng-show="courseData">
+			<h3 class="announcementHeader">Course Content</h3>
+			<div ng-repeat="content in contents">
+				<div ng-if="content.section_id == courseID">
+					<div class="announcement">
+						<div class="row">
+							<div class="col-md-12">
+								<h4>{{content.title}}</h4>
+								<p>{{content.body}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="isInstructor">
+				<div class="col-md-12 i-announce ">
+					<div ng-show="instructorToggle">
+						<a ng-click="instructorAnnounceToggle()"><i class="fa fa-plus fa-fw"></i>&nbsp; Add New Content</a>
+					</div>
+
+					<div class="i-announce-show" ng-hide="instructorToggle">
+						<div class="row">
+							<div class="col-md-1">
+								<a ng-click="instructorAnnounceToggle()"><i class="fa fa-times"></i></a>
+							</div>
+							<div class="col-md-11">
+								<h2>Upload New Content:</h2>
+								<h5>Title:</h5>
+								<input ng-model="newAnnouncementTitle"><br>
+								<h5>Description:</h5>
+								<textarea ng-model="newAnnouncement"></textarea>
+								<h5>File:</h5>
+								<input type="file" class="inputFile" name="datafile">
+								<button ng-click="createAnno()">Upload Content</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<div ng-hide="courseData">
+			<h3>Course Not Found</h3>
+		</div>
+	</div>
+
+
+</div>

@@ -926,3 +926,8 @@ textarea.editbody {
 .assignment-description{
   font-style: italic;
 }
+input.inputFile{
+  font-size: 0.60em;
+  font-color: red;
+  line-height: 0.60em;
+}
