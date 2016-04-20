@@ -7,7 +7,7 @@
   require('angular-animate');
   require('angular-sanitize');
   require('ng-file-upload');
-  require('angular-ui-calendar');
+  //require('angular-ui-calendar');
 
   var UserCtrl = require('../controllers/user.js');
   var CourseCtrl = require('../controllers/courses.js');
@@ -158,6 +158,6 @@
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
   .controller('PollCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', PollCtrl])
   .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', '$filter', 'Upload', AssignmentCtrl])
-  .controller('CalendarCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', 'ui.calendar', CalendarCtrl]);
+  .controller('CalendarCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', 'uiCalendarConfig', CalendarCtrl]);
 
 }());
