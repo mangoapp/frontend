@@ -91,7 +91,7 @@ form {
   border-bottom: 3px solid #DDDDDD;
   padding: 0 0 25px 0 !important;
 }
-#register-info input.mid {
+#login-info input.mid, #register-info input.mid {
   border-bottom: 3px solid #DDDDDD;
   padding: 25px 0 !important;
 }
@@ -1224,4 +1224,26 @@ a.assignment-link:hover {
   background-color: #2ECC71;
   padding: 5px;
   border-radius: 35px;
+}
+#forgot-password h1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 2em;
+  color: #CCC;
+  margin: 0;
+  padding-bottom: 35px;
+}
+.forgot-button button {
+  border: 0;
+  color: #FFFFFF;
+  background-color: #F3715C;
+  width: 100%;
+  border-radius: 7px;
+  padding: 13px 0;
+  margin-top: 7%;
+  font-size: 1.1em;
+  font-weight: 300;
+}
+.forgot-button button:hover {
+   background-color: #DDDDDD;
 }
