@@ -29,6 +29,7 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 			$scope.errors = res.data;
 			$scope.edata = true;
 		}
+		console.log(res.data);
 		self.message = res.data.message;
 	};
 	$scope.signin = function() {
@@ -111,7 +112,11 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 			token: $scope.token,
 			password: $scope.password
 		};
-
+		var req = {
+			method: 'POST',
+			url: API + '/passwordResetResponse',
+			data: formData
+		};
 		$http(req).then($scope.handleRequest,$scope.handleRequest);
 	};
 	$scope.$on('$viewContentLoaded', function() {
