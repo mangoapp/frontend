@@ -14,6 +14,7 @@
   var DiscussionCtrl = require('../controllers/discussion.js');
   var PollCtrl = require('../controllers/polls.js');
   var AssignmentCtrl = require('../controllers/assignments.js');
+  var CalendarCtrl = require('../controllers/calendar.js');
   var authService = require('../js/auth.js');
   var authInterceptor = require('../js/interceptor.js');
 
@@ -137,11 +138,11 @@
         })
         .when("/calendar", {
           templateUrl: "./views/calendar/calendar.html",
-          controller: "CourseCtrl"
+          controller: "CalendarCtrl"
         })
         .when("/calendar/:courseNumber", {
           templateUrl: "./views/calendar/calendar.html",
-          controller: "CourseCtrl"
+          controller: "CalendarCtrl"
         })
         .otherwise({
            redirectTo: '/courses'
@@ -155,6 +156,7 @@
   .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', GradesCtrl])
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
   .controller('PollCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', PollCtrl])
-  .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', '$filter', 'Upload', AssignmentCtrl]);
+  .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', '$filter', 'Upload', AssignmentCtrl])
+  .controller('CalendarCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', CalendarCtrl]);
 
 }());
