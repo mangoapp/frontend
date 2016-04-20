@@ -131,6 +131,14 @@
           templateUrl: "./views/assignments/assignment.html",
           controller: "AssignmentCtrl"
         })
+        .when("/calendar", {
+          templateUrl: "./views/calendar/calendar.html",
+          controller: "CourseCtrl"
+        })
+        .when("/calendar/:courseNumber", {
+          templateUrl: "./views/calendar/calendar.html",
+          controller: "CourseCtrl"
+        })
         .otherwise({
            redirectTo: '/courses'
         });
