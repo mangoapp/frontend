@@ -8,9 +8,12 @@
 		<div ng-include="'./components/course-detail-navbar.html'"></div>
 	</div>
 
-	<div class="main-content col-md-9 col-xs-12">
+	<div ng-show="isAdmin" class="main-content course-users col-md-9 col-xs-12">
+
 
 		<div ng-include="'./components/top-nav.html'"></div>
+
+		<h3>Course Users</h3>
 
 		<table class="table users table-striped" ng-show="courseUsers">
 			<tr>
