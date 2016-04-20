@@ -7,6 +7,7 @@
   require('angular-animate');
   require('angular-sanitize');
   require('ng-file-upload');
+  require('angular-ui-calendar');
 
   var UserCtrl = require('../controllers/user.js');
   var CourseCtrl = require('../controllers/courses.js');
@@ -19,7 +20,7 @@
   var authInterceptor = require('../js/interceptor.js');
 
 
-  angular.module('mango', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ngFileUpload'])
+  angular.module('mango', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ngFileUpload', 'ui.calendar'])
   .constant('API', 'http://mango.kedarv.com/v1')
   .service('auth', ['$window', authService])
   .factory('authInterceptor', ['API', 'auth', authInterceptor])
@@ -157,6 +158,6 @@
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
   .controller('PollCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', PollCtrl])
   .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', '$filter', 'Upload', AssignmentCtrl])
-  .controller('CalendarCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', CalendarCtrl]);
+  .controller('CalendarCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', 'ui.calendar', CalendarCtrl]);
 
 }());
