@@ -60,10 +60,47 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         },$scope.handleRequest);
     };
 
+    $scope.getEvents = function() {
+        if ($scope.globalCalendar) {
+            $scope.getEventsGlobal();
+        } else {
+            $scope.getEventsByID($routeParams.courseNumber);
+        }
+    };
+
+    $scope.getEventsGlobal = function() {
+        var req = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            url: API + '/users/events'
+        };
+        $http(req).then(function(res) {
+            $scope.events = res.data;
+        },$scope.handleRequest);
+    };
+
+    $scope.getEventsByID = function(id) {
+        var req = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            url: API + '/sections/' + id + '/events'
+        };
+        $http(req).then(function(res) {
+            $scope.events = res.data;
+        },$scope.handleRequest);
+    };
+
     $scope.instructorAnnounceToggle = function() {
         $scope.instructorToggle = $scope.instructorToggle === false ? true: false;
     };
     $scope.$on('$viewContentLoaded', function() {
+        if ($routeParams.courseNumber) {
+            $scope.globalCalendar = false;
+        }
         $scope.getCourses();
         stopCourses = $interval(function() {
             if ($routeParams.courseNumber) {
@@ -72,8 +109,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         }, 50, 50);
         $scope.getUser();
         $scope.instructorToggle = true;
-        if ($routeParams.courseNumber) {
-            $scope.globalCalendar = false;
-        }
+        $scope.getEvents();
     });
 };
