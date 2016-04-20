@@ -1,0 +1,32 @@
+<div class="row main">
+
+	<div class="side-nav col-md-1 hidden-xs hidden-sm">
+		<div ng-include="'./components/courses-navbar.html'"></div>
+	</div>
+
+	<div class="side-course-nav col-md-2 hidden-xs hidden-sm">
+		<div ng-include="'./components/course-detail-navbar.html'"></div>
+	</div>
+
+	<div class="main-content col-md-9 col-xs-12">
+
+		<div ng-include="'./components/top-nav.html'"></div>
+
+		<div class="poll-create" ng-if="isAdmin">
+			<h3>Create New Poll</h3>
+			<input class="poll-description" ng-model="newDescription" placeholder="Enter poll question">
+			<h4>Correct Answer:</h4>
+			<ul class="cpoll-answers" ng-repeat="answer in responses">
+				<li><span class="mg-rt"><input type="radio" name="answers" ng-click="checkPoll($index)"></span> <span>{{answer.answer}}</span></li>
+				<div class="clear"></div>
+			</ul>
+
+			<a class="strip-decoration" ng-click="createPoll(newDescription)"><div class="create-link">Create Poll</div></a>
+		</div>
+
+
+
+	</div>
+
+
+</div>

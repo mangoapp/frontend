@@ -931,3 +931,297 @@ input.inputFile{
   font-color: red;
   line-height: 0.60em;
 }
+input.quizinput {
+  border: 0;
+  border-bottom: 1px solid #CCC;
+  width: 70%;
+  margin-bottom: 25px;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #939393;
+  padding-bottom: 15px;
+}
+button.q-question {
+  width: 60%;
+  margin: 15px auto;
+  border-radius: 10px;
+  color: white;
+  border: 0;
+  padding: 15px;
+  background-color: #2ECC71;
+}
+button.q-question:hover {
+  background-color: #CCC;
+}
+button.q-create {
+  width: 60%;
+  margin: 15px auto;
+  border-radius: 10px;
+  color: white;
+  border: 0;
+  padding: 15px;
+  background-color: #E23E57;
+}
+button.q-create:hover {
+  background-color: #CCC;
+}
+.newQuestion {
+  width: 60%;
+  margin: 0 auto;
+}
+.newQuestion input.q-title {
+  width: 80%;
+  padding-bottom: 10px;
+  border: 0;
+  border-bottom: 1px dotted #CCC;
+  color: #939393;
+  float: left;
+
+}
+.newQuestion ul {
+  list-style: none;
+}
+.newQuestion ul li input {
+  border: 0;
+}
+.newQuestion ul li span {
+  float: left;
+}
+.newQuestion ul li {
+  margin: 10px 0;
+}
+.newQuestion .q-answer {
+  width: 100%;
+}
+.q-number {
+  float: left;
+  font-weight: 600;
+  color: #939393;
+}
+.old {
+  text-align: left !important;
+  color: #CCC;
+}
+.deadline {
+  width: 60%;
+  margin: 10px auto;
+  padding: 10px;
+  color: #939393;
+}
+h4.deadline-head {
+  text-align: left;
+  color: #939393;
+  padding-bottom: 10px;
+  width: 60%;
+  margin: 25px auto 0 auto;
+  border-bottom: 1px dotted #CCC;
+}
+.poll {
+  background-color: #EEE;
+  width: 60%;
+  border-radius: 5px;
+  padding: 20px 10px !important;
+  margin: 20px auto !important;
+}
+.poll-answers {
+  list-style: none;
+  text-align: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.poll-answers a {
+  text-decoration: none;
+}
+.poll-answers li {
+  width: 60%;
+  margin: 25px auto;
+  background-color: #CCC;
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+}
+.poll-answers li:hover {
+  background-color: #2ECC71;
+  cursor: pointer;
+}
+.poll-answers li.active {
+  background-color: #E23E57 !important; 
+}
+.poll-answers li.active:hover {
+  background-color: #E23E57 !important; 
+}
+a.close-poll-link {
+  text-decoration: none;
+}
+.close-poll {
+  width: 25%;
+  margin: 25px 15px 15px 15px;
+  background-color: #E23E57;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  float: left;
+  font-weight: 600;
+  font-size: 1.25em;
+}
+.close-poll:hover {
+  cursor: pointer;
+  background-color: #939393;
+}
+.closedPoll,.closedPoll:hover {
+  cursor: auto !important;
+  background-color: #939393 !important;
+}
+.create-link {
+  width: 60%;
+  margin: 35px auto;
+  background-color: #FF7056;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+.create-link:hover {
+  background-color: #939393;
+  cursor: pointer;
+}
+a.strip-decoration {
+  text-decoration: none !important;
+}
+.poll-create {
+  width: 60%;
+  margin: 0 auto;
+}
+.cpoll-answers {
+  list-style: none;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 !important;
+  color: #939393;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+.cpoll-answers li {
+  margin: 10px 0 10px 15px;
+}
+.cpoll-answers li span {
+  float: left;
+}
+.mg-rt {
+  margin-right: 10px;
+}
+input.poll-description {
+  width: 100%;
+  margin: 25px auto;
+  border: 0;
+  border-bottom: 1px dotted #CCC;
+  padding-bottom: 10px;
+}
+.poll-create h4 {
+  width: 100%;
+  margin: 10px auto;
+  color: #939393;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #CCC;
+  font-size: 1.2em;
+}
+.delete-poll {
+  width: 25%;
+  margin: 0 15px 35px 15px;
+  background-color: #CCC;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  float: left;
+  font-weight: 600;
+  font-size: 1.25em;
+}
+.delete-poll:hover {
+  cursor: pointer;
+  background-color: #939393;
+}
+.response {
+  width: 60%;
+  margin: 15px auto;
+  background-color: #EEE;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+}
+.category-drop {
+  width: 60%;
+  padding: 15px;
+  margin: 15px auto;
+  color: #939393;
+  background-color: white;
+  border: 1px solid #CCC;
+}
+.mark-notifications {
+  width: 60%;
+  margin: 25px auto;
+  border: 0;
+  background-color: #E23E57;
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+.mark-notifications:hover {
+  background-color: #CCC;
+}
+.create-assignment a {
+  font-weight: 600;
+  color: #2ECC71;
+}
+.create-assignment a:hover {
+  color: #333;
+}
+textarea.description {
+  min-width: 60%;
+  max-width: 60%;
+  width: 60%;
+  min-height: 125px;
+  padding: 10px;
+  margin: 25px auto;
+  border: 1px solid #CCC;
+}
+.element-wrapper {
+  width: 60%;
+  margin: 25px auto;
+
+}
+.element-wrapper span {
+  float: left;
+  margin-right: 5px;
+}
+a.assignment-link {
+  color: #2ECC71;
+}
+a.assignment-link:hover {
+  color: #939393;
+}
+.fileUploader {
+  width: 25%;
+  margin: 25px auto;
+  
+}
+.fileUploader button {
+  border: 0;
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  padding: 15px;
+  font-weight: 600;
+  color: white;
+}
+.upload-status {
+  background-color: #2ECC71;
+  padding: 5px;
+  border-radius: 35px;
+}

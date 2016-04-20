@@ -1,0 +1,55 @@
+<div class="row main">
+
+	<div class="side-nav col-md-1 hidden-xs hidden-sm">
+		<div ng-include="'./components/courses-navbar.html'"></div>
+	</div>
+
+	<div class="side-course-nav col-md-2 hidden-xs hidden-sm">
+		<div ng-include="'./components/course-detail-navbar.html'"></div>
+	</div>
+
+	<div class="main-content col-md-9 col-xs-12">
+
+		<div ng-include="'./components/top-nav.html'"></div>
+		<h3>Active Polls</h3>
+		<div class="polls" ng-repeat="poll in activePolls">
+			<div class="poll row">
+				<div class="poll-info col-md-10 col-sm-10 col-xs-8">
+					<span class="strong">{{poll.description}}</span>
+				</div>
+				<div class="quiz-action col-md-2 col-sm-2 col-xs-4">
+					<a ng-href="./#!/polls/{{courseID}}/{{poll.id}}">
+						<span class="fa-stack ">
+							<i class="fa fa-circle fa-stack-2x"></i>
+							<i class="fa fa-arrow-right fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<h3>All Polls</h3>
+		<div class="polls" ng-repeat="poll in polls">
+			<div class="poll row">
+				<div class="poll-info col-md-10 col-sm-10 col-xs-8">
+					<span class="strong">{{poll.description}}</span>
+				</div>
+				<div class="quiz-action col-md-2 col-sm-2 col-xs-4">
+					<a ng-href="./#!/polls/{{courseID}}/{{poll.id}}">
+						<span class="fa-stack ">
+							<i class="fa fa-circle fa-stack-2x"></i>
+							<i class="fa fa-arrow-right fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<a class="strip-decoration" ng-if="isAdmin" href="./#!/polls/{{courseID}}/new"><div class="create-link">Create Poll</div></a>
+	</div>
+
+
+
+	</div>
+
+
+</div>

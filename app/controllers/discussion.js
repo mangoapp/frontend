@@ -42,9 +42,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 					$scope.userRole = $scope.courses[i].role_name;
 					$scope.userDisplayRole = $scope.courses[i].role_display_name;
 					$scope.courseData = true;
-					if ($scope.userRole == 'course_admin') {
-						$scope.isInstructor = true;
-					}
 				}
 			}
 			if ($scope.courseData) {
@@ -144,6 +141,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 					$scope.currentPosts[i].created_at = new Date(res.data.posts[i].created_at);
 					$scope.editablePosts[i] = false;
 				}
+				console.log($scope.currentThread);
 			}
 		},$scope.handleRequest);
 	};

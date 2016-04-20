@@ -6,17 +6,19 @@
   require('angular-route');
   require('angular-animate');
   require('angular-sanitize');
+  require('ng-file-upload');
 
   var UserCtrl = require('../controllers/user.js');
   var CourseCtrl = require('../controllers/courses.js');
   var GradesCtrl = require('../controllers/grades.js');
   var DiscussionCtrl = require('../controllers/discussion.js');
+  var PollCtrl = require('../controllers/polls.js');
   var AssignmentCtrl = require('../controllers/assignments.js');
   var authService = require('../js/auth.js');
   var authInterceptor = require('../js/interceptor.js');
 
 
-  angular.module('mango', ['ngRoute', 'ngAnimate', 'ngSanitize'])
+  angular.module('mango', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ngFileUpload'])
   .constant('API', 'http://mango.kedarv.com/v1')
   .service('auth', ['$window', authService])
   .factory('authInterceptor', ['API', 'auth', authInterceptor])
@@ -57,7 +59,7 @@
           templateUrl: "./views/quizzes/quizzes.html",
           controller: "AssignmentCtrl"
         })
-        .when("/quizzes/new", {
+        .when("/quizzes/:courseNumber/new", {
           templateUrl: "./views/quizzes/new-quiz.html",
           controller: "AssignmentCtrl"
         })
@@ -93,6 +95,18 @@
           templateUrl: "./views/discussion/new.html",
           controller: "DiscussionCtrl"
         })
+        .when("/polls/:courseNumber", {
+          templateUrl: "./views/polls/main.html",
+          controller: "PollCtrl"
+        })
+        .when("/polls/:courseNumber/new", {
+          templateUrl: "./views/polls/new.html",
+          controller: "PollCtrl"
+        })
+        .when("/polls/:courseNumber/:pollNumber", {
+          templateUrl: "./views/polls/take-poll.html",
+          controller: "PollCtrl"
+        })
         .when("/profile", {
           templateUrl: "./views/users/my-profile.html",
           controller: "UserCtrl"
@@ -107,6 +121,10 @@
         })
         .when("/assignments/:courseNumber", {
           templateUrl: "./views/assignments/assignments.html",
+          controller: "AssignmentCtrl"
+        })
+        .when("/assignments/:courseNumber/new", {
+          templateUrl: "./views/assignments/new.html",
           controller: "AssignmentCtrl"
         })
         .when("/assignments/:courseNumber/:assignmentNumber", {
@@ -124,6 +142,7 @@
   .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', CourseCtrl])
   .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', GradesCtrl])
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
-  .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', AssignmentCtrl]);
+  .controller('PollCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', PollCtrl])
+  .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', '$filter', 'Upload', AssignmentCtrl]);
 
 }());

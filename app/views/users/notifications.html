@@ -11,9 +11,10 @@
 				<h3>Your Notifications</h3>
 				<div ng-repeat="notification in notifications">
 					<div class="notif">
-						{{notification.title}} - {{notification.body}}
+						<span class="strong">{{notification.title}}</span> - {{notification.body}}
 					</div>
 				</div>
+				<a class="strip-decoration" ng-click="markNotifications()"><div class="mark-notifications">Mark notifications as read</div></a>
 			</div>
 			<div ng-hide="isNotifications">
 				<h3>No new notifications</h3>
