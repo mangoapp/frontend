@@ -3,7 +3,7 @@
             <div ng-include="'./components/courses-navbar.html'"></div>
     </div>
 
-    <div ng-if="courseNumber" class="side-course-nav col-md-2 hidden-xs hidden-sm">
+    <div ng-if="!globalCalendar" class="side-course-nav col-md-2 hidden-xs hidden-sm">
         <div ng-include="'./components/course-detail-navbar.html'"></div>
     </div>
 

@@ -1,5 +1,6 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
     var stopCourses;
+    $scope.globalCalendar = true;
 
     if (auth.getToken()) {
         $scope.token = auth.getToken();
@@ -71,5 +72,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         }, 50, 50);
         $scope.getUser();
         $scope.instructorToggle = true;
+        if ($routeParams.courseNumber) {
+            $scope.globalCalendar = false;
+        }
     });
 };
