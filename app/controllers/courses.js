@@ -138,7 +138,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			}			
 			$scope.announcements = res.data;
 			if ($scope.announcements) {
-				$scope.announcements.reverse();
 				$interval.cancel(stopAnnouncements);
 			}
 		},$scope.handleRequest);
