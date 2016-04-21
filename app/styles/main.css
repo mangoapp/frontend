@@ -1279,3 +1279,6 @@ a.assignment-link:hover {
   color: gray;
   margin-top: 10px;
 }
+.fc-button-group, .fc button {
+  display: block !important;
+}
