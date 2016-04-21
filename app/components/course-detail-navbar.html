@@ -1,9 +1,9 @@
-    
 <h3>{{courseName}}</h3>
 <div class="sm-padding">
     <div>
         <a class="lg" href="./#!/discussion/{{courseID}}">Course Discussion</a>
         <a class="lg" href="./#!/polls/{{courseID}}">Course Polls</a>
+
     </div>
 
     <h4>Course Menu</h4>
@@ -14,7 +14,9 @@
         <a href="./#!/quizzes/{{courseID}}"><li><i class="fa fa-lightbulb-o"></i> Quizzes</li></a>        
         <a href="./#!/courses/{{courseID}}/content"><li><i class="fa fa-paperclip"></i> Course Content</li></a>
         <a href="./#!/grades/{{courseID}}"><li><i class="fa fa-list"></i> Grades</li></a>
-        <a href="./#!/courses/{{courseID}}"><li><i class="fa fa-calendar"></i> Calendar</li></a>
-        <!--<div class="clear"></div>-->
+        <a href="./#!/courses/{{courseID}}"><li><i class="fa fa-calendar"></i> Course Calendar</li></a>
+        <a ng-if="isAdmin" href="./#!/courses/{{courseID}}/users"><li><i class="fa fa-users"></i> Manage Users</li></a> 
+
     </ul>
+
 </div>

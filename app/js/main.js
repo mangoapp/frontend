@@ -14,11 +14,12 @@
   var DiscussionCtrl = require('../controllers/discussion.js');
   var PollCtrl = require('../controllers/polls.js');
   var AssignmentCtrl = require('../controllers/assignments.js');
+  var CalendarCtrl = require('../controllers/calendar.js');
   var authService = require('../js/auth.js');
   var authInterceptor = require('../js/interceptor.js');
 
 
-  angular.module('mango', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ngFileUpload'])
+  angular.module('mango', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ngFileUpload', 'ui.calendar'])
   .constant('API', 'http://mango.kedarv.com/v1')
   .service('auth', ['$window', authService])
   .factory('authInterceptor', ['API', 'auth', authInterceptor])
@@ -54,6 +55,10 @@
         .when("/courses/:courseNumber", {
             templateUrl: "./views/courses/course.html",
             controller: "CourseCtrl"
+        })
+        .when("/courses/:courseid/users", {
+          templateUrl: "./views/courses/users.html",
+          controller: "CourseCtrl"
         })
         .when("/quizzes/:courseNumber", {
           templateUrl: "./views/quizzes/quizzes.html",
@@ -131,6 +136,14 @@
           templateUrl: "./views/assignments/assignment.html",
           controller: "AssignmentCtrl"
         })
+        .when("/calendar", {
+          templateUrl: "./views/calendar/calendar.html",
+          controller: "CalendarCtrl"
+        })
+        .when("/calendar/:courseNumber", {
+          templateUrl: "./views/calendar/calendar.html",
+          controller: "CalendarCtrl"
+        })
         .otherwise({
            redirectTo: '/courses'
         });
@@ -143,6 +156,7 @@
   .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', GradesCtrl])
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
   .controller('PollCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', PollCtrl])
-  .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', '$filter', 'Upload', AssignmentCtrl]);
+  .controller('AssignmentCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', '$filter', 'Upload', AssignmentCtrl])
+  .controller('CalendarCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', 'uiCalendarConfig', CalendarCtrl]);
 
 }());

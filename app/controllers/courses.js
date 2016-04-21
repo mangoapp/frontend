@@ -2,8 +2,11 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	var stopAnnouncements;
 	var stopContent;
 	var stopCourses;
+	$scope.gotUsers = false;
 	$scope.newSections = [];
 	$scope.courseTypes = ['Math','Computer Science','English','Biology', 'History', 'Philosophy'];
+
+	$scope.newUserEmail = "";
 
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
@@ -24,20 +27,20 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
 	$scope.getNotifications = function() {
 		var req = {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer: ' + $scope.token
-            },
-            url: API + '/notifications'
-        };
-        $http(req).then(function(res) {
-        	$scope.notifications = res.data;
-        	if (res.data.length === 0) {
-        		$scope.isNotifications = false;
-        	} else {
-        		$scope.isNotifications = true;
-        	}
-        },$scope.handleRequest);
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/notifications'
+		};
+		$http(req).then(function(res) {
+			$scope.notifications = res.data;
+			if (res.data.length === 0) {
+				$scope.isNotifications = false;
+			} else {
+				$scope.isNotifications = true;
+			}
+		},$scope.handleRequest);
 	};
 
 	$scope.markNotifications = function() {
@@ -58,16 +61,16 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			id: id
 		};
 		var req = {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer: ' + $scope.token
-            },
-            data: formData,
-            url: API + '/notifications'
-        };
-        $http(req).then(function(res) {
-        	console.log(res.data);
-        },$scope.handleRequest);
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/notifications'
+		};
+		$http(req).then(function(res) {
+			console.log(res.data);
+		},$scope.handleRequest);
 	};
 	
 	$scope.getCourseWithID = function(id) {
@@ -336,6 +339,61 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		delete $scope.newSection;
 	};
 
+	$scope.getCourseUsers = function(id) {
+		$scope.gotUsers = true;
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/sections/' + id + '/students'
+		};
+		$http(req).then(function(res) {
+			$scope.courseUsers = res.data;
+		},$scope.handleRequest);
+	};
+
+	$scope.inviteUser = function() {
+		var formData = {
+			sectionid: $routeParams.courseid,
+			email: $scope.newUserEmail
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/users/sections'
+		};
+		$http(req).then(function(res) {
+			console.log(res.data);
+			$scope.newUserEmail = "";
+		},$scope.handleRequest);
+	};
+
+	$scope.removeUser = function(id) {
+		var formData = {
+			section_id: $routeParams.courseid,
+			user_id: id
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/users/roles/kick'
+		};
+		console.log(req);
+		$http(req).then(function(res) {
+			console.log(res.data);
+			$scope.getCourseUsers($routeParams.courseid);
+		},$scope.handleRequest);
+
+	};
+
+
 	$scope.instructorAnnounceToggle = function() {
 		$scope.instructorToggle = $scope.instructorToggle === false ? true: false;
 	};
@@ -343,12 +401,22 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
 	$scope.$on('$viewContentLoaded', function() {
 		$scope.getCourses();
+		$scope.getUser();
 		stopCourses = $interval(function() {
 			if ($routeParams.courseNumber) {
 				$scope.getCourseWithID($routeParams.courseNumber);
 			}
+			if ($routeParams.courseid) {
+				$scope.getCourseWithID($routeParams.courseid);
+				if ($scope.isAdmin) {
+					if (!$scope.gotUsers) {
+						$scope.getCourseUsers($routeParams.courseid);
+					}
+				} else {
+					$window.location.href = './#!/courses/' + $routeParams.courseid;
+				}
+			}
 		}, 50, 50);
-		$scope.getUser();
 		$scope.instructorToggle = true;
 	});
 	$scope.getNotifications();
