@@ -1,4 +1,4 @@
-module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
+module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval,uiCalendarConfig) {
     var stopCourses;
     $scope.globalCalendar = true;
 
