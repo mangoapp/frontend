@@ -128,12 +128,16 @@
           templateUrl: "./views/courses/content.html",
           controller: "CourseCtrl"
         })
+        .when("/courses/:courseNumber/join/:", {
+          templateUrl: "./views/courses/content.html",
+          controller: "CourseCtrl"
+        })
+        .when("/courses/:newCourseID/new/:joinToken", {
+          templateUrl: "./views/courses/courses.html",
+          controller: "CourseCtrl"
+        })
         .when("/assignments/:courseNumber", {
           templateUrl: "./views/assignments/assignments.html",
-          controller: "AssignmentCtrl"
-        })
-        .when("/assignments/:courseNumber/new", {
-          templateUrl: "./views/assignments/new.html",
           controller: "AssignmentCtrl"
         })
         .when("/assignments/:courseNumber/:assignmentNumber", {
