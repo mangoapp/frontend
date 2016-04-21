@@ -26,7 +26,7 @@
 
 					<tr class="assignment grades" ng-repeat="student in students">
 						<td>{{student.firstname}} {{student.lastname}}</td>
-						<td>{{getGrade(student.id, assignment.id)}}</td>
+						<td>{{getGrade(student.id, assignment.id) | number: 0}}</td>
 						<td>{{assignment.maxScore}}</td>
 					</tr>
 				</table>
@@ -45,13 +45,13 @@
 
 					<tr class="assignment grades" ng-repeat="assignment in assignments">
 						<td>{{assignment.title}}</td>
-						<td>{{getGrade(-1, assignment.id)}}</td>
+						<td>{{getGrade(-1, assignment.id) | number: 0}}</td>
 						<td>{{assignment.maxScore}}</td>
 					</tr>
 
 					<tr class="total-row">
 						<td>Average: </td>
-						<td>{{average}}%</td>
+						<td>{{average | number: 2}}%</td>
 						<td></td>
 					</tr>
 				</table>

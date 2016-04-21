@@ -136,6 +136,10 @@
           templateUrl: "./views/courses/courses.html",
           controller: "CourseCtrl"
         })
+        .when("/assignments/:courseNumber/new", {
+          templateUrl: "./views/assignments/new.html",
+          controller: "AssignmentCtrl"
+        })
         .when("/assignments/:courseNumber", {
           templateUrl: "./views/assignments/assignments.html",
           controller: "AssignmentCtrl"
