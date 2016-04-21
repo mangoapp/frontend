@@ -1247,3 +1247,7 @@ a.assignment-link:hover {
 .forgot-button button:hover {
    background-color: #DDDDDD;
 }
+.icalLink {
+  color: gray;
+  margin-top: 10px;
+}

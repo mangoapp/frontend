@@ -13,7 +13,10 @@
 
         <div class="main-announcements">            
             <h3 class="announcementHeader">Calendar</h3>
-            <div ui-calendar="uiConfig.calendar" class="span8 calendar"></div>
+            <br />
+            <div class="calendar col-md-8 col-md-offset-2" ui-calendar="uiConfig.calendar" ng-model="eventsSource"></div>
+            </div>
+            <input class="icalLink col-md-6 col-md-offset-3" type="text" ng-model="calendarLink" readonly />
         </div>
     </div>    
 </div>

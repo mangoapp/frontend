@@ -1,6 +1,8 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval,uiCalendarConfig) {
     var stopCourses;
     $scope.globalCalendar = true;
+    var events = [];
+    $scope.eventsSource = [events];
 
     if (auth.getToken()) {
         $scope.token = auth.getToken();
@@ -63,9 +65,12 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.getEvents = function() {
         if ($scope.globalCalendar) {
             $scope.getEventsGlobal();
+            $scope.calendarLink = API + '/calendar/' + auth.parseJwt($scope.token).uuid;
         } else {
             $scope.getEventsByID($routeParams.courseNumber);
+            $scope.calendarLink = API + '/calendar/section/' + $routeParams.courseNumber;
         }
+        console.log($scope.calendarLink);
     };
 
     $scope.getEventsGlobal = function() {
@@ -76,8 +81,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             },
             url: API + '/users/events'
         };
+        console.log("uuid:" + auth.parseJwt($scope.token).uuid);
         $http(req).then(function(res) {
-            $scope.events = res.data;
+            $scope.parseEvents(res.data);
         },$scope.handleRequest);
     };
 
@@ -90,13 +96,35 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             url: API + '/sections/' + id + '/events'
         };
         $http(req).then(function(res) {
-            $scope.events = res.data;
+            $scope.parseEvents(res.data);
         },$scope.handleRequest);
+    };
+
+    $scope.parseEvents = function(rawEvents) {
+        for (var i = 0; i < rawEvents.length; i++) {
+            events[i] = {};
+            events[i].title = rawEvents[i].title;
+            events[i].start = rawEvents[i].begin;
+            events[i].end = rawEvents[i].end;
+        }
+        console.log(events);
     };
 
     $scope.instructorAnnounceToggle = function() {
         $scope.instructorToggle = $scope.instructorToggle === false ? true: false;
     };
+
+    $scope.uiConfig = {
+        calendar: {
+            editable: false,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            }
+        }
+    };
+
     $scope.$on('$viewContentLoaded', function() {
         if ($routeParams.courseNumber) {
             $scope.globalCalendar = false;
