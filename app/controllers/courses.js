@@ -302,7 +302,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			$scope.courseUsers = res.data;
-			console.log(res.data);
 		},$scope.handleRequest);
 	};
 
@@ -358,7 +357,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 				$scope.getCourseWithID($routeParams.courseNumber);
 			}
 			if ($routeParams.courseid) {
-				$scope.getCourseWithID($routeParams.courseNumber);
+				$scope.getCourseWithID($routeParams.courseid);
 				if ($scope.isAdmin) {
 					if (!$scope.gotUsers) {
 						$scope.getCourseUsers($routeParams.courseid);

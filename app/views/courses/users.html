@@ -12,10 +12,10 @@
 
 
 		<div ng-include="'./components/top-nav.html'"></div>
-
+		<div ng-show="courseUsers.length">
 		<h3>Course Users</h3>
 
-		<table class="table users table-striped" ng-show="courseUsers">
+		<table class="table users table-striped">
 			<tr>
 				<th>Username</th>
 				<th>First Name</th>
@@ -31,7 +31,7 @@
 			</tr>
 
 		</table>
-		<br><br>
+		<br><br></div>
 
 		<div class="add-user">
 		<h3>Invite User to Course</h3>
