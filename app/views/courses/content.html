@@ -14,13 +14,13 @@
 
 		<div class="main-announcements" ng-show="courseData">
 			<h3 class="announcementHeader">Course Content</h3>
-			<div ng-repeat="content in contents">
+			<div ng-repeat="content in content_list">
 				<div ng-if="content.section_id == courseID">
 					<div class="announcement">
 						<div class="row">
 							<div class="col-md-12">
-								<h4>{{content.title}}</h4>
-								<p>{{content.body}}</p>
+								<h4><a href="" ng-click="getFile(content.file_id)">{{content.title}}</a></h4>
+								<p>{{content.description}}</p>
 							</div>
 						</div>
 					</div>
@@ -39,20 +39,32 @@
 								<a ng-click="instructorAnnounceToggle()"><i class="fa fa-times"></i></a>
 							</div>
 							<div class="col-md-11">
-								<h2>Upload New Content:</h2>
-								<h5>Title:</h5>
-								<input ng-model="newAnnouncementTitle"><br>
-								<h5>Description:</h5>
-								<textarea ng-model="newAnnouncement"></textarea>
-								<h5>File:</h5>
-								<input type="file" class="inputFile" name="datafile">
-								<button ng-click="createAnno()">Upload Content</button>
+								<form name="contentForm" class="contentForm">
+	<h2>Upload New Content:</h2>
+	<h5>Title:</h5>
+	<input name="title" ng-model="newContentTitle" required><br>
+
+	<h5>Description:</h5>
+	<textarea name="description" ng-model="newContentDescription" required></textarea><br>
+
+	<h5>File:</h5>
+	<input type="file" ngf-select ng-model="newContentFile"
+	accept="application/pdf" required ngf-model-invalid="errorFile">
+	<i ng-show="myForm.file.$error.required">*required</i><br>
+	<div style="font:12px;text-align:center;">
+		<span ng-show="f.progress >= 0" class="progress">
+			<div class="upload-status" style="max-width:70%; width:{{f.progress}}%"  
+			ng-bind="f.progress + '%'"></div>
+		</span>
+
+	</div>
+<button ng-click="uploadFiles(newContentFile)">Upload Content</button>
+</form>
 							</div>
 						</div>
-					</div>
 
+					</div>
 				</div>
-			</div>
 
 		</div>
 		<div ng-hide="courseData">
