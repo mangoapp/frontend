@@ -223,9 +223,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
       $timeout(function () {
       	// console.log("fuc fuck");
         file.result = response.data;
-        $scope.getContent();
         window.location.reload(true);
-        // $window.location.href = './#!/courses/' + $scope.courseID + '/content';
       });
 
     }, function (response) {
