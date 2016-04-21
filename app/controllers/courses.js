@@ -6,6 +6,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	$scope.newSections = [];
 	$scope.courseTypes = ['Math','Computer Science','English','Biology', 'History', 'Philosophy'];
 
+	$scope.newUserEmail = "";
+
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -290,22 +292,60 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.getCourseUsers = function(id) {
-		if (!$scope.gotUsers) {
-			$scope.gotUsers = true;
-			var req = {
-				method: 'GET',
-				headers: {
-					'Authorization': 'Bearer: ' + $scope.token
-				},
-				url: API + '/sections/' + id + '/students'
-			};
-			$http(req).then(function(res) {
-				$scope.courseUsers = res.data;
-				console.log(res.data);
-			},$scope.handleRequest);
-		}
+		$scope.gotUsers = true;
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/sections/' + id + '/students'
+		};
+		$http(req).then(function(res) {
+			$scope.courseUsers = res.data;
+			console.log(res.data);
+		},$scope.handleRequest);
+	};
+
+	$scope.inviteUser = function() {
+		var formData = {
+			sectionid: $routeParams.courseid,
+			email: $scope.newUserEmail
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/users/sections'
+		};
+		$http(req).then(function(res) {
+			console.log(res.data);
+			$scope.newUserEmail = "";
+		},$scope.handleRequest);
+	};
+
+	$scope.removeUser = function(id) {
+		var formData = {
+			section_id: $routeParams.courseid,
+			user_id: id
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/users/roles/kick'
+		};
+		console.log(req);
+		$http(req).then(function(res) {
+			console.log(res.data);
+			$scope.getCourseUsers($routeParams.courseid);
+		},$scope.handleRequest);
 
 	};
+
 
 	$scope.instructorAnnounceToggle = function() {
 		$scope.instructorToggle = $scope.instructorToggle === false ? true: false;
@@ -320,7 +360,9 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if ($routeParams.courseid) {
 				$scope.getCourseWithID($routeParams.courseNumber);
 				if ($scope.isAdmin) {
-					$scope.getCourseUsers($routeParams.courseid);
+					if (!$scope.gotUsers) {
+						$scope.getCourseUsers($routeParams.courseid);
+					}
 				} else {
 					$window.location.href = './#!/courses/' + $routeParams.courseid;
 				}
