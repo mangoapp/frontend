@@ -7,7 +7,6 @@
   require('angular-animate');
   require('angular-sanitize');
   require('ng-file-upload');
-  //require('angular-ui-calendar');
 
   var UserCtrl = require('../controllers/user.js');
   var CourseCtrl = require('../controllers/courses.js');
