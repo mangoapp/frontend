@@ -1,5 +1,6 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
 	var stopCourses;
+	$scope.new_grades = [];
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -124,11 +125,67 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		if ($scope.grades) {
 			for (var i = 0; i < $scope.grades.length; i++) {
 				if ($scope.grades[i].user_id == user_id && $scope.grades[i].assignment_id == assignment_id) {
+					if (!$scope.new_grades[user_id]) {
+						$scope.new_grades[user_id] = [];
+					}
+					$scope.new_grades[user_id][assignment_id] = $scope.grades[i].score;
 					return $scope.grades[i].score;
 				}
 			}
 		}
-		return "-";
+		if (!$scope.new_grades[user_id]) {
+			$scope.new_grades[user_id] = [];
+		}
+		$scope.new_grades[user_id][assignment_id] = 0;
+		return 0;
+	};
+
+	$scope.checkGrade = function(user_id, assignment_id) {
+		if ($scope.grades) {
+			for (var i = 0; i < $scope.grades.length; i++) {
+				if ($scope.grades[i].user_id == user_id && $scope.grades[i].assignment_id == assignment_id) {
+					return $scope.grades[i].score;
+				}
+			}
+		}
+		return false;
+	};
+
+	$scope.setGrades = function() {
+		for (var i = 0; i < $scope.new_grades.length; i++) {
+			for (var j = 0; j < $scope.new_grades[i].length; j++) {
+				if (checkGrade(i, j)) {
+					if (checkGrade(i, j) != new_grades[i][j]) {
+						$scope.setGradeReq(i, j, new_grades[i][j], true);
+					}
+				} else {
+					if (new_grades[i][j]) {
+						$scope.setGradeReq(i, j, new_grades[i][j], false);
+					}
+				}
+			}
+		}
+		$scope.getAllGradesWithID($routeParams.courseNumber);
+	};
+
+	$scope.setGradeReq = function(user_id, assignment_id, score, updating) {
+		var formData = {
+			score: score,
+			user_id: user_id,
+			grade_id: user_id
+		};
+		var url = '/assignments/' + assignment_id + (updating ? '/updateGrade' : '/grades');
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + url
+		};
+		$http(req).then(function(res) {
+			console.log(res.data);
+		},$scope.handleRequest);
 	};
 
 	$scope.getStudentsWithID = function(id) {
@@ -142,6 +199,15 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		$http(req).then(function(res) {
 			$scope.students = res.data;
 		},$scope.handleRequest);
+	};
+
+	$scope.editGrades = function() {
+		$scope.editingGrade = !$scope.editingGrade;
+		if ($scope.editingGrade) {
+			console.log($scope.newGrade);
+		} else {
+			console.log($scope.newGrade);
+		}
 	};
 
 	$scope.$on('$viewContentLoaded', function() {
