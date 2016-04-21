@@ -104,6 +104,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         for (var i = 0; i < rawEvents.length; i++) {
             events[i] = {};
             events[i].title = rawEvents[i].title;
+            events[i].allday = false;
             events[i].start = rawEvents[i].begin;
             events[i].end = rawEvents[i].end;
         }
