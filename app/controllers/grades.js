@@ -54,6 +54,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 					$scope.getAllGradesWithID($routeParams.courseNumber);
 				} else {
 					$scope.getStudentGradesWithID($routeParams.courseNumber);
+					$scope.getAverage($routeParams.courseNumber);
 				}
 			}
 		}
@@ -82,6 +83,23 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		};
 		$http(req).then(function(res) {
 			$scope.grades = res.data;
+		},$scope.handleRequest);
+	};
+
+	$scope.getAverage = function(id) {
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/sections/' + id + '/myAverage'
+		};
+		$http(req).then(function(res) {
+			if (res.data) {
+				$scope.average = res.data;
+			} else {
+				$scope.average = "-";
+			}
 		},$scope.handleRequest);
 	};
 
