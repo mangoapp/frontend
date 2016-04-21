@@ -1,4 +1,4 @@
-module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
+module.exports = function($scope,$http,API,auth,$window,$timeout,$interval,$routeParams) {
 	var stopLog;
 	var stopSign;
 	if (auth.getToken()) {
@@ -30,7 +30,9 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 			$scope.edata = true;
 		}
 		console.log(res.data);
-		self.message = res.data.message;
+		if (res.data.message) {
+			self.message = res.data.message;
+		}
 	};
 	$scope.signin = function() {
 		var formData = {
@@ -103,13 +105,13 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 		};
 		$http(req).then($scope.handleRequest,$scope.handleRequest);
 		if ($scope.email) {
-			$scope.retrieving = true;
+			$scope.pwSent = true;
 		}
 	};
 	$scope.resetPassword = function() {
 		var formData = {
 			email: $scope.email,
-			token: $scope.token,
+			token: $scope.resetToken,
 			password: $scope.password
 		};
 		var req = {
@@ -117,13 +119,22 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval) {
 			url: API + '/passwordResetResponse',
 			data: formData
 		};
-		$http(req).then($scope.handleRequest,$scope.handleRequest);
+		console.log(req);
+		$http(req).then(function(res) {
+			$window.location.href = './#!/sign-in';
+		},$scope.handleRequest);
 	};
 	$scope.$on('$viewContentLoaded', function() {
+		if ($routeParams.resetToken) {
+				console.log("here");
+				$scope.resetToken = $routeParams.resetToken;
+				$scope.retrieving = true;
+		}
 		if ($scope.loggedin) {
-		$scope.email = $scope.getemail();
-		$scope.getCourses();
-	}
+			$scope.email = $scope.getemail();
+			$scope.getCourses();
+
+		}
 	});
 
 

@@ -323,7 +323,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/courses/sections'
 		};
 		$http(req).then(function(res) {
-			console.log(res.data);
 			console.log("section created");
 			
 		},$scope.handleRequest);
