@@ -1282,3 +1282,6 @@ a.assignment-link:hover {
 .fc-button-group, .fc button {
   display: block !important;
 }
+.user-info button.errorButton {
+  background-color: #E74C3C;
+}

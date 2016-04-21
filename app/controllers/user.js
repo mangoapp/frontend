@@ -1,6 +1,7 @@
 module.exports = function($scope,$http,API,auth,$window,$timeout,$interval,$routeParams) {
 	var stopLog;
 	var stopSign;
+	$scope.updateButton = 'Update Information';
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
 		$scope.loggedin = true;
@@ -124,6 +125,38 @@ module.exports = function($scope,$http,API,auth,$window,$timeout,$interval,$rout
 			$window.location.href = './#!/sign-in';
 		},$scope.handleRequest);
 	};
+
+	$scope.updateinfo = function() {
+		var tok = auth.getToken();
+		var ptok = auth.parseJwt(tok);
+		if ($scope.password === undefined || $scope.email === undefined  || $scope.password !== $scope.passwordconf) {
+			console.log("error!");
+			$scope.updateButton = "Error!";
+			$scope.errorButton = "errorButton";
+			return;
+		}
+		var formData = {
+			firstname: ptok.firstname,
+			lastname: ptok.lastname,
+			email: $scope.email,
+			password: $scope.password
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/users/edit'
+		};
+		$http(req).then(function(res) {
+			var tok = res.data.token;
+			auth.saveToken(tok);
+			$scope.updateButton = "Updated Successfully!";
+			$scope.errorButton = "";
+		},$scope.handleRequest);
+	};
+
 	$scope.$on('$viewContentLoaded', function() {
 		if ($routeParams.resetToken) {
 				console.log("here");

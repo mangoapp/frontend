@@ -20,15 +20,15 @@
 
 				<div class="user-info">
 					<span>Update email address: </span><input type="text" placeholder="Email" name="email" ng-model="email" />
-					<span>Update password: </span><input type="password" placeholder="Password" name="password"  />
-					<span>Confirm password: </span><input type="password" placeholder="Password confirmation" name="passwordconf" />
+					<span>Update password: </span><input type="password" placeholder="Password" name="password" ng-model="password" />
+					<span>Confirm password: </span><input type="password" placeholder="Password confirmation" name="passwordconf" ng-model="passwordconf" />
 
 <!-- THIS ISN"T RELEVANT OR IMPLEMENTED SO EMSHRUG					<form action="">
 						<input type="radio" name="email" value="email-on">Email on<br>
 						<input type="radio" name="email" value="email-off">Email off<br>
 					</form> -->
 
-					<button type="submit" ng-click="updateinfo()">Update Information</button>
+					<button type="submit" ng-click="updateinfo()" ng-class="errorButton">{{ updateButton }}</button>
 
 				</div>
 			</div>
