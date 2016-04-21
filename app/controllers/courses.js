@@ -210,31 +210,31 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 
 	$scope.uploadFiles = function(file) {
 		$scope.f = file;
-    	file.upload = Upload.upload({
-     	url: API + '/sections/' + $scope.courseID + '/upload',
-     	method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer: ' + $scope.token
-                },
-        data: {title: $scope.newContentTitle, description: $scope.newContentDescription, file: file},
-    	});
+		file.upload = Upload.upload({
+			url: API + '/sections/' + $scope.courseID + '/upload',
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: {title: $scope.newContentTitle, description: $scope.newContentDescription, file: file},
+		});
 
-    	file.upload.then(function (response) {
-      $timeout(function () {
+		file.upload.then(function (response) {
+			$timeout(function () {
       	// console.log("fuc fuck");
-        file.result = response.data;
-        window.location.reload(true);
+      	file.result = response.data;
+      	window.location.reload(true);
       });
 
-    }, function (response) {
-      if (response.status > 0)
-        $scope.errorMsg = response.status + ': ' + response.data;
-    }, function (evt) {
+		}, function (response) {
+			if (response.status > 0)
+				$scope.errorMsg = response.status + ': ' + response.data;
+		}, function (evt) {
       // Math.min is to fix IE which reports 200% sometimes
       file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-    });
+  });
 
-    };
+	};
 
 
 	$scope.getAssignments = function() {
@@ -413,7 +413,29 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 					$window.location.href = './#!/courses/' + $routeParams.courseid;
 				}
 			}
+
 		}, 50, 50);
+		if ($routeParams.newCourseID) {
+				if ($routeParams.joinToken) {
+					var formData = {
+						token: $routeParams.joinToken
+					};
+					var req = {
+						method: 'POST',
+						headers: {
+							'Authorization': 'Bearer: ' + $scope.token
+						},
+						data: formData,
+						url: API + '/users/sections/accept'
+					};
+					$http(req).then(function(res) {
+						console.log(res.data);
+						$window.location.href = './#!/courses/' + $routeParams.newCourseID;
+					},$scope.handleRequest);
+				} else {
+					$window.location.href = './#!/courses/';
+				}
+			}
 		$scope.instructorToggle = true;
 	});
 	$scope.getNotifications();
