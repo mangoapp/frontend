@@ -15,6 +15,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.assignmentDescription = "";
     $scope.assignmentDeadline = "";
 
+    
+
     if (auth.getToken()) {
         $scope.token = auth.getToken();
         $scope.loggedin = true;
@@ -355,7 +357,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     };
 
     $scope.getUploads = function(id) {
-        ///v1/assignments/{assignment_id}/uploads
         var req = {
             method: 'GET',
             headers: {
@@ -368,6 +369,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         },$scope.handleRequest);
     };
 
+   
     $scope.$on('$viewContentLoaded', function() {
         $scope.getAssignmentsWithID($routeParams.courseNumber);
         $scope.getCourses();

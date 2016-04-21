@@ -1261,3 +1261,12 @@ a.assignment-link:hover {
 .course-users a:hover {
   cursor: pointer;
 }
+.center-text {
+  text-align: center !important;
+}
+.user-delete i {
+  color: #939393;
+}
+.user-delete i:hover {
+  color: #E23E57;
+}

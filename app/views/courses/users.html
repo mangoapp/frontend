@@ -27,7 +27,7 @@
 				<td>{{user.name}}</td>
 				<td>{{user.firstname}}</td>
 				<td>{{user.lastname}}</td>
-				<td><a ng-click="removeUser(user.id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+				<td><a class="user-delete" ng-click="removeUser(user.id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 			</tr>
 
 		</table>
@@ -35,8 +35,8 @@
 
 		<div class="add-user">
 		<h3>Invite User to Course</h3>
-		<input class="deadline" placeholder="User's Email" type="text" ng-model="assignmentDeadline" required>
-		<button ng-click="createAssignment()">Invite User</button>
+		<input class="deadline" placeholder="User's Email" type="text" ng-model="newUserEmail" required>
+		<button ng-click="inviteUser()">Invite User</button>
 
 		</div>
 	</div>
