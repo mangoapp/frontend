@@ -8,7 +8,7 @@
 		<div class="row">
 			<div ng-include="'./components/top-nav.html'"></div>
 			<div class="main-courses col-md-8 col-sm-12 col-xs-12">
-				<h3>My Courses</h3>
+				<h3 ng-hide="noCourses">My Courses</h3>
 				<div id="courses">
 					<div ng-repeat="course in courses">
 						<div class="s-course science">

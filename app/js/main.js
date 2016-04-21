@@ -40,6 +40,10 @@
           templateUrl: "./views/users/signup.html",
           controller: "UserCtrl"
         })
+        .when("/forgot-password/:resetToken", {
+          templateUrl: "./views/users/forgot-password.html",
+          controller: "UserCtrl"
+        })
         .when("/forgot-password", {
           templateUrl: "./views/users/forgot-password.html",
           controller: "UserCtrl"
@@ -151,8 +155,8 @@
   ])
 
   //Load controller
-  .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$timeout', '$interval', UserCtrl])
-  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', CourseCtrl])
+  .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$timeout', '$interval', '$routeParams', UserCtrl])
+  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', 'Upload', CourseCtrl])
   .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', GradesCtrl])
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
   .controller('PollCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', PollCtrl])

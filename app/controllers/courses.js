@@ -1,10 +1,12 @@
-module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval) {
+module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval,Upload) {
 	var stopAnnouncements;
 	var stopContent;
 	var stopCourses;
 	$scope.gotUsers = false;
 	$scope.newSections = [];
 	$scope.courseTypes = ['Math','Computer Science','English','Biology', 'History', 'Philosophy'];
+
+	$scope.newUserEmail = "";
 
 	if (auth.getToken()) {
 		$scope.token = auth.getToken();
@@ -89,6 +91,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			if ($scope.courseData) {
 				$interval.cancel(stopCourses);
 				$scope.getAnnouncements();
+				$scope.getContent();
 			}
 		}
 	};
@@ -154,17 +157,33 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			headers: {
 				'Authorization': 'Bearer: ' + $scope.token
 			},
-			url: API + '/sections/' + id + '/uploads/'
+			url: API + '/sections/' + id + '/uploads'
 		};
 		$http(req).then(function(res) {
 			for (var j = 0; j < res.data.length; j++){
 				res.data[j].created_at = new Date(res.data[j].created_at);
 			}			
-			$scope.announcements = res.data;
-			if ($scope.announcements) {
-				$scope.announcements.reverse();
+			$scope.content_list = res.data;
+			if ($scope.content_list) {
+				// $scope.content_list.reverse();
 				$interval.cancel(stopContent);
 			}
+		},$scope.handleRequest);
+	};
+
+	$scope.getFile = function(id) {
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/sections/files/' + id,
+			responseType: 'arraybuffer'
+		};
+		$http(req).then(function(res) {
+			var file = new Blob([res.data], {type: 'application/pdf'});
+			var fileURL = URL.createObjectURL(file);
+			window.open(fileURL);
 		},$scope.handleRequest);
 	};
 
@@ -188,6 +207,35 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			delete $scope.newAnnouncement;
 		},$scope.handleRequest);
 	};
+
+	$scope.uploadFiles = function(file) {
+		$scope.f = file;
+    	file.upload = Upload.upload({
+     	url: API + '/sections/' + $scope.courseID + '/upload',
+     	method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer: ' + $scope.token
+                },
+        data: {title: $scope.newContentTitle, description: $scope.newContentDescription, file: file},
+    	});
+
+    	file.upload.then(function (response) {
+      $timeout(function () {
+      	// console.log("fuc fuck");
+        file.result = response.data;
+        window.location.reload(true);
+      });
+
+    }, function (response) {
+      if (response.status > 0)
+        $scope.errorMsg = response.status + ': ' + response.data;
+    }, function (evt) {
+      // Math.min is to fix IE which reports 200% sometimes
+      file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+    });
+
+    };
+
 
 	$scope.getAssignments = function() {
 		$scope.assignments = [];
@@ -275,7 +323,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 			url: API + '/courses/sections'
 		};
 		$http(req).then(function(res) {
-			console.log(res.data);
 			console.log("section created");
 			
 		},$scope.handleRequest);
@@ -290,26 +337,65 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	};
 
 	$scope.getCourseUsers = function(id) {
-		if (!$scope.gotUsers) {
-			$scope.gotUsers = true;
-			var req = {
-				method: 'GET',
-				headers: {
-					'Authorization': 'Bearer: ' + $scope.token
-				},
-				url: API + '/sections/' + id + '/students'
-			};
-			$http(req).then(function(res) {
-				$scope.courseUsers = res.data;
-				console.log(res.data);
-			},$scope.handleRequest);
-		}
+		$scope.gotUsers = true;
+		var req = {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			url: API + '/sections/' + id + '/students'
+		};
+		$http(req).then(function(res) {
+			$scope.courseUsers = res.data;
+		},$scope.handleRequest);
+	};
+
+	$scope.inviteUser = function() {
+		var formData = {
+			sectionid: $routeParams.courseid,
+			email: $scope.newUserEmail
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/users/sections'
+		};
+		$http(req).then(function(res) {
+			console.log(res.data);
+			$scope.newUserEmail = "";
+		},$scope.handleRequest);
+	};
+
+	$scope.removeUser = function(id) {
+		var formData = {
+			section_id: $routeParams.courseid,
+			user_id: id
+		};
+		var req = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer: ' + $scope.token
+			},
+			data: formData,
+			url: API + '/users/roles/kick'
+		};
+		console.log(req);
+		$http(req).then(function(res) {
+			console.log(res.data);
+			$scope.getCourseUsers($routeParams.courseid);
+		},$scope.handleRequest);
 
 	};
+
 
 	$scope.instructorAnnounceToggle = function() {
 		$scope.instructorToggle = $scope.instructorToggle === false ? true: false;
 	};
+
+
 	$scope.$on('$viewContentLoaded', function() {
 		$scope.getCourses();
 		$scope.getUser();
@@ -318,9 +404,11 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 				$scope.getCourseWithID($routeParams.courseNumber);
 			}
 			if ($routeParams.courseid) {
-				$scope.getCourseWithID($routeParams.courseNumber);
+				$scope.getCourseWithID($routeParams.courseid);
 				if ($scope.isAdmin) {
-					$scope.getCourseUsers($routeParams.courseid);
+					if (!$scope.gotUsers) {
+						$scope.getCourseUsers($routeParams.courseid);
+					}
 				} else {
 					$window.location.href = './#!/courses/' + $routeParams.courseid;
 				}

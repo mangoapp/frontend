@@ -413,7 +413,7 @@ h3 {
 .i-announce input, .i-announce textarea {
   display: block;
   width: 70%;
-  font-size: 0.75em;
+  font-size: 0.57em;
   padding: 12px;
   border-radius: 5px;
   border: 1px solid #CCCCCC;
@@ -955,7 +955,7 @@ button.q-question:hover {
 }
 button.q-create {
   width: 60%;
-  margin: 15px auto;
+  margin: 15px auto !important;
   border-radius: 10px;
   color: white;
   border: 0;
@@ -1225,6 +1225,11 @@ a.assignment-link:hover {
   padding: 5px;
   border-radius: 35px;
 }
+
+.contentForm {
+  text-align: left;
+}
+
 #forgot-password h1 {
   text-align: center;
   font-weight: 600;
@@ -1233,7 +1238,7 @@ a.assignment-link:hover {
   margin: 0;
   padding-bottom: 35px;
 }
-.forgot-button button {
+.forgot-button button, .course-users button {
   border: 0;
   color: #FFFFFF;
   background-color: #F3715C;
@@ -1246,6 +1251,29 @@ a.assignment-link:hover {
 }
 .forgot-button button:hover {
    background-color: #DDDDDD;
+}
+.course-users h3 {
+  margin-bottom: 35px !important;
+}
+.course-users button {
+  display: block;
+  width: 60% !important;
+  margin: 25px auto !important;
+}
+.course-users button:hover {
+  background-color: #CCC;
+}
+.course-users a:hover {
+  cursor: pointer;
+}
+.center-text {
+  text-align: center !important;
+}
+.user-delete i {
+  color: #939393;
+}
+.user-delete i:hover {
+  color: #E23E57;
 }
 .icalLink {
   color: gray;
