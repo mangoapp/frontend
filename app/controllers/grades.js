@@ -223,6 +223,18 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 		},$scope.handleRequest);
 	};
 
+	$scope.getGrade = function(user_id, assignment_id) {
+		if (user_id == -1) user_id = $scope.id;
+		if ($scope.grades) {
+			for (var i = 0; i < $scope.grades.length; i++) {
+				if ($scope.grades[i].user_id == user_id && $scope.grades[i].assignment_id == assignment_id) {
+					return $scope.grades[i].score;
+				}
+			}
+		}
+		return 0;
+	};
+
 	$scope.toggleEdit = function(index) {
 		$scope.masterGrades[index].editing = 1;
 	};
