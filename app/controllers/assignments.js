@@ -15,6 +15,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.assignmentDescription = "";
     $scope.assignmentDeadline = "";
 
+    $scope.isUploads = false;
+
     
 
     if (auth.getToken()) {
@@ -329,32 +331,31 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         },$scope.handleRequest);
     };
 
-    $scope.uploadFiles = function(file, errFiles) {
+    $scope.uploadFiles = function(file) {
         $scope.f = file;
-        $scope.errFile = errFiles && errFiles[0];
-        if (file) {
-            file.upload = Upload.upload({
-                url: 'http://mango.kedarv.com/v1/assignments/' + $routeParams.assignmentNumber + '/upload',
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer: ' + $scope.token
-                },
-                data: {file: file}
+        file.upload = Upload.upload({
+            url: API + '/assignments/' + $routeParams.assignmentNumber + '/upload',
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            data: {file: file},
+        });
+
+        file.upload.then(function (response) {
+            console.log(response);
+            $timeout(function () {
+                file.result = response.data;
             });
 
-            file.upload.then(function (response) {
-                $timeout(function () {
-                    file.result = response.data;
-                    $window.location.href = './#!/courses/' + $scope.courseID;
-                });
-            }, function (response) {
-                if (response.status > 0)
-                    $scope.errorMsg = response.status + ': ' + response.data;
-            }, function (evt) {
-                file.progress = Math.min(100, parseInt(100.0 * 
-                 evt.loaded / evt.total));
-            });
-        }   
+        }, function (response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        }, function (evt) {
+      // Math.min is to fix IE which reports 200% sometimes
+      file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+  });
+
     };
 
     $scope.getUploads = function(id) {
@@ -366,11 +367,31 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             url: API + '/assignments/' + id + '/uploads'
         };
         $http(req).then(function(res) {
+            console.log(res.data);
             $scope.assignmentUploads = res.data;
+            if (res.data.length > 0) {
+                $scope.isUploads = true;
+            }
         },$scope.handleRequest);
     };
 
-   
+    $scope.getFile = function(id) {
+        var req = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            url: API + '/files/' + id,
+            responseType: 'arraybuffer'
+        };
+        $http(req).then(function(res) {
+            var file = new Blob([res.data], {type: 'application/pdf'});
+            var fileURL = URL.createObjectURL(file);
+            window.open(fileURL);
+        },$scope.handleRequest);
+    };
+
+
     $scope.$on('$viewContentLoaded', function() {
         $scope.getAssignmentsWithID($routeParams.courseNumber);
         $scope.getCourses();

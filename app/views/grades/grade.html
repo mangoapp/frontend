@@ -14,7 +14,7 @@
 		<div class="main-announcements">			
 			<h3 class="announcementHeader">Detailed Grades</h3>
 			<!-- Instructor grade view -->
-			<div class="grades" ng-repeat="assignment in masterGrades" ng-if="isInstructor">
+			<div class="grades grade-view" ng-repeat="assignment in masterGrades" ng-if="isInstructor">
 			<h4>
 			Assignment: {{assignment.title}}
 			<a ng-hide="assignment.editing" ng-click="toggleEdit($index)">

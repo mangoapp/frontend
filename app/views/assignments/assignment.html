@@ -14,7 +14,7 @@
         <div class="main-announcements">    
             <div ng-if="!isAdmin">        
                 <h3 class="announcementHeader"><span ng-bind="assignmentTitle"></span> Upload</h3>
-                <div class="fileUploader"><button type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                <div class="fileUploader"><button type="file" ngf-select="uploadFiles($file)"
                     accept="application/pdf">
                     Select File</button>
 
@@ -31,7 +31,23 @@
             </div>
         </div>
         <div ng-if="isAdmin">        
+            <div ng-show="isUploads">
                 <h3 class="announcementHeader"><span ng-bind="assignmentTitle"></span> Uploads</h3>
+                <div ng-repeat="upload in assignmentUploads">
+                <div class="announcement">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4><a href="" ng-click="getFile(upload.file_id)">{{upload.user.firstname}} {{upload.user.lastname}}</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div ng-hide="isUploads">
+                <h3 class="announcementHeader"><span ng-bind="assignmentTitle"></span> has no uploads yet</h3>
+
+            </div>
 
         </div>
 

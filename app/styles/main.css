@@ -1269,12 +1269,12 @@ a.assignment-link:hover {
 .center-text {
   text-align: center !important;
 }
-.grades i {
+.grade-view i {
   background-color: #CCC;
   color: #f9f9f9;
   border-radius: 50px;
 }
-.grades i:hover {
+.grade-view i:hover {
   background-color: #E23E57;
   cursor: pointer;
 }
