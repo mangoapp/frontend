@@ -1285,9 +1285,11 @@ a.assignment-link:hover {
   color: #E23E57;
   cursor: pointer;
 }
+
 .icalLink {
   color: gray;
   margin-top: 10px;
+  width: 100%;
 }
 .fc-button-group, .fc button {
   display: block !important;

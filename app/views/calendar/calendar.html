@@ -1,6 +1,6 @@
 <div class="row main">
     <div class="side-nav col-md-1 hidden-xs hidden-sm">
-            <div ng-include="'./components/courses-navbar.html'"></div>
+        <div ng-include="'./components/courses-navbar.html'"></div>
     </div>
 
     <div ng-if="!globalCalendar" class="side-course-nav col-md-2 hidden-xs hidden-sm">
@@ -14,9 +14,53 @@
         <div class="main-announcements">            
             <h3 class="announcementHeader">Calendar</h3>
             <br />
-            <div class="calendar col-md-8 col-md-offset-2" ui-calendar="uiConfig.calendar" ng-model="eventsSource"></div>
-            </div>
-            <input class="icalLink col-md-6 col-md-offset-3" type="text" ng-model="calendarLink" readonly />
+            <div class="row">
+               <div class="calendar col-md-8 col-md-offset-2" ui-calendar="uiConfig.calendar" ng-model="eventsSource"></div>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-md-6 col-md-offset-3"><br><br>
+            <h4>Calendar URL</h4>
+            <input class="icalLink" type="text" ng-model="calendarLink" readonly />
         </div>
-    </div>    
+    </div>
+    <div ng-if="!globalCalendar">
+    <div ng-show="isInstructor">
+        <div class="row">
+        <div class="col-md-8 col-md-offset-2 i-announce ">
+                <div ng-show="eventToggle">
+                    <a ng-click="instructorEventToggle()"><i class="fa fa-plus fa-fw"></i>&nbsp; Add New Event</a>
+                </div>
+                <div class="i-announce-show" ng-hide="eventToggle">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <a ng-click="instructorEventToggle()"><i class="fa fa-times"></i></a>
+                        </div>
+                        <div class="col-md-11">
+                            <h2>New Event:</h2>
+                            <h5>Title:</h5>
+                            <input placeholder="Event Title" ng-model="newEventTitle"><br>
+                            <h5>Brief Description:</h5>
+                            <input placeholder="Event Description" ng-model="newEventDescription"><br>
+                            <h5>Event Date:</h5>
+                            <input type="date" ng-model="newEventDate"><br>
+                            <h5>Start Time:</h5>
+                            <input type="time" ng-model="newStartTime"><br>
+                            <h5>End Time:</h5>
+                            <input type="time" ng-model="newEndTime"><br>
+
+
+                            <button ng-click="createEvent(newEventTitle,newEventDescription,newEventDate,newStartTime,newEndTime)">Create Event</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>    
 </div>

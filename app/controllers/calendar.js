@@ -1,6 +1,14 @@
 module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval,uiCalendarConfig) {
     var stopCourses;
     $scope.globalCalendar = true;
+
+    $scope.newEventTitle = "";
+    $scope.newEventDescription = "";
+    $scope.newEventDate = "";
+    $scope.newStartTime = new Date(2016, 0, 1, 8, 0, 0);
+    $scope.newEndTime = new Date(2016, 0, 1, 23, 59, 0);
+
+    
     var events = [];
     $scope.eventsSource = [events];
 
@@ -108,11 +116,45 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
             events[i].start = rawEvents[i].begin;
             events[i].end = rawEvents[i].end;
         }
-        console.log(events);
     };
 
     $scope.instructorAnnounceToggle = function() {
         $scope.instructorToggle = $scope.instructorToggle === false ? true: false;
+    };
+
+    $scope.instructorEventToggle = function() {
+        $scope.eventToggle = $scope.eventToggle === false ? true: false;
+    };
+
+    $scope.createEvent = function(title,description,date,start,end) {
+        var s = new Date(date.getFullYear(),date.getMonth(),date.getDate(),start.getHours(),start.getMinutes());
+        var e = new Date(date.getFullYear(),date.getMonth(),date.getDate(),end.getHours(),end.getMinutes());
+
+        var formData = {
+            title: title,
+            description: description,
+            begin: s.getTime()/1000,
+            end: e.getTime()/1000,
+            section_id: $scope.courseID
+        };
+        var req = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer: ' + $scope.token
+            },
+            data: formData,
+            url: API + '/sections/events/create'
+        };
+        $http(req).then(function(res) {
+            $scope.newEventTitle = "";
+            $scope.newEventDescription = "";
+            $scope.newEventDate = "";
+            $scope.newStartTime = new Date(2016, 0, 1, 8, 0, 0);
+            $scope.newEndTime = new Date(2016, 0, 1, 11, 59, 0);
+            $window.location.href = './#!/courses/' + $scope.courseID;
+        },$scope.handleRequest);
+
+
     };
 
     $scope.uiConfig = {
@@ -138,6 +180,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         }, 50, 50);
         $scope.getUser();
         $scope.instructorToggle = true;
+        $scope.eventToggle = true;
         $scope.getEvents();
     });
 };

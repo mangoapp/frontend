@@ -5,6 +5,7 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	$scope.gotUsers = false;
 	$scope.newSections = [];
 	$scope.courseTypes = ['Math','Computer Science','English','Biology', 'History', 'Philosophy'];
+	
 
 	$scope.newUserEmail = "";
 
@@ -392,6 +393,8 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	$scope.instructorAnnounceToggle = function() {
 		$scope.instructorToggle = $scope.instructorToggle === false ? true: false;
 	};
+
+	
 
 
 	$scope.$on('$viewContentLoaded', function() {
