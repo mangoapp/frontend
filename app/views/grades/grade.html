@@ -14,8 +14,22 @@
 		<div class="main-announcements">			
 			<h3 class="announcementHeader">Detailed Grades</h3>
 			<!-- Instructor grade view -->
-			<div class="grades" ng-repeat="assignment in assignments" ng-if="isInstructor">
-			<h4>Assignment: {{assignment.title}}</h4>
+			<div class="grades" ng-repeat="assignment in masterGrades" ng-if="isInstructor">
+			<h4>
+			Assignment: {{assignment.title}}
+			<a ng-hide="assignment.editing" ng-click="toggleEdit($index)">
+				<span class="fa-stack ">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+				</span>
+			</a>
+			<a ng-show="assignment.editing" ng-click="saveGrades($index)">
+				<span class="fa-stack ">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-floppy-o fa-stack-1x fa-inverse"></i>
+				</span>
+			</a>
+			</h4>
 			
 				<table class="table table-striped">
 					<tr>
@@ -24,10 +38,15 @@
 						<th>Out Of</th>
 					</tr>
 
-					<tr class="assignment grades" ng-repeat="student in students">
-						<td>{{student.firstname}} {{student.lastname}}</td>
-						<td>{{getGrade(student.id, assignment.id) | number: 0}}</td>
-						<td>{{assignment.maxScore}}</td>
+					<tr class="assignment grades" ng-repeat="student in assignment.students">
+						<td>{{student.firstName}} {{student.lastName}}</td>
+						<td>
+						<span ng-hide="assignment.editing">
+						{{student.score | number: 0}}
+						</span>
+						<input type="text" ng-show="assignment.editing" ng-model="masterGrades[$parent.$index].students[$index].score" />
+						</td>
+						<td>{{assignment.score}}</td>
 					</tr>
 				</table>
 			</div>
