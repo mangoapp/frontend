@@ -16,7 +16,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
     $scope.assignmentDeadline = "";
 
     $scope.isUploads = false;
-
     
 
     if (auth.getToken()) {
@@ -343,7 +342,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
         });
 
         file.upload.then(function (response) {
-            console.log(response);
             $timeout(function () {
                 file.result = response.data;
             });

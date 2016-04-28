@@ -7,7 +7,7 @@
 		<div class="row">
 			<div ng-include="'./components/top-nav.html'"></div>
 
-			<div ng-show="isNotifications">
+			<div class="notification-box" ng-show="isNotifications">
 				<h3>Your Notifications</h3>
 				<div ng-repeat="notification in notifications">
 					<div class="notif">

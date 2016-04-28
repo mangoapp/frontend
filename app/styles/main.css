@@ -1295,3 +1295,6 @@ a.assignment-link:hover {
 .user-info button.errorButton {
   background-color: #E74C3C;
 }
+.notification-box a div:hover {
+  cursor:pointer;
+}

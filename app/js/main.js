@@ -164,7 +164,7 @@
 
   //Load controller
   .controller('UserCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$timeout', '$interval', '$routeParams', UserCtrl])
-  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', 'Upload', CourseCtrl])
+  .controller('CourseCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', '$location', 'Upload', CourseCtrl])
   .controller('GradesCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', GradesCtrl])
   .controller('DiscussionCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', DiscussionCtrl])
   .controller('PollCtrl', ['$scope', '$http', 'API', 'auth', '$window', '$routeParams', '$timeout', '$interval', PollCtrl])

@@ -1,4 +1,4 @@
-module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval,Upload) {
+module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$interval,$location,Upload) {
 	var stopAnnouncements;
 	var stopContent;
 	var stopCourses;
@@ -46,7 +46,6 @@ module.exports = function($scope,$http,API,auth,$window,$routeParams,$timeout,$i
 	$scope.markNotifications = function() {
 		if ($scope.notifications) {
 			for (var i = 0; i < $scope.notifications.length; i++) {
-				console.log($scope.notifications[i]);
 				$scope.markNotification($scope.notifications[i].id);
 			}
 			delete $scope.notifications;
