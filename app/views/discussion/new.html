@@ -12,7 +12,7 @@
 				<a ng-if="thread.sticky == 1" ng-click="getSingleThread(thread.id)" ng-href="./#!/discussion/{{courseID}}">
 					<li>
 						<div class="title"><i ng-if="thread.user.roles[0].name =='course_admin'" class="fa fa-university"></i> {{thread.title}}</div>
-						<div class="body">{{thread.body}}</div>
+						<div class="body">{{thread.body | limitTo:120}}</div>
 					</li>
 				</a>
 			</div>
@@ -24,7 +24,7 @@
 				<a ng-if="thread.sticky == 0" ng-click="getSingleThread(thread.id)" ng-href="./#!/discussion/{{courseID}}">
 					<li>
 						<div class="title"><i ng-if="thread.user.roles[0].name =='course_admin'" class="fa fa-university"></i> {{thread.title}}</div>
-						<div class="body">{{thread.body}}</div>
+						<div class="body">{{thread.body | limitTo:120}}</div>
 					</li>
 				</a>
 			</div>
